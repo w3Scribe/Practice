@@ -4,12 +4,22 @@
 
 // preprocessing, Compilation, Assembly, Linking
 
-#include <stdio.h>
+#include<stdio.h>
+
+void findAvgAndSum(int* arry, int size){
+  int sum = 0;
+  
+  for(int i = 0; i<size; i++)
+    sum += arry[i];
+
+  int average = sum / size;
+  printf("Sum : %d\n Avgrage : %d", sum, average);
+}
+
+
 
 int main(){
-  char* hello = "sudhr gadpayle";
-  char hello1[] = "sudhr gadpayle";
-  printf("%s\n", hello);
-  printf("%s\n", hello1);
-  return 0;
+ int arry[] = {1,2,3,4,5,6,7,8,9};
+ findAvgAndSum(arry, sizeof(arry)/sizeof(arry[0]));
+ return 0;
 }
