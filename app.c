@@ -6,17 +6,20 @@
 
 #include<stdio.h>
 
-int NumberOfOccurance(int * arry, int size, int element){
- int totalRepeatation = 0;
-  for(int  i = 0; i<size; i++)
-    if(arry[i] == element) totalRepeatation++;
-  return totalRepeatation;
+
+void isSortedArray(int* arry, int size){
+  int isTrue = 1;
+  for(int i = 0; i<size; i++){
+    if(arry[i] > arry[i+1]) isTrue = 0;
+  }
+  if(isTrue) printf("Array is Sorted\n");
+  else printf("Array is not Sorted\n");
 }
 
 
 int main(){
- int arry[] = {1,2,3,4,5,6,77,8,9,5,5};
- int result = NumberOfOccurance(arry, sizeof(arry)/sizeof(arry[0]), 5);
- printf("Number of Occurance of 5 is %d\n", result);
+ int arry[] = {1,2,3,4,5,6,7,8,9,10};
+ int size = sizeof(arry)/sizeof(arry[0]);
+ isSortedArray(arry, size);
  return 0;
 }
