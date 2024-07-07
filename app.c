@@ -4,22 +4,46 @@
 
 // preprocessing, Compilation, Assembly, Linking
 
-#include<stdio.h>
+// #include<stdio.h>
 
+// void reverseArray(int* arry, int size){
+//   int revIndex = 0;
+//   int revArray[size];
+//   for(int i = 1; i <= size; i++){
+//      revIndex+=1;
+//     revArray[size-i] = arry[revIndex - 1];
+//   }
 
-void isSortedArray(int* arry, int size){
-  int isTrue = 1;
-  for(int i = 0; i<size; i++){
-    if(arry[i] > arry[i+1]) isTrue = 0;
+//   for(int j = 0; j < revIndex; j++){
+//     printf("%d\n", revArray[j]);
+//   }
+// }
+
+// int main(){
+//   int arry[] = {1,2,3,4,5,6};
+//   reverseArray(arry, sizeof(arry)/sizeof(arry[0]));
+//   return 0;
+// }
+
+#include <stdio.h>
+
+void reverseArray(int *arry, int size)
+{
+  int revArray[size];
+  for (int i = 0; i < size; i++)
+  {
+    revArray[size - 1 - i] = arry[i];
   }
-  if(isTrue) printf("Array is Sorted\n");
-  else printf("Array is not Sorted\n");
+
+  for (int j = 0; j < size; j++)
+  {
+    printf("%d\n", revArray[j]);
+  }
 }
 
-
-int main(){
- int arry[] = {1,2,3,4,5,6,7,8,9,10};
- int size = sizeof(arry)/sizeof(arry[0]);
- isSortedArray(arry, size);
- return 0;
+int main()
+{
+  int arry[] = {1, 2, 3, 4, 5, 6};
+  reverseArray(arry, sizeof(arry) / sizeof(arry[0]));
+  return 0;
 }
