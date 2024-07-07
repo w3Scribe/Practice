@@ -6,20 +6,17 @@
 
 #include<stdio.h>
 
-void findAvgAndSum(int* arry, int size){
-  int sum = 0;
-  
-  for(int i = 0; i<size; i++)
-    sum += arry[i];
-
-  int average = sum / size;
-  printf("Sum : %d\n Avgrage : %d", sum, average);
+int NumberOfOccurance(int * arry, int size, int element){
+ int totalRepeatation = 0;
+  for(int  i = 0; i<size; i++)
+    if(arry[i] == element) totalRepeatation++;
+  return totalRepeatation;
 }
 
 
-
 int main(){
- int arry[] = {1,2,3,4,5,6,7,8,9};
- findAvgAndSum(arry, sizeof(arry)/sizeof(arry[0]));
+ int arry[] = {1,2,3,4,5,6,77,8,9,5,5};
+ int result = NumberOfOccurance(arry, sizeof(arry)/sizeof(arry[0]), 5);
+ printf("Number of Occurance of 5 is %d\n", result);
  return 0;
 }
