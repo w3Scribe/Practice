@@ -4,46 +4,17 @@
 
 // preprocessing, Compilation, Assembly, Linking
 
-// #include<stdio.h>
+#include<stdio.h>
 
-// void reverseArray(int* arry, int size){
-//   int revIndex = 0;
-//   int revArray[size];
-//   for(int i = 1; i <= size; i++){
-//      revIndex+=1;
-//     revArray[size-i] = arry[revIndex - 1];
-//   }
-
-//   for(int j = 0; j < revIndex; j++){
-//     printf("%d\n", revArray[j]);
-//   }
-// }
-
-// int main(){
-//   int arry[] = {1,2,3,4,5,6};
-//   reverseArray(arry, sizeof(arry)/sizeof(arry[0]));
-//   return 0;
-// }
-
-#include <stdio.h>
-
-void reverseArray(int *arry, int size)
-{
-  int revArray[size];
-  for (int i = 0; i < size; i++)
-  {
-    revArray[size - 1 - i] = arry[i];
+int main(){
+  int number;
+  printf("Enter a number: ");
+  scanf("%d", &number);
+  printf("You entered: %d\n", number);
+  long long int factorial = 1;
+  for(int i=1; i<=number; i++) {
+    factorial = factorial * i;
   }
-
-  for (int j = 0; j < size; j++)
-  {
-    printf("%d\n", revArray[j]);
-  }
-}
-
-int main()
-{
-  int arry[] = {1, 2, 3, 4, 5, 6};
-  reverseArray(arry, sizeof(arry) / sizeof(arry[0]));
+  printf("Factorial of %d is %lld\n", number, factorial);
   return 0;
 }
