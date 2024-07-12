@@ -1,31 +1,36 @@
-// int, short, long, float, double, char, string, unsinged, singed,
-//  array, struct,union,enum, typedef, pointer, function, void, const, volatile, static, auto, register, extern, break, continue, return, goto, if, else, switch, case, default, while, do, for
-// int vs long int
-
-// preprocessing, Compilation, Assembly, Linking
-
 #include<stdio.h>
 
 #define NUMBER_OF_STD 5
+#define NUMBER_OF_SUBJECTS 3
 
 int main(){
-  int std[NUMBER_OF_STD], marks[NUMBER_OF_STD];
-  float total_marks = 0, avg_marks;
+  int marks[NUMBER_OF_STD][NUMBER_OF_SUBJECTS];
+  int roll_number[NUMBER_OF_STD];
+  float total_marks_of_all_std = 0;
+  float total_marks_of_each_std[NUMBER_OF_STD], total_marks = 0;
 
-  printf("\nEnter the roll number of %d std : \n", NUMBER_OF_STD);
-
-  for(int i = 0; i<NUMBER_OF_STD; i++)
-    scanf("\n%d", &std[i]);
-
-  for(int j = 0; j<NUMBER_OF_STD; j++){
-    printf("\nEnter the marks of std %d : ", std[j]);
-    scanf("%d", &marks[j]);
-    total_marks += marks[j];
+  printf("Enter the roll number of %d students :\n", NUMBER_OF_STD);
+  for(int i=0; i<NUMBER_OF_STD; i++){
+   scanf("%d", &roll_number[i]);
   }
 
-  avg_marks = total_marks/NUMBER_OF_STD;
-  printf("\nTotal marks is : %.2f", total_marks);
-  printf("\nAverage mark of std is : %.2f", avg_marks);
+ for(int i = 0; i<NUMBER_OF_STD; i++){
+  printf("Enter the marks of student %d in %d subjects :\n", roll_number[i], NUMBER_OF_SUBJECTS);
+  total_marks = 0;
+  for(int j=0; j<NUMBER_OF_SUBJECTS; j++){
+    scanf("%d", &marks[i][j]);
+    total_marks_of_all_std += marks[i][j];
+    total_marks += marks[i][j];
+  }
+  total_marks_of_each_std[i] = total_marks;
+ }
 
-  return 0;
+ for(int i=0; i<NUMBER_OF_STD; i++){
+  printf("Total marks of student %d is : %.2f\n", roll_number[i], total_marks_of_each_std[i]);
+ }
+ 
+ printf("Total marks of all students is : %.2f\n", total_marks_of_all_std);
+
+ return 0;
 }
+
