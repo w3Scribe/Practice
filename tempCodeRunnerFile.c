@@ -1,9 +1,3 @@
-// int, short, long, float, double, char, string, unsinged, singed,
-//  array, struct,union,enum, typedef, pointer, function, void, const, volatile, static, auto, register, extern, break, continue, return, goto, if, else, switch, case, default, while, do, for
-// int vs long int
-
-// preprocessing, Compilation, Assembly, Linking
-
 #include<stdio.h>
 
 #define NUMBER_OF_STD 5
