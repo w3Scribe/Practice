@@ -1,36 +1,29 @@
 #include<stdio.h>
 
-#define NUMBER_OF_STD 5
-#define NUMBER_OF_SUBJECTS 3
+#define ROW 2
+#define COL 3
 
 int main(){
-  int marks[NUMBER_OF_STD][NUMBER_OF_SUBJECTS];
-  int roll_number[NUMBER_OF_STD];
-  float total_marks_of_all_std = 0;
-  float total_marks_of_each_std[NUMBER_OF_STD], total_marks = 0;
+  int a[ROW][COL];
+  int b[COL][ROW];
 
-  printf("Enter the roll number of %d students :\n", NUMBER_OF_STD);
-  for(int i=0; i<NUMBER_OF_STD; i++){
-   scanf("%d", &roll_number[i]);
+  printf("Enter the matrix : \n");
+  for(int i=0; i<ROW; i++){
+    for(int j=0; j<COL; j++){
+      scanf("%d", &a[i][j]);
+    }
   }
 
- for(int i = 0; i<NUMBER_OF_STD; i++){
-  printf("Enter the marks of student %d in %d subjects :\n", roll_number[i], NUMBER_OF_SUBJECTS);
-  total_marks = 0;
-  for(int j=0; j<NUMBER_OF_SUBJECTS; j++){
-    scanf("%d", &marks[i][j]);
-    total_marks_of_all_std += marks[i][j];
-    total_marks += marks[i][j];
-  }
-  total_marks_of_each_std[i] = total_marks;
- }
-
- for(int i=0; i<NUMBER_OF_STD; i++){
-  printf("Total marks of student %d is : %.2f\n", roll_number[i], total_marks_of_each_std[i]);
- }
- 
- printf("Total marks of all students is : %.2f\n", total_marks_of_all_std);
-
- return 0;
+  for(int i=0; i<COL; i++){
+    for(int j=0; j<ROW; j++){
+      b[j][i] = a[j][i];
+    }
+  }                                                                                                                                                                                                         printf("The transpose of matrix : \n");                   
+  for(int i=0; i<COL; i++){
+    for(int j=0; j<ROW; j++){
+      printf("%d\t",b[j][i]);
+    }
+    printf("\n");
+  }                                                                                                                                                                                                        
+  return 0;
 }
-
