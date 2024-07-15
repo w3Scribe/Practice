@@ -1,5 +1,5 @@
 
-// integer promotion
+// Arithemetic conversion
 #include<stdio.h>
 
 void main(){
