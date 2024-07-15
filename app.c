@@ -1,29 +1,36 @@
 #include<stdio.h>
 
-#define ROW 2
-#define COL 3
-
 int main(){
-  int a[ROW][COL];
-  int b[COL][ROW];
+  int const row = 3;
+  int const col = 3;
+  int arr[row][col];
+  int rowSum = 0;
+  int colSum = 0;
 
-  printf("Enter the matrix : \n");
-  for(int i=0; i<ROW; i++){
-    for(int j=0; j<COL; j++){
-      scanf("%d", &a[i][j]);
+  printf("Enter the number of rows and columns: \n");
+  for(int i=0; i<row; i++){
+    for(int j=0; j<col; j++){
+      scanf("%d", &arr[i][j]);
     }
   }
 
-  for(int i=0; i<COL; i++){
-    for(int j=0; j<ROW; j++){
-      b[j][i] = a[j][i];
-    }
-  }                                                                                                                                                                                                         printf("The transpose of matrix : \n");                   
-  for(int i=0; i<COL; i++){
-    for(int j=0; j<ROW; j++){
-      printf("%d\t",b[j][i]);
+  printf("\nYou have entered the matrix : \n");
+  for(int i=0; i<row; i++){
+    for(int j=0; j<col; j++){
+      printf("%d\t", arr[i][j]);
     }
     printf("\n");
-  }                                                                                                                                                                                                        
+  }
+
+  for(int i=0; i<row; i++){
+    for(int j=0; j<col; j++){
+      rowSum += arr[i][j];
+      colSum += arr[j][i];
+    }
+  }
+
+  printf("\nThe sum of rows is : %d", rowSum);
+  printf("\nThe sum of cols is : %d", colSum);
+
   return 0;
 }
