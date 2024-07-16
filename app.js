@@ -1,9 +1,9 @@
-// reversing the string in javscript 
+// check the string is pallindrom or not
 
-const str_value = "suraj";
+const string = "madam";
 
-function revString(str){
-  return str.split("").reverse().join("");
+function isPallindrome(str){
+  return str.split("").reverse().join("") === str;
 }
 
-console.log
+console.log(isPallindrome(string));
