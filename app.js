@@ -1,9 +1,11 @@
-// check the string is pallindrom or not
+// factorial of a numbe
 
-const string = "madam";
+function factorial(number){
+  let fcSum = 1;
+  for(let i=1; i<=number; i++){
+    fcSum *= i;
+  }
+  return fcSum;
+}  
 
-function isPallindrome(str){
-  return str.split("").reverse().join("") === str;
-}
-
-console.log(isPallindrome(string));
+console.log(factorial(5));
