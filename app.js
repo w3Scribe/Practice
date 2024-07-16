@@ -1,7 +1,9 @@
-function printTable(number, times, i = 1) {
-  if (i > times) return;
-  console.log(number * i);
-  printTable(number, times, i + 1);
+// reversing the string in javscript 
+
+const str_value = "suraj";
+
+function revString(str){
+  return str.split("").reverse().join("");
 }
 
-printTable(6, 10);
+console.log
