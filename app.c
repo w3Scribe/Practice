@@ -2,38 +2,41 @@
 // strlen, strrev, strcpy, strcat, strupr, strlwr
 
 #include <stdio.h>
+// 1 2 3 4 5
+int main(){
+ int arrSize = 5;
+ int arr[arrSize];
+ int pos, element;
 
-void main(){
-  int arr[3][3];
-  int arr1[3][3];
-  int arr2[3][3];
+ printf("Enter the arry element : ");
+ for(int i=0; i<arrSize; i++){
+   scanf("%d", &arr[i]);
+ }
+ 
+ printf("you have entered the following array elements : \n");
+ for(int i=0; i<arrSize; i++){
+   printf("%d\t", arr[i]);
+ }
+ 
+ printf("\nEnter the postion of element : ");
+ scanf("%d", &pos);
+ printf("Enter the element : ");
+ scanf("%d", &element);
 
-  printf("Enter the array element for array 1 : \n");
-  for(int i=0; i<3; i++){
-    for(int j=0; j<3; j++){
-      scanf("%d", &arr[i][j]);
-    }
-  }
+ if(pos < 0 || pos == arrSize){
+   printf("Invalid position!\n");
+   return 1;
+ }
 
-  printf("\nEnter the array element for array 2 : \n");
-  for(int i=0; i<3; i++){
-    for(int j=0; j<3; j++){
-      scanf("%d", &arr1[i][j]);
-    }
-  }
+ for(int i=arrSize; i>=pos-1; i--){
+   arr[i] = arr[i-1];
+ }
+ 
+ arr[pos-1] = element;
+ arrSize++;
 
-  for(int i=0; i<3; i++){
-    for(int j=0; j<3; j++){
-      arr2[i][j] = arr[i][j] + arr1[i][j];
-    }
-  }
-
-  printf("\nThe sum of two array is : \n");
-  for(int i=0; i<3; i++){
-    for(int j=0; j<3; j++){
-      printf("%d\t", arr2[i][j]);
-    }
-    printf("\n");
-  }
+ for(int i=0; i<arrSize; i++){
+    printf("%d\t", arr[i]);
+ }
 
 }
