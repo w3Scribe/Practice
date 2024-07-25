@@ -1,4 +1,4 @@
-// WAP to input two numbers from the keyboard and print their sum.
+// WAP to input two numbers from the keyboard and print their average
 #include<stdio.h>
 
 int main(){
@@ -9,6 +9,6 @@ int main(){
  printf("Enter the value of b : ");
  scanf("%d", &b);
 
- printf("The sum of a+b = %d", a+b);
+ printf("The average of two numbers a and b is %d", ((a + b) / 2));
  return 0;
 }
