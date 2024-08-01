@@ -1,12 +1,16 @@
-// WAP to calculate the area of a circle
+// WAP to print the total seconds in a given time (hrs, min, sec’s)
 #include<stdio.h>
-#include<math.h>
 
 int main(){
- float radius, area;
- printf("Enter the radius of circle : ");
- scanf("%f", &radius);
- area = M_PI * pow(radius, 2);
- printf("The area of circle is %.2f", area);
- return 0;
-} 
+  int hr, min, sec;
+  long int t_sec;
+  printf("Enter the total HOURS : ");
+  scanf("%d", &hr);
+  printf("Enter the total MINUTES : ");
+  scanf("%d", &min);
+  printf("Enter the total SECONDS : ");
+  scanf("%d", &sec);
+  t_sec = (hr * 3600 ) + (min*60) + sec;
+  printf("The total seconds is : %ldsec", t_sec);
+  return 0;
+}
