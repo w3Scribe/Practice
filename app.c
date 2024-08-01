@@ -1,15 +1,27 @@
-// WAP to convert temp. From Fahrenheit to centigrade. C=(F-32) * 5/9
+// WAP to SWAP (interchange) two numbers
 
 #include<stdio.h>
 
 int main(){
-  float F, c;
-  printf("Enter the Fahrenheit value : ");
-  if(scanf("%f", &F) != 1){
-    printf("Invalid input.");
-    return 0;
-  }
-  c = (F-32)*5.0/9.0;
-  printf("%.2f centigrade.", c); 
+  int a, b, c;
+
+  printf("Enter the value of A : ");
+  if (!scanf("%d", &a))
+    goto INVALID_INPUT;
+
+  printf("Enter the value of B : ");
+  if (!scanf("%d", &b))
+    goto INVALID_INPUT;
+
+  c = a;
+  a = b;
+  b = c;
+
+  printf("The value of A and B is : %d and %d", a, b);
+
   return 0;
+
+  INVALID_INPUT : 
+    printf("Envalid input.");
+    return 0;
 }
