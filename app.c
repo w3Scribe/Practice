@@ -1,27 +1,15 @@
-#include <stdio.h>
+// WAP to convert temp. From Fahrenheit to centigrade. C=(F-32) * 5/9
 
-int main()
-{
-  int hr, min, sec;
-  long int t_sec;
+#include<stdio.h>
 
-  printf("Enter the total HOURS: ");
-  if (!scanf("%d", &hr))
-    goto INVALID_INPUT;
-
-  printf("Enter the total MINUTES: ");
-  if (!scanf("%d", &min))
-    goto INVALID_INPUT;
-
-  printf("Enter the total SECONDS: ");
-  if (!scanf("%d", &sec))
-    goto INVALID_INPUT;
-
-  t_sec = (hr * 3600) + (min * 60) + sec;
-  printf("The total seconds is: %ld sec\n", t_sec);
-  return 0;
-
-INVALID_INPUT:
-  printf("Invalid Input.\n");
+int main(){
+  float F, c;
+  printf("Enter the Fahrenheit value : ");
+  if(scanf("%f", &F) != 1){
+    printf("Invalid input.");
+    return 0;
+  }
+  c = (F-32)*5.0/9.0;
+  printf("%.2f centigrade.", c); 
   return 0;
 }
