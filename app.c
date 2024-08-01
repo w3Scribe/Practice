@@ -1,14 +1,12 @@
-// WAP to input two numbers from the keyboard and print their average
+// WAP to calculate the area of a circle
 #include<stdio.h>
+#include<math.h>
 
 int main(){
- int a, b;
- printf("Enter the value of a : ");
- scanf("%d", &a);
-
- printf("Enter the value of b : ");
- scanf("%d", &b);
-
- printf("The average of two numbers a and b is %d", ((a + b) / 2));
+ float radius, area;
+ printf("Enter the radius of circle : ");
+ scanf("%f", &radius);
+ area = M_PI * pow(radius, 2);
+ printf("The area of circle is %.2f", area);
  return 0;
-}
+} 
