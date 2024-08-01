@@ -47,7 +47,7 @@ def download(url, res, location):
                 video_path = os.path.join(location, f"{sanitized_title}_video.mp4")
                 audio_path = os.path.join(location, f"{sanitized_title}_audio.mp4")
                 
-                print("Downloading video stream...")
+                print("Downloading video stream...")   
                 video_stream.download(output_path=location, filename=f"{sanitized_title}_video.mp4")
                 
                 print("\nDownloading audio stream...")
