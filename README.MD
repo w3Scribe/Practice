@@ -5,3 +5,4 @@
 5. WAP to convert temp. From Fahrenheit to centigrade. C=(F-32) * 5/9
 6. WAP to SWAP (interchange) two numbers
 7. WAP to SWAP (interchange) 2 numbers without using third variable.
+8. WAP to SWAP (interchange) three numbers
