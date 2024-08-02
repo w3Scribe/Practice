@@ -3,7 +3,7 @@
 #include<stdio.h>
 
 int main(){
-  int a, b, c, d;
+  int a, b, c, temp;
   
   printf("Enter the value of A :  ");
   if(!scanf("%d", &a)) goto INVALID_INPUT;
@@ -14,10 +14,10 @@ int main(){
   printf("Enter the value of C :  ");
   if(!scanf("%d", &c)) goto INVALID_INPUT;
 
-  d = a + b + c;
-  b = d - c;
-  a = c - a;
-  c = b - a;
+  temp = a;
+  a = b;
+  b = c;
+  c = temp;
 
   printf("The value of \nA : %d\nB : %d\nC : %d", a, b, c);
 
