@@ -1,38 +1,26 @@
-// WAP to SWAP four numbers without using five variable
+// WAP to calculate the remainder of 2 numbers without using % operator.
 
 #include<stdio.h>
 
 int main(){
-  int a, b, c, d;
+  int divident, divisor;
+  divisor = 2;
+
+  printf("Enter the number : ");
   
-  printf("Enter the value of A :  ");
-  if(!scanf("%d", &a)) goto INVALID_INPUT;
+  if(!scanf("%d", &divident)){
+    printf("Enter the Integer value.");
+    return 0;
+  }
 
-  printf("Enter the value of B :  ");
-  if(!scanf("%d", &b)) goto INVALID_INPUT;
+  while(divident>=divisor){
+    divident -= divisor;
+  }
 
-  printf("Enter the value of C :  ");
-  if(!scanf("%d", &c)) goto INVALID_INPUT;
-
-  printf("Enter the value of D :  ");
-  if(!scanf("%d", &d)) goto INVALID_INPUT;
-
-  // a = a + b + c + d;
-  // d = a - (b + c + d);
-  // c = a - (b + c + d);
-  // b = a - (b + c + d);
-  // a = a - (b + c + d);
-
-  a = a + b + c + d;
-  b = a - (b + c + d);
-  c = a - (b + c + d);
-  d = a - (b + c + d);
-  a = a - (b + c + d);
-
-  printf("The value of \nA : %d\nB : %d\nC : %d\nD : %d", a, b, c, d);
+  if (divident == 0)
+    printf("Even Number");
+  else
+    printf("Odd Number");
 
   return 0;
-  INVALID_INPUT : 
-     printf("Invalid Input.");
-     return 0;
 }

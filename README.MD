@@ -7,3 +7,4 @@
 7. WAP to SWAP (interchange) 2 numbers without using third variable.
 8. WAP to SWAP (interchange) three numbers
 9. WAP to SWAP three numbers without using fourth variable
+10. WAP to calculate the remainder of 2 numbers without using % operator.
