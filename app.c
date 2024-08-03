@@ -1,26 +1,19 @@
-// WAP to calculate the remainder of 2 numbers without using % operator.
+// WAP to calculate the sum of digits of a three digit number e.g. 125 is 8
 
 #include<stdio.h>
 
 int main(){
-  int divident, divisor;
-  divisor = 2;
+  int number, sum = 0;
 
   printf("Enter the number : ");
+  scanf("%d", &number);
+
+  while(number != 0){
+     sum += number % 10;
+     number /= 10;
+  }
   
-  if(!scanf("%d", &divident)){
-    printf("Enter the Integer value.");
-    return 0;
-  }
-
-  while(divident>=divisor){
-    divident -= divisor;
-  }
-
-  if (divident == 0)
-    printf("Even Number");
-  else
-    printf("Odd Number");
+  printf("The sum is %d", sum);
 
   return 0;
 }

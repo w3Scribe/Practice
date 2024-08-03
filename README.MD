@@ -8,3 +8,6 @@
 8. WAP to SWAP (interchange) three numbers
 9. WAP to SWAP three numbers without using fourth variable
 10. WAP to calculate the remainder of 2 numbers without using % operator.
+
+11. WAP to calculate the sum of digits of a three digit number e.g. 125 is 8 (with or without loop)
+12. WAP to merge three number. E.g. a= 1, b= 2, c = 8 is 128
