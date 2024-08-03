@@ -11,3 +11,4 @@
 
 11. WAP to calculate the sum of digits of a three digit number e.g. 125 is 8 (with or without loop)
 12. WAP to merge three number. E.g. a= 1, b= 2, c = 8 is 128
+13. WAP to print the reverse of a 3 digit number (with or without loop)
