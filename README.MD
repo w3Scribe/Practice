@@ -6,3 +6,4 @@
 6. WAP to SWAP (interchange) two numbers
 7. WAP to SWAP (interchange) 2 numbers without using third variable.
 8. WAP to SWAP (interchange) three numbers
+9. WAP to SWAP three numbers without using fourth variable
