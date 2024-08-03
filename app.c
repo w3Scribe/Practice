@@ -1,19 +1,26 @@
-// WAP to calculate the sum of digits of a three digit number e.g. 125 is 8
+// WAP to merge three number. E.g. a= 1, b= 2, c = 8 is 128
 
 #include<stdio.h>
 
 int main(){
-  int number, sum = 0;
+  int a, b, c, number = 0;
 
-  printf("Enter the number : ");
-  scanf("%d", &number);
+  printf("Enter the value of A : ");
+  scanf("%d", &a);
+  printf("Enter the value of B : ");
+  scanf("%d", &b);
+  printf("Enter the value of C : ");
+  scanf("%d", &c);
 
-  while(number != 0){
-     sum += number % 10;
-     number /= 10;
-  }
-  
-  printf("The sum is %d", sum);
+  number += a; // 0+1 = 1
+
+  number *= 10; //10
+  number += b; //12
+
+  number *= 10; //120
+  number += c; //3
+
+  printf("The number is %d", number);
 
   return 0;
 }
