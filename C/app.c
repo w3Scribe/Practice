@@ -21,7 +21,7 @@ int* twoSum(int* nums, int numsSize, int target) {
 
 int main(){
   int arr[] = {1,2,3};
-  int *indx = twoSum(arr, 7, 4);
+  int *indx = twoSum(arr, 7, 1);
 
   if(indx != NULL){
     printf("%d %d", indx[0], indx[1]);
