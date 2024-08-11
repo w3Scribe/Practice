@@ -34,7 +34,7 @@ struct BT* bestTime(int *arr, const int SIZE){
   struct BT* result = (struct BT*)malloc(sizeof(struct BT)*2);
   if(result != NULL){
     result[0] = Buy;
-    result[1] = Sell;
+    result[1] = Sell;   
   }
 
   return result;
