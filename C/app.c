@@ -1,17 +1,31 @@
-// write a programming to reverse the three digit number
+// WAP  to  create  a  calculator  which  can  do  addition,  subtraction,
+// multiplication, division, & modulus (remainder)
+
 #include<stdio.h>
 
 int main(){
-  int number = 123;
-  int rev_number = 0;
+  int num1, num2, operation;
+  printf("Enter two numbers : ");
+  scanf("%d %d", &num1, &num2);
 
-  for(int i=0; i<3; i++){
-    rev_number *= 10;
-    rev_number += number % 10;
-    number /= 10;
+  printf("1:\tAdd\n2:\tSubtract\n3:\tMultiply\n4:\tDivide\n5:\tModulus\nEnter your choice: ");
+
+  scanf("%d", &operation);
+  printf("Answer is : ");
+  
+  switch (operation){
+    case 1 : printf("%d", num1+num2);
+    break;
+    case 2 : printf("%d", num1-num2);
+    break;
+    case 3 : printf("%d", num1*num2);
+    break;
+    case 4 : printf("%f", num1/num2);
+    break;
+    case 5 : printf("%d", num1%num2);
+    break;
+    default : printf("something went wrong.");
   }
-
-  printf("%d", rev_number);
 
   return 0;
 }
