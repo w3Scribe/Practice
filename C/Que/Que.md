@@ -14,3 +14,5 @@
 13. WAP to print the reverse of a 3 digit number (with or without loop)
 14. WAP to create a calculator which can do addition, subtraction,
     multiplication, division, & modulus (remainder)
+15. WAP to check whether a number input through the keyboard is even or odd (with or without modulus operator)
+16. 
