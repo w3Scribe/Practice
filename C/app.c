@@ -1,18 +1,10 @@
-//  WAP to check whether a number input through the keyboard is even or odd (with or without modulus operator)
 #include<stdio.h>
-
+#include<stdlib.h>
+#include<time.h>
 
 int main(){
-  int number, result;
-  printf("Enter the number : ");
-  scanf("%d", &number);
- 
-  while (number > 0){
-    if(number == 0) printf("even");
-    else printf("odd");
-    number -= 2;
-  }
-  
-
+  srand(time(NULL)); // seed to rand function 
+  int randNumber = rand() % (20 - 10 + 1) + 10;
+  printf("%d", randNumber);
   return 0;
 }
