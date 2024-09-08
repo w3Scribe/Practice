@@ -1,10 +1,10 @@
 #include<stdio.h>
-#include<stdlib.h>
 #include<time.h>
+#include<stdlib.h>
 
 int main(){
-  srand(time(NULL)); // seed to rand function 
-  int randNumber = rand() % (20 - 10 + 1) + 10;
-  printf("%d", randNumber);
+  srand(time(NULL)); // seeding to random function
+  int randomNumber = rand() % (100 - 1 + 1) * 1;
+  printf("%d", randomNumber);
   return 0;
 }
