@@ -19,26 +19,31 @@ type FindItemReturnType = {
     index: number;
     exists: boolean;
   };
-  msg: (indx: number, exists: boolean) => string;
+  msg: string;
 };
 
 type FindItemType = (
   storage: StorageType,
   item: string,
   useIndex: boolean
-) => FindItemReturnType;
+) => FindItemReturnType | false;
 
 
 const findItem: FindItemType = (storage, item, useIndex) => {
   if (storage instanceof Map) {
+    const exists = storage.has(item);
+    
+    if(!exists) {
+      console.log("Item Not Found") 
+      return false
+    };
+
     return {
       context: {
         index: storage.get(item) as number,
         exists: storage.has(item),
       },
-      msg: (indx, exists) => {
-        return `Index: ${indx}, Exists: ${exists}`;
-      }
+      msg:`Item : ${item} Found At Index: ${storage.get(item)}`,
     };
   }
 
@@ -47,9 +52,7 @@ const findItem: FindItemType = (storage, item, useIndex) => {
       index: -1,
       exists: false,
     },
-    msg: (_indx, _exists) => {
-      return `Index: ${_indx}, Exists: ${_exists}`;
-    },       
+    msg: "This operation is not supported for Set",  
   };
 };   
 
@@ -57,7 +60,7 @@ const findItem: FindItemType = (storage, item, useIndex) => {
 const items = ["apple", "banana", "cherry", "date", "elderberry", "fig", "grape"];
 const itemStorage = createStorage(items, "map");
 
-const result = findItem(itemStorage, "cherry", true); 
+const result = findItem(itemStorage, "milk", true); 
 
 console.log(result)     
 
