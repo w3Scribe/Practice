@@ -4,23 +4,20 @@ type StorageCreatorType = (goods: string[], type: "map" | "set") => StorageType;
 const createStorage: StorageCreatorType = (goods, type) => {
   if (type === "map") {
     const storage = new Map<string, number>();
-    for (let i = 0; i < goods.length; i++) {
-      storage.set(goods[i], i);
-    }
+    for (let i = 0; i < goods.length; i++) storage.set(goods[i], i);
     return storage;
   }
 
   return new Set(goods);
 };
 
-
 type FindItemReturnType = {
-  context: {
+  context?: {
     index: number;
     exists: boolean;
   };
-  msg: string;
-};
+  msg?: string;
+} | boolean;
 
 type FindItemType = (
   storage: StorageType,
@@ -28,39 +25,39 @@ type FindItemType = (
   useIndex: boolean
 ) => FindItemReturnType | false;
 
-
 const findItem: FindItemType = (storage, item, useIndex) => {
-  if (storage instanceof Map) {
+  if (storage instanceof Map && useIndex) {
     const exists = storage.has(item);
-    
-    if(!exists) {
-      console.log("Item Not Found") 
-      return false
-    };
+    const index = storage.get(item)!;
+
+    if (!exists) {
+      console.log("Item Not Found");
+      return exists;
+    }
 
     return {
       context: {
-        index: storage.get(item) as number,
-        exists: storage.has(item),
+        index,
+        exists,
       },
-      msg:`Item : ${item} Found At Index: ${storage.get(item)}`,
+      msg: `Item : ${item} Found At Index: ${storage.get(item)}`,
     };
   }
 
-  return {
-    context: {
-      index: -1,
-      exists: false,
-    },
-    msg: "This operation is not supported for Set",  
-  };
-};   
+  return storage.has(item);
+};
 
+const items = [
+  "apple",
+  "banana",
+  "cherry",
+  "date",
+  "elderberry",
+  "fig",
+  "grape",
+];
 
-const items = ["apple", "banana", "cherry", "date", "elderberry", "fig", "grape"];
-const itemStorage = createStorage(items, "map");
+const itemStorage = createStorage(items, "set");
+const result = findItem(itemStorage, "cherry", true);
 
-const result = findItem(itemStorage, "milk", true); 
-
-console.log(result)     
-
+console.log(result);
