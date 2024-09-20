@@ -22,19 +22,18 @@ type FindItemReturnType = {
 type FindItemType = (
   storage: StorageType,
   item: string,
-  useIndex: boolean
 ) => FindItemReturnType | false;
 
-const findItem: FindItemType = (storage, item, useIndex) => {
-  if (storage instanceof Map && useIndex) {
+const findItem: FindItemType = (storage, item) => {
+  if (storage instanceof Map ) {
     const exists = storage.has(item);
-    const index = storage.get(item)!;
 
     if (!exists) {
       console.log("Item Not Found");
       return exists;
     }
 
+    const index = storage.get(item)!;
     return {
       context: {
         index,
@@ -44,7 +43,13 @@ const findItem: FindItemType = (storage, item, useIndex) => {
     };
   }
 
-  return storage.has(item);
+  return {
+    context: {
+      exists : storage.has(item),
+      index: storage.has(item) ? 0 : -1,
+    },
+    msg: storage.has(item) ? `Item : ${item} Found` : "Item Not Found",
+  }
 };
 
 const items = [
@@ -58,6 +63,6 @@ const items = [
 ];
 
 const itemStorage = createStorage(items, "set");
-const result = findItem(itemStorage, "cherry", true);
+const result = findItem(itemStorage, "cherry");
 
 console.log(result);
