@@ -1,5 +1,3 @@
-const fruits: string[] = ["apple", "banana", "cherry", "date", "elderberry"];
-
 type StorageType = Map<string, number> | Set<string>;
 type StorageCreatorType = (goods: string[], type: "map" | "set") => StorageType;
 
@@ -14,8 +12,6 @@ const createStorage: StorageCreatorType = (goods, type) => {
 
   return new Set(goods);
 };
-
-const storage = createStorage(fruits, "map");
 
 
 type FindItemReturnType = {
@@ -53,7 +49,7 @@ const findItem: FindItemType = (storage, item, useIndex) => {
     },
     msg: (_indx, _exists) => {
       return `Index: ${_indx}, Exists: ${_exists}`;
-    },
+    },       
   };
 };   
 
@@ -63,4 +59,5 @@ const itemStorage = createStorage(items, "map");
 
 const result = findItem(itemStorage, "cherry", true); 
 
-console.log(result)
+console.log(result)     
+
