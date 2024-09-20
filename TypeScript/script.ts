@@ -11,21 +11,23 @@ const createStorage: StorageCreatorType = (goods, type) => {
   return new Set(goods);
 };
 
-type FindItemReturnType = {
-  context?: {
-    index: number;
-    exists: boolean;
-  };
-  msg?: string;
-} | boolean;
+type FindItemReturnType =
+  | {
+      context?: {
+        index?: number;
+        exists: boolean;
+      };
+      msg?: string;
+    }
+  | boolean;
 
 type FindItemType = (
   storage: StorageType,
-  item: string,
+  item: string
 ) => FindItemReturnType | false;
 
 const findItem: FindItemType = (storage, item) => {
-  if (storage instanceof Map ) {
+  if (storage instanceof Map) {
     const exists = storage.has(item);
 
     if (!exists) {
@@ -45,11 +47,10 @@ const findItem: FindItemType = (storage, item) => {
 
   return {
     context: {
-      exists : storage.has(item),
-      index: storage.has(item) ? 0 : -1,
+      exists: storage.has(item),
     },
     msg: storage.has(item) ? `Item : ${item} Found` : "Item Not Found",
-  }
+  };
 };
 
 const items = [
