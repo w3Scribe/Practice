@@ -1,7 +1,7 @@
 type FizzBuzz = (num: number) => (string | number)[];
 
 const fizzBuzz: FizzBuzz = (num) => {
- 
+  if (num <= 1 || typeof num !== "number") return [];
 
   const result: (string | number)[] = [];
 
@@ -18,5 +18,5 @@ const fizzBuzz: FizzBuzz = (num) => {
   return result;
 };
 
-const result = fizzBuzz(3);
+const result = fizzBuzz(0);
 console.log(result);
