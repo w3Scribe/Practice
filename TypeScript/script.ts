@@ -1,7 +1,7 @@
 type FizzBuzz = (num: number) => (string | number)[];
 
 const fizzBuzz: FizzBuzz = (num) => {
-  if (num <= 1 || typeof num !== "number") return [];
+  if (num < 3 || typeof num !== "number") return [];   // if num is less than 3 or not a number, return empty array
 
   const result: (string | number)[] = [];
 
@@ -18,5 +18,5 @@ const fizzBuzz: FizzBuzz = (num) => {
   return result;
 };
 
-const result = fizzBuzz(0);
+const result = fizzBuzz(3);
 console.log(result);
