@@ -1,5 +1,5 @@
-const reverseNumber = (num : number) : number => {
-  if(num.toString().length === 1) return num;
-  const reverNumberStr = num.toString().split("").reverse().join("");
-  return Math.sign(num) * parseInt(reverNumberStr)      
-}
+const reverseNumber = (num: number): number => {
+  const numStr = num.toString();
+  if (numStr.length === 1) return num;
+  return Math.sign(num) * parseInt(numStr.split("").reverse().join(""));
+};
