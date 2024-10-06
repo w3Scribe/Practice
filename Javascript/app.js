@@ -1,23 +1,15 @@
-// class defination
-
-class Person {
-   constructor(name, age){
-    this.name = name;
-    this.age = age;
-   }
-
-   getName(){
-    return this.name;
-   }
-
-   getAge(){
-    return this.age;
-   }
-}
+// Creating Class and Structure of the class
+class Person
 
 
-const person = new Person('John', 30);
 
-console.log(person.getName());
+// Creating Instance of the class, Ojects , Properties and Methods
+// Creating Constructor for Object initiallization 
+// Extending class and inheriting properties and methods
+// Access control ( public, private, protected )
+// Method overriding and method overloading 
+// Hiding Implementation details and showing only essential features
+
+
 
 
