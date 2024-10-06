@@ -1,8 +1,23 @@
-const arr = [1, 2, 3, 3, 34, 5, 6, 7, 6, 5, 7, 8, 9];
+// class defination
 
-const result = arr.reduce(
-  (pre, curr) => (pre.includes(curr) ? pre : [...pre, curr]),
-  []
-);
+class Person {
+   constructor(name, age){
+    this.name = name;
+    this.age = age;
+   }
 
-console.log(result);
+   getName(){
+    return this.name;
+   }
+
+   getAge(){
+    return this.age;
+   }
+}
+
+
+const person = new Person('John', 30);
+
+console.log(person.getName());
+
+

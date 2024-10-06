@@ -1,21 +1,17 @@
-interface BankAccountProperties {
+interface BankAccountProps {
   name: string;
   balance: number;
-  deposit: (amount: number) => void;
-  widthdraw: (amount: number) => void;
-  getBalDetails: () => number;
+  this : 
 }
 
 type TBankAccount = {
-  new (name: string, balance: number): BankAccountProperties;
+  new (name: string, number: number): BankAccountProps;
 };
 
-const BankAccount: TBankAccount = function (
-  name: string,
-  balance: number
-) {
-
-  this.name = name;
+const BankAccount: TBankAccount = function ({
+  name,
+  balance,
+}: BankAccountProps) {
   
 
 } as unknown as TBankAccount;
