@@ -20,6 +20,10 @@ class LinkedList<T> {
     this.length = 1;
   }
 
+  get len(): number {
+    return this.length;
+  }
+
   push(value: T): void {
     const newNode = new _Node(value);
     if (this.tail) {
@@ -31,14 +35,10 @@ class LinkedList<T> {
     }
     this.length += 1;
   }
-
-  get len(): number {
-    return this.length;
-  }
 }
 
 const node = new LinkedList<number>(1);
 node.push(10);
 node.push(20)
 
-console.log(node);
+console.log(node.len);
