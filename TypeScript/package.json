@@ -1,4 +1,9 @@
 {
+  "type": "module",
+  "name": "typescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.ts",
   "scripts": {
     "dev": "tsnd --respawn --cls  script.ts",
     "build": "tsc",
