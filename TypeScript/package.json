@@ -3,19 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "script.ts",
+  "type": "module",
   "scripts": {
-    "dev": "tsnd --respawn --cls  script.ts",
-    "build": "tsc",
-    "lint": "eslint . --ext .ts,.js",
-    "lint:fix": "eslint . --ext .ts,.js --fix"
-  },
-  "dependencies": {
-    "ts-node-dev": "^2.0.0"
+    "w:tsc": "tsc --watch",
+    "w:js": "node --watch dist/script.js",
+    "dev": "concurrently \"npm run w:*\" "
   },
   "devDependencies": {
-    "@eslint/js": "^9.10.0",
-    "eslint": "^9.10.0",
-    "globals": "^15.9.0",
-    "typescript-eslint": "^8.6.0"
+    "concurrently": "^9.0.1"
   }
 }
