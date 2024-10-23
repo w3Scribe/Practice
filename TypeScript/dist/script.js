@@ -1,3 +1,4 @@
+"use strict";
 class _Node {
     value;
     next;
@@ -72,4 +73,3 @@ class Snap {
         }
     }
 }
-export { Snap };

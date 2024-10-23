@@ -100,6 +100,14 @@ class Snap<T> implements Methods<T> {
       currentNode = currentNode!.next;
     }
   }
+
+  clear(): void {
+    this.head = null;
+    this.tail = null;
+    this.length = 0;
+  }
+
+  
 }
 
-export { Snap };
+
