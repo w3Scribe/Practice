@@ -118,7 +118,21 @@ class Snap<T> implements Methods<T> {
     return false;
   }
 
+  part(start: number, end: number): _Node<T>[] {
+    let currentNode = this.head;
+    let result: _Node<T>[] = [];
+
+    for (let i = 0; i < this.length; i++) {
+      if (i >= start && i <= end) {
+        result.push(currentNode!);
+      }
+      currentNode = currentNode!.next;
+    }
+
+    return result;
+  }
   
+
   
 }
 
