@@ -107,6 +107,18 @@ class Snap<T> implements Methods<T> {
     this.length = 0;
   }
 
+  contains(value: T): boolean {
+    let currentNode = this.head;
+
+    while (currentNode) {
+      if (currentNode.value === value) return true;
+      currentNode = currentNode.next;
+    }
+
+    return false;
+  }
+
+  
   
 }
 
