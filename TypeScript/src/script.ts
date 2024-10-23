@@ -132,8 +132,25 @@ class Snap<T> implements Methods<T> {
     return result;
   }
   
+  sort(): void {
+    let currentNode = this.head;
+    let nextNode = this.head;
 
-  
+    for (let i = 0; i < this.length; i++) {
+      for (let j = 0; j < this.length; j++) {
+        if (currentNode!.value < nextNode!.value) {
+          let temp = currentNode!.value;
+          currentNode!.value = nextNode!.value;
+          nextNode!.value = temp;
+        }
+        nextNode = nextNode!.next;
+      }
+      currentNode = currentNode!.next;
+      nextNode = this.head;
+    }
+  }
+
+
 }
 
 
