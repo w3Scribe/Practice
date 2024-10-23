@@ -1,14 +1,13 @@
 class _Node<T> {
   value: T;
-  next: _Node<T> | null;
+  next: _Node<T> | null = null;
 
   constructor(value: T) {
     this.value = value;
-    this.next = null;
   }
 }
 
-interface IMethods<T> {
+interface Methods<T> {
   add(value: T): void;
   remove(value: T): _Node<T> | null;
   get(index: number): _Node<T> | null;
@@ -20,17 +19,16 @@ interface IMethods<T> {
   sort(): void;
 }
 
-type Methods<K> = Partial<IMethods<K>>;
-
 class Snap<T> implements Methods<T> {
-  protected head: _Node<T> | null;
-  protected tail: _Node<T> | null;
+  protected head: _Node<T> | null = null;
+  protected tail: _Node<T> | null = null;
   protected length: number = 0;
 
   constructor(value: T) {
     const newNode = new _Node(value);
     this.head = newNode;
     this.tail = newNode;
+    this.length = 1;
   }
 
   get len(): number {
@@ -50,39 +48,52 @@ class Snap<T> implements Methods<T> {
   }
 
   remove(value: T): _Node<T> | null {
+    if (!this.head) return null;
+
     let currentNode = this.head;
-    let previousNode = this.head;
+    let previousNode: _Node<T> | null = null;
 
     while (currentNode) {
       if (currentNode.value === value) {
-        previousNode!.next = currentNode.next;
+        if (previousNode) {
+          previousNode.next = currentNode.next;
+        } else {
+          this.head = currentNode.next;
+        }
+        if (currentNode === this.tail) {
+          this.tail = previousNode;
+        }
         this.length--;
+        return currentNode;
+      }
+      previousNode = currentNode;
+      if (currentNode.next) {
+        currentNode = currentNode.next;
+      } else {
         break;
       }
-
-      previousNode = currentNode;
-      currentNode = currentNode.next;
     }
 
-    return currentNode;
+    return null;
   }
 
   find(value: T): _Node<T> | null {
     let currentNode = this.head;
 
     while (currentNode) {
-      if (currentNode.value === value) break;
+      if (currentNode.value === value) return currentNode;
       currentNode = currentNode.next;
     }
 
-    return currentNode;
+    return null;
   }
 
   get(index: number): _Node<T> | null {
+    if (index < 0 || index >= this.length) return null;
+
     let currentNode = this.head;
 
-    for (let i = 0; i < this.length; i++) {
-      if (index === i) break;
+    for (let i = 0; i < index; i++) {
       currentNode = currentNode!.next;
     }
 
@@ -90,14 +101,9 @@ class Snap<T> implements Methods<T> {
   }
 
   set(index: number, value: T): void {
-    let currentNode = this.head;
-
-    for (let i = 0; i < this.length; i++) {
-      if (index === i) {
-        currentNode!.value = value;
-        break;
-      }
-      currentNode = currentNode!.next;
+    const node = this.get(index);
+    if (node) {
+      node.value = value;
     }
   }
 
@@ -108,22 +114,17 @@ class Snap<T> implements Methods<T> {
   }
 
   contains(value: T): boolean {
-    let currentNode = this.head;
-
-    while (currentNode) {
-      if (currentNode.value === value) return true;
-      currentNode = currentNode.next;
-    }
-
-    return false;
+    return this.find(value) !== null;
   }
 
   part(start: number, end: number): _Node<T>[] {
+    if (start < 0 || end >= this.length || start > end) return [];
+
     let currentNode = this.head;
     let result: _Node<T>[] = [];
 
-    for (let i = 0; i < this.length; i++) {
-      if (i >= start && i <= end) {
+    for (let i = 0; i <= end; i++) {
+      if (i >= start) {
         result.push(currentNode!);
       }
       currentNode = currentNode!.next;
@@ -131,26 +132,23 @@ class Snap<T> implements Methods<T> {
 
     return result;
   }
-  
-  sort(): void {
-    let currentNode = this.head;
-    let nextNode = this.head;
 
-    for (let i = 0; i < this.length; i++) {
-      for (let j = 0; j < this.length; j++) {
-        if (currentNode!.value < nextNode!.value) {
-          let temp = currentNode!.value;
-          currentNode!.value = nextNode!.value;
-          nextNode!.value = temp;
+  sort(): void {
+    if (!this.head || this.length < 2) return;
+
+    let sorted = false;
+
+    while (!sorted) {
+      sorted = true;
+      let currentNode = this.head;
+
+      while (currentNode && currentNode.next) {
+        if (currentNode.value > currentNode.next.value) {
+          [currentNode.value, currentNode.next.value] = [currentNode.next.value, currentNode.value];
+          sorted = false;
         }
-        nextNode = nextNode!.next;
+        currentNode = currentNode.next;
       }
-      currentNode = currentNode!.next;
-      nextNode = this.head;
     }
   }
-
-
 }
-
-

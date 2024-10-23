@@ -8,7 +8,8 @@
     "esModuleInterop": true,
     "moduleResolution": "node",
     "skipLibCheck": true,
-    "allowSyntheticDefaultImports": true,
+    "declaration": true, // Add this line
+    "declarationDir": "./dist/types" // Optional: specify a directory for declaration files
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules"]

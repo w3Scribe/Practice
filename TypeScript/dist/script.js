@@ -1,20 +1,20 @@
 "use strict";
 class _Node {
     value;
-    next;
+    next = null;
     constructor(value) {
         this.value = value;
-        this.next = null;
     }
 }
 class Snap {
-    head;
-    tail;
+    head = null;
+    tail = null;
     length = 0;
     constructor(value) {
         const newNode = new _Node(value);
         this.head = newNode;
         this.tail = newNode;
+        this.length = 1;
     }
     get len() {
         return this.length;
@@ -31,45 +31,93 @@ class Snap {
         this.length++;
     }
     remove(value) {
+        if (!this.head)
+            return null;
         let currentNode = this.head;
-        let previousNode = this.head;
+        let previousNode = null;
         while (currentNode) {
             if (currentNode.value === value) {
-                previousNode.next = currentNode.next;
+                if (previousNode) {
+                    previousNode.next = currentNode.next;
+                }
+                else {
+                    this.head = currentNode.next;
+                }
+                if (currentNode === this.tail) {
+                    this.tail = previousNode;
+                }
                 this.length--;
-                break;
+                return currentNode;
             }
             previousNode = currentNode;
-            currentNode = currentNode.next;
+            if (currentNode.next) {
+                currentNode = currentNode.next;
+            }
+            else {
+                break;
+            }
         }
-        return currentNode;
+        return null;
     }
     find(value) {
         let currentNode = this.head;
         while (currentNode) {
             if (currentNode.value === value)
-                break;
+                return currentNode;
             currentNode = currentNode.next;
         }
-        return currentNode;
+        return null;
     }
     get(index) {
+        if (index < 0 || index >= this.length)
+            return null;
         let currentNode = this.head;
-        for (let i = 0; i < this.length; i++) {
-            if (index === i)
-                break;
+        for (let i = 0; i < index; i++) {
             currentNode = currentNode.next;
         }
         return currentNode;
     }
     set(index, value) {
+        const node = this.get(index);
+        if (node) {
+            node.value = value;
+        }
+    }
+    clear() {
+        this.head = null;
+        this.tail = null;
+        this.length = 0;
+    }
+    contains(value) {
+        return this.find(value) !== null;
+    }
+    part(start, end) {
+        if (start < 0 || end >= this.length || start > end)
+            return [];
         let currentNode = this.head;
-        for (let i = 0; i < this.length; i++) {
-            if (index === i) {
-                currentNode.value = value;
-                break;
+        let result = [];
+        for (let i = 0; i <= end; i++) {
+            if (i >= start) {
+                result.push(currentNode);
             }
             currentNode = currentNode.next;
+        }
+        return result;
+    }
+    sort() {
+        if (!this.head || this.length < 2)
+            return;
+        let sorted = false;
+        while (!sorted) {
+            sorted = true;
+            let currentNode = this.head;
+            while (currentNode && currentNode.next) {
+                if (currentNode.value > currentNode.next.value) {
+                    [currentNode.value, currentNode.next.value] = [currentNode.next.value, currentNode.value];
+                    sorted = false;
+                }
+                currentNode = currentNode.next;
+            }
         }
     }
 }
