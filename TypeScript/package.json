@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "script.ts",
   "scripts": {
-    "test": "bun --watch script.ts"
+    "dev": "bun --watch script.ts",
+    "build": "tsc"
   },
   "keywords": [
     "Typescript",

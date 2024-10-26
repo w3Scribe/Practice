@@ -1,4 +1,3 @@
-/.vscode
+.vscode
+/C/app.exe
 /src
-app.exe
-/TypeScript/node_modules
