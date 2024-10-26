@@ -6,7 +6,7 @@ class ListNode<T> {
   constructor(value: T) {
     this.value = value;
   }
-}
+}  
 
 class DoublyLinkedList<T> {
   protected head: ListNode<T> | null = null;
