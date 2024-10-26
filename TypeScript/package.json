@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "script.ts",
   "scripts": {
-    "dev": "bun --watch script.ts",
+    "dev": "bun --watch src/script.ts",
     "build": "tsc"
   },
   "keywords": [
