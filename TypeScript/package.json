@@ -1,0 +1,17 @@
+{
+  "name": "typescript",
+  "version": "1.0.0",
+  "main": "script.ts",
+  "scripts": {
+    "test": "bun --watch script.ts"
+  },
+  "keywords": [
+    "Typescript",
+    "Bun",
+    "Typescript",
+    "DSA"
+  ],
+  "author": "Sudhir Gadpayle <sudhirgadpayle535@gmail.com>",
+  "license": "ISC",
+  "description": ""
+}
