@@ -16,4 +16,6 @@ export class DoublyLinkedList<K> {
   static getSize() {
     return this.size;
   }
+
+  public add(value: K): void {}
 }

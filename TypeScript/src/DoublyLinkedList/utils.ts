@@ -1,9 +1,6 @@
-import { _Node, DoublyLinkedList  } from "./DoublyLinkedList";
+import { _Node, DoublyLinkedList } from "./DoublyLinkedList";
 
-export function add<T extends DoublyLinkedList<T>>(
-  this: DoublyLinkedList<T>,
-  value: T
-): void {
+export default DoublyLinkedList.prototype.add = function <T>(value: T): void {
   const newNode = new _Node(value);
 
   if (!this.head) {
@@ -13,4 +10,4 @@ export function add<T extends DoublyLinkedList<T>>(
   this.tail!.nextNode = newNode;
   newNode.prevNode = this.tail;
   this.head = newNode;
-}
+};
