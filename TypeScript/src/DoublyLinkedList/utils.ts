@@ -11,3 +11,4 @@ export default DoublyLinkedList.prototype.add = function <T>(value: T): void {
   newNode.prevNode = this.tail;
   this.head = newNode;
 };
+
