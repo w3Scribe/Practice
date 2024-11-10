@@ -1,9 +1,15 @@
-import React from 'react';
+import { FC } from 'react';
+import UserCtxProvider from './components/UserCtxProvider';
+import UserProfile from './components/UserProfile';
+import UserForm from './components/UserForm';
 
-const App: React.FC = () => {
+const App: FC = () => {
   return (
     <div>
-      hello world
+      <UserCtxProvider>
+        <UserProfile/>
+        <UserForm/>
+      </UserCtxProvider>
     </div>
   );
 };
