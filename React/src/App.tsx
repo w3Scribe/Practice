@@ -1,15 +1,15 @@
 import { FC } from 'react';
-import UserCtxProvider from './components/UserCtxProvider';
-import UserProfile from './components/UserProfile';
-import UserForm from './components/UserForm';
+import CounterCxtProvider from './components/CounterCxtProvider';
+import Counter from './components/Counter';
+import CounterForm from './components/CounterForm';
 
 const App: FC = () => {
   return (
     <div>
-      <UserCtxProvider>
-        <UserProfile/>
-        <UserForm/>
-      </UserCtxProvider>
+      <CounterCxtProvider>
+        <Counter/>
+        <CounterForm/>
+      </CounterCxtProvider>
     </div>
   );
 };
