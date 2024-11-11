@@ -1,43 +1,42 @@
-import { FC, useReducer } from "react";
+import { FC, useReducer, Reducer } from "react";
 
-const CounterInitialState = {
-  count: 0,
-};
+type State = { count: number };
 
-type CounterReducer = {
-  (
-    state: typeof CounterInitialState,
-    action: {
-      type: "INCREMENT" | "DECREMENT" | "RESET";
-      payload?: (payloadNumber: number) => number;
-    }
-  ): typeof CounterInitialState;
-};
+type Action =
+  | { type: "INCREMENT"; payload?: number }
+  | { type: "DECREMENT"; payload?: number }
+  | { type: "RESET" };
 
+const initialState: State = { count: 0 };
 
-const counterReducerFn: CounterReducer = (state, action) => {
-  switch(action.type) {
+const counterReducerFn: Reducer<State, Action> = (state, action) => {
+  switch (action.type) {
     case "INCREMENT":
-      return { count: action.payload ? action.payload(state.count) : state.count + 1 };
+      return { count: state.count + (action.payload ?? 1) };
     case "DECREMENT":
-      return { count: action.payload ? action.payload(state.count) : state.count - 1 };
+      return { count: state.count - (action.payload ?? 1) };
     case "RESET":
       return { count: 0 };
     default:
       return state;
   }
-}
-
+};
 
 const Counter: FC = () => {
-  const [state, dispatch] = useReducer(counterReducerFn, CounterInitialState);
+  const [state, dispatch] = useReducer(counterReducerFn, initialState);
 
-  return <div>
-    <h1>{state.count}</h1>
-    <button onClick={() => dispatch({ type: "INCREMENT" })}>Increment</button>
-    <button onClick={() => dispatch({ type: "DECREMENT" })}>Decrement</button>
-    <button onClick={() => dispatch({ type: "RESET" })}>Reset</button>
-  </div>;
+  return (
+    <div>
+      <h1>{state.count}</h1>
+      <button onClick={() => dispatch({ type: "INCREMENT", payload: 2 })}>
+        Increment
+      </button>
+      <button onClick={() => dispatch({ type: "DECREMENT" })}>
+        Decrement
+      </button>
+      <button onClick={() => dispatch({ type: "RESET" })}>Reset</button>
+    </div>
+  );
 };
 
 export default Counter;
