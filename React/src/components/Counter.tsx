@@ -1,45 +1,60 @@
-import { FC, Reducer, useReducer, useState } from "react";
+import { useReducer, useState } from "react";
+
+enum ActionType {
+  INCREMENT = "INCREMENT",
+  DECREMENT = "DECREMENT",
+  RESET = "RESET",
+}
 
 type Action =
-  | { type: "INCREMENT" | "DECREMENT"; payload?: number }
-  | { type: "RESET" };
+  | { type: ActionType.INCREMENT; payload: number }
+  | { type: ActionType.DECREMENT; payload: number }
+  | { type: ActionType.RESET };
 
 const initialState = 0;
 
-const counterReducerFn: Reducer<number, Action> = (state, action) => {
+const counterReducer = (state: number, action: Action): number => {
   switch (action.type) {
-    case "INCREMENT":
-      return state + (action.payload ?? 1);
-    case "DECREMENT":
-      return state > 0 ? state - (action.payload ?? 1) : 0;
-    case "RESET":
+    case ActionType.INCREMENT:
+      return state + action.payload;
+    case ActionType.DECREMENT:
+      return Math.max(0, state - action.payload);
+    case ActionType.RESET:
       return initialState;
     default:
       return state;
   }
 };
 
-const Counter: FC = () => {
-  const [count, dispatch] = useReducer(counterReducerFn, initialState);
-  const [countValue, setCountValue] = useState<number>(initialState);
+const Counter = () => {
+  const [count, dispatch] = useReducer(counterReducer, initialState);
+  const [step, setStep] = useState<number>(1);
 
-  const handleIncrement = () => dispatch({ type: "INCREMENT", payload: countValue });
-  const handleDecrement = () => dispatch({ type: "DECREMENT", payload: countValue });
-  const handleReset = () => dispatch({ type: "RESET" });
+  function incrementFn() {
+    dispatch({ type: ActionType.INCREMENT, payload: step });
+  }
+
+  function decrementFn() {
+    dispatch({ type: ActionType.DECREMENT, payload: step });
+  }
+  
+  function resetFn() {
+    dispatch({ type: ActionType.RESET });
+  }
 
   return (
     <div>
       <h1>Counter App</h1>
-      <p>count: {count}</p>
+      <p>Count: {count}</p>
       <div>
         <input
           type="number"
-          value={countValue}
-          onChange={(e) => setCountValue(Number(e.target.value))}
+          value={step}
+          onChange={(e) => setStep(Number(e.target.value))}
         />
-        <button onClick={handleIncrement}>INCREMENT</button>
-        <button onClick={handleDecrement}>DECREMENT</button>
-        <button onClick={handleReset}>RESET</button>
+        <button onClick={incrementFn}>INCREMENT</button>
+        <button onClick={decrementFn}>DECREMENT</button>
+        <button onClick={resetFn}>RESET</button>
       </div>
     </div>
   );
