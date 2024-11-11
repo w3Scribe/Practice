@@ -1,40 +1,46 @@
-import { FC, useReducer, Reducer } from "react";
-
-type State = { count: number };
+import { FC, Reducer, useReducer, useState } from "react";
 
 type Action =
-  | { type: "INCREMENT"; payload?: number }
-  | { type: "DECREMENT"; payload?: number }
+  | { type: "INCREMENT" | "DECREMENT"; payload?: number }
   | { type: "RESET" };
 
-const initialState: State = { count: 0 };
+const initialState = 0;
 
-const counterReducerFn: Reducer<State, Action> = (state, action) => {
+const counterReducerFn: Reducer<number, Action> = (state, action) => {
   switch (action.type) {
     case "INCREMENT":
-      return { count: state.count + (action.payload ?? 1) };
+      return state + (action.payload ?? 1);
     case "DECREMENT":
-      return { count: state.count - (action.payload ?? 1) };
+      return state > 0 ? state - (action.payload ?? 1) : 0;
     case "RESET":
-      return { count: 0 };
+      return initialState;
     default:
       return state;
   }
 };
 
 const Counter: FC = () => {
-  const [state, dispatch] = useReducer(counterReducerFn, initialState);
+  const [count, dispatch] = useReducer(counterReducerFn, initialState);
+  const [countValue, setCountValue] = useState<number>(initialState);
+
+  const handleIncrement = () => dispatch({ type: "INCREMENT", payload: countValue });
+  const handleDecrement = () => dispatch({ type: "DECREMENT", payload: countValue });
+  const handleReset = () => dispatch({ type: "RESET" });
 
   return (
     <div>
-      <h1>{state.count}</h1>
-      <button onClick={() => dispatch({ type: "INCREMENT", payload: 2 })}>
-        Increment
-      </button>
-      <button onClick={() => dispatch({ type: "DECREMENT" })}>
-        Decrement
-      </button>
-      <button onClick={() => dispatch({ type: "RESET" })}>Reset</button>
+      <h1>Counter App</h1>
+      <p>count: {count}</p>
+      <div>
+        <input
+          type="number"
+          value={countValue}
+          onChange={(e) => setCountValue(Number(e.target.value))}
+        />
+        <button onClick={handleIncrement}>INCREMENT</button>
+        <button onClick={handleDecrement}>DECREMENT</button>
+        <button onClick={handleReset}>RESET</button>
+      </div>
     </div>
   );
 };
