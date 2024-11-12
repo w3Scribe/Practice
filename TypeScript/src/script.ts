@@ -10,3 +10,38 @@ type A = {
 
 type B = Omit<A, 'a' | 'b'>;
 
+// partial
+
+type A1 = {
+  a: string;
+  b: number;
+  c: boolean;
+};
+
+type B1 = Partial<A1>;
+
+// readonly
+
+type A2 = {
+  a: string;
+  b: number;
+  c: boolean;
+};
+
+type B2 = Readonly<A2>;
+
+// record
+
+type A3 = 'a' | 'b' | 'c';
+
+type B3 = Record<A3, string>;
+
+const obj: B3 = {
+  a : 'a', // The number is not assignable to type 'string' if we try to assign a number to a
+  b : 'b',
+  c : 'c'
+}
+
+// pick
+
+
