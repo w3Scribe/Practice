@@ -1,29 +1,26 @@
-// Partial
-
 interface Address {
   street: string;
   city: string;
+  state: string;
 }
 
-interface User {
+interface Person {
   name: string;
   age: number;
-  address : Address;
+  address: Address;
 }
-
-// type PartialUser = Partial<User>; // This is not deep partial
 
 type DeepPartial<T> = {
-  [key in keyof T]? : T[key] extends object ? DeepPartial<T[key]> : T[key];
+  [k in keyof T]?: T[k] extends object ? DeepPartial<T[k]> : T[k];
 }
 
+function updateProfile(Person: DeepPartial<Person>) {
 
-type PartialUser = DeepPartial<User>;
+}
 
-const user: PartialUser = {
-  name: 'John',
+updateProfile({
+  name: "John",
   address: {
-    street: '123 Street',
-    city: 'City'
+    state: "New York"
   }
-}
+})
