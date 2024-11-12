@@ -1,26 +1,19 @@
-interface Address {
-  street: string;
-  city: string;
-  state: string;
-}
-
-interface Person {
+interface IUser {
   name: string;
   age: number;
-  address: Address;
-}
-
-type DeepPartial<T> = {
-  [k in keyof T]?: T[k] extends object ? DeepPartial<T[k]> : T[k];
-}
-
-function updateProfile(Person: DeepPartial<Person>) {
-
-}
-
-updateProfile({
-  name: "John",
   address: {
-    state: "New York"
+    city: string;
+    country: string;
   }
-})
+}
+
+type UserKeys = keyof IUser
+
+// but i want deep key
+
+type DeepKeys<T> = {
+  [K in keyof T]: K extends string | number ? (T[K] extends object ? `${DeepKeys<T[K]>}` : K) : never;
+}[keyof T];
+
+const UserKey: DeepKeys<IUser> = "city"
+
