@@ -1,6 +1,5 @@
-type Tuple<Length, Type, Acc extends Type[] = []> =
-  Acc["length"] extends Length ?
-  Acc :
-  Tuple<Length, Type, [Type, ...Acc]>;
+type CamelStr<Str> = Str extends `${infer First}${infer Rest}`
+  ? `${Uppercase<First>}${CamelStr<Rest>}`
+  : Str;
 
-type A = Tuple<3, string>; // [string, string, string]
+
