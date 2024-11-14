@@ -1,15 +1,6 @@
-interface Person {
-  name?: string;
-  age: number;
-  address: {
-    street?: string;
-    city: string;
-  }
-}
+type Tuple<Length, Type, Acc extends Type[] = []> =
+  Acc["length"] extends Length ?
+  Acc :
+  Tuple<Length, Type, [Type, ...Acc]>;
 
-type RequiredKeys<T> = T extends object ? {
-  [K in keyof T]-?: T[K] extends object ? RequiredKeys<T[K]> : T[K]
-} : T;
-
-type RequiredPerson = RequiredKeys<Person>;   
-
+type A = Tuple<3, string>; // [string, string, string]
