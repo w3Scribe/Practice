@@ -1,24 +1,14 @@
-interface UserUpdate {
-  name: string
-  age: number
-  lastUpate: Date
-  timestamps: {
-    curruntDate: Date
+interface Person {
+  name?: string;
+  age: number;
+  address: {
+    street?: string;
+    city: string;
   }
 }
 
-type Replace<T, Search, Type> =
-  T extends Search ? Type : T extends object ? {
-    [K in keyof T]: Replace<T[K], Search, Type> 
-  } : T
+type RequiredKeys<T> = T extends object ? {
+  [K in keyof T]-?: T[K] extends object ? RequiredKeys<T[K]> : T[K]
+} : T;
 
-type NewUser = Replace<UserUpdate, Date, string>
-
-const User: Replace<UserUpdate, Date, string> = {
-  name: 'John',
-  age: 30,
-  lastUpate: '2021-09-10',
-  timestamps: {
-    curruntDate: '2021-09-10'
-  }
-}
+type RequiredPerson = RequiredKeys<Person>;
