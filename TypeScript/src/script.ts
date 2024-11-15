@@ -1,8 +1,16 @@
-type Fn = (a: number, b: object) => boolean;
+interface IUser {
+  name: string;
+  age: number;
+  address: {
+    city: undefined;
+    country: object;
+  };
+}
 
-type ReturnDataType<T> = T extends (...args: any[]) => infer Rvalue ? Rvalue : never;
-type ParamsFn<T> = T extends (...args: infer Params) => any ? Params : never;
 
-type ReturnTypeOfFn = ReturnDataType<Fn>; // number
-type ParamsTypeOfFn = ParamsFn<Fn>; // [number, string]
+// How to infer deeply nested types in object ?
+type DeepType<T> = {
+  [K in keyof T]: T[K] extends object ? DeepType<T[K]> : T[K];
+}[keyof T];
 
+type DeepUser = keyof IUser; // "name" | "age" | "address"
