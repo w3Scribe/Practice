@@ -1,13 +1,5 @@
-// usage of is keyword in typescript
-// typeof, instanceof, in, as, satisfies, is, type guards,,
+type Fn = () => boolean;
 
-// Min Length
-type MinLength<T, L extends number> = T[] & { length: number } extends {
-  length: infer N;
-}
-  ? N extends L
-    ? T[]
-    : never
-  : never;
+type ReturnDataType<T> = T extends (...args: any[]) => infer Rvalue ? Rvalue : never;
 
-const greet = 'hello world';
+type ReturnTypeOfFn = ReturnDataType<Fn>; // number
