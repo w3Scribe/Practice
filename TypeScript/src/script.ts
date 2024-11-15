@@ -1,6 +1,13 @@
 // usage of is keyword in typescript
-// typeof, instanceof, in, as, satisfies, is, type guards,, 
+// typeof, instanceof, in, as, satisfies, is, type guards,,
 
-type ArrayWithLength<Length extends number, DataType> = [DataType, ...DataType[]] & { length: Length };
+// Min Length
+type MinLength<T, L extends number> = T[] & { length: number } extends {
+  length: infer N;
+}
+  ? N extends L
+    ? T[]
+    : never
+  : never;
 
-const arr : ArrayWithLength<4, number | string> = ['one', 2, 'three', 4];
+const greet = 'hello world';
