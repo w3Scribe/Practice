@@ -1,47 +1,54 @@
-interface Address {
-  street: string;
-  city: string;
-}
+// More precise type matching utility
+type StrictEqual<T, U> = 
+  [T] extends [U] ? 
+    [U] extends [T] ? 
+      true : 
+      false : 
+    false;
 
-interface User {
+// Exact object type utility to prevent excess properties
+type ExactType<T, U> = T extends U ? 
+  Exclude<keyof T, keyof U> extends never ? 
+    T : 
+    never : 
+  never;
+
+export interface UserType {
   name: string;
   age: number;
-  address : Address;
-}
-
-interface AnotherDifferntUser {
-  name: string;
-  age: number;
-  address: Address;
-  phone: string;
-}
-
-type AddUserDetails<T extends User> = (userDetails : T) => void;
-
-
-const addUserDetails : AddUserDetails<AnotherDifferntUser> = (userDetails) => {
-  console.log(userDetails);
-}
-
-
-const user = {
-  name: 'John',
-  age: 30,
   address: {
-    street: '123 Main St',
-    city: 'New York'
+    city: string;
+    country: string;
   }
 }
 
-const anotherUser = {
-  name: 'John',
+export type UpdateUserDetails<T> = StrictEqual<ExactType<T, UserType>, T> extends true 
+  ? (user: T) => void 
+  : never;
+
+const updateUserDetails: UpdateUserDetails<UserType> = (user) => {
+  console.log(user.age);
+};
+
+// This will now cause a type error due to extra 'phone' property
+const user = {
+  name: 'John Doe',
   age: 30,
   address: {
-    street: '123 Main St',
-    city: 'New York'
+    city: 'New York',
+    country: 'USA'
   },
-  phone: '123-456-7890'
-}
+  phone: '1234567890' // TypeScript will flag this as an error
+} as const ;
 
+// To fix the error, user should exactly match UserType
+const validUser: UserType = {
+  name: 'John Doe',
+  age: 30,
+  address: {
+    city: 'New York',
+    country: 'USA'
+  }
+};
 
-addUserDetails();
+updateUserDetails(user); // This works
