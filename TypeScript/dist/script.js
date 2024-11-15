@@ -1,35 +1,29 @@
 "use strict";
-class ListNode {
-    value;
-    prevNode = null;
-    nextNode = null;
-    constructor(value) {
-        this.value = value;
+// usage of is keyword in typescript
+// typeof, instanceof, in, as, satisfies, is, type guards,, 
+// function isDog(Animal: AnimalType): Animal is Dog {
+//   return (Animal as Dog).bark !== undefined;
+// }
+// function heyIam(Animal: AnimalType) {
+//   if (isDog(Animal)) {
+//     Animal.bark()
+//   }
+//   else {
+//     Animal.meow()
+//   }
+// }
+function isDog(animal) {
+    return 'bark' in animal;
+}
+function isCat(animal) {
+    return 'meow' in animal;
+}
+// Example usage
+function handleAnimal(animal) {
+    if (isDog(animal)) {
+        animal.bark();
+    }
+    else if (isCat(animal)) {
+        animal.meow();
     }
 }
-class DoublyLinkedList {
-    head = null;
-    tail = null;
-    length = 0;
-    add(value) {
-        const newNode = new ListNode(value);
-        if (this.head === null) {
-            this.head = newNode;
-            this.tail = newNode;
-        }
-        else {
-            this.tail.nextNode = newNode;
-            newNode.prevNode = this.tail;
-            this.tail = newNode;
-        }
-        this.length++;
-    }
-    get size() {
-        return this.length;
-    }
-}
-const list = new DoublyLinkedList();
-list.add(1);
-list.add(2);
-list.add(3);
-console.log(list.size); // 3
