@@ -1,47 +1,31 @@
 import { FC, ReactNode } from "react";
+import BaseComponent from "../Base";
+import Item from "./Item";
 
-// Base Component with shared structure
-interface BaseComponentProps {
+interface IList {
   children?: ReactNode;
-  tag: keyof JSX.IntrinsicElements;
   className?: string;
 }
 
-const BaseComponent: FC<BaseComponentProps> = ({
-  children,
-  tag: Tag,
-  className,
-}) => {
-  return <Tag className={className}>{children}</Tag>;
+type ChildComponent = "item" ;
+
+type UnionToRecord<U extends string> = {
+  [K in U as `${Capitalize<K>}`]: FC<{
+    children?: ReactNode;
+    className?: string;
+  }>;
 };
 
-// Define List components using BaseComponent
-interface ListType {
-  children?: ReactNode;
-}
+type ListType = FC<IList> & UnionToRecord<ChildComponent>;
 
-const List: FC<ListType> & {
-  Item: FC<{ children?: ReactNode }>;
-  Header: FC<{ children?: ReactNode }>;
-  Footer: FC<{ children?: ReactNode }>;
-} = ({ children }) => {
-  return <ul>{children}</ul>;
+const List: ListType = (props) => {
+  return (
+    <BaseComponent tag="ul" className={props.className}>
+      {props.children}
+    </BaseComponent>
+  );
 };
 
-List.Item = ({ children }) => (
-  <BaseComponent tag="li">{children}</BaseComponent>
-);
-
-List.Header = ({ children }) => (
-  <BaseComponent tag="h1" className="list-header">
-    {children}
-  </BaseComponent>
-);
-
-List.Footer = ({ children }) => (
-  <BaseComponent tag="h1" className="list-footer">
-    {children}
-  </BaseComponent>
-);
+List.Item = Item;
 
 export default List;
