@@ -27,9 +27,20 @@ type ColorName =
   | 'pink'
   | 'rose';
 
-type ColorShade = '50' | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900' | '950';
+type ColorShade =
+  | '50'
+  | '100'
+  | '200'
+  | '300'
+  | '400'
+  | '500'
+  | '600'
+  | '700'
+  | '800'
+  | '900'
+  | '950';
 
-type ColorPrefix = 'bg' | 'text';
+type ColorPrefix = 'bg' | 'text' | 'border' | 'ring';
 
 export type Color = `${ColorPrefix}-${ColorName}-${ColorShade}` | `${ColorPrefix}-${BaseColor}`;
 
@@ -96,7 +107,106 @@ export type Spacing =
   | `${SpacingPrefix}-${SpaceValue}`
   | `${SpacingPrefix | 'space'}-${SpacingSuffix}-${SpaceValue}`;
 
-// Utility type for combining multiple classes
-export type TailwindClass = Color | Spacing;
+// SIZING
+type Sizing =
+  | 'w-full'
+  | 'h-full'
+  | 'max-w-screen-md'
+  | 'max-h-screen-lg'
+  | `${'w' | 'h' | 'min-w' | 'min-h' | 'max-w' | 'max-h'}-${SpaceValue}`;
 
+// LAYOUT
+type Layout =
+  | 'container'
+  | 'block'
+  | 'inline-block'
+  | 'inline'
+  | 'flex'
+  | 'inline-flex'
+  | 'grid'
+  | 'inline-grid'
+  | 'hidden'
+  | 'float-left'
+  | 'float-right'
+  | 'clear-both'
+  | 'isolate'
+  | 'overflow-hidden'
+  | 'overscroll-contain';
 
+// FLEXBOX & GRID
+type FlexGrid =
+  | 'flex-row'
+  | 'flex-col'
+  | 'flex-wrap'
+  | 'justify-center'
+  | 'items-start'
+  | 'grid-cols-3'
+  | 'gap-4';
+
+// TYPOGRAPHY
+type Typography =
+  | 'text-xs'
+  | 'text-lg'
+  | 'font-bold'
+  | 'leading-tight'
+  | 'tracking-wide'
+  | 'uppercase';
+
+// BACKGROUNDS
+type Background =
+  | `bg-${ColorName}-${ColorShade}`
+  | 'bg-opacity-50'
+  | 'bg-gradient-to-r'
+  | 'from-blue-500'
+  | 'via-red-500'
+  | 'to-green-500';
+
+// BORDERS
+type Border = 'border' | 'border-2' | `border-${ColorName}-${ColorShade}` | 'rounded-full';
+
+// EFFECTS
+type Effects = 'shadow' | 'shadow-lg' | 'opacity-75';
+
+// FILTERS
+type Filters = 'blur' | 'grayscale' | 'sepia';
+
+// TABLES
+type Tables = 'table' | 'table-auto' | 'table-fixed';
+
+// TRANSITIONS & ANIMATIONS
+type TransitionsAnimations = 'transition-all' | 'duration-300' | 'ease-in-out';
+
+// TRANSFORMS
+type Transforms = 'transform' | 'scale-110' | 'rotate-45';
+
+// INTERACTIVITY
+type Interactivity = 'cursor-pointer' | 'select-none' | 'pointer-events-none';
+
+// SVG
+type SVG = 'fill-current' | 'stroke-current';
+
+// ACCESSIBILITY
+type Accessibility = 'sr-only' | 'not-sr-only';
+
+// COMBINED TYPE
+export type TailwindClass =
+  | Color
+  | Spacing
+  | Sizing
+  | Layout
+  | FlexGrid
+  | Typography
+  | Background
+  | Border
+  | Effects
+  | Filters
+  | Tables
+  | TransitionsAnimations
+  | Transforms
+  | Interactivity
+  | SVG
+  | Accessibility;
+
+export type TailwinndObject = {
+  [key: string]: TailwindClass;
+};
