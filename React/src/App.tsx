@@ -5,7 +5,7 @@ const App: FC = () => {
   return (
     <Fragment>
       <List>
-        <List.Item>
+        <List.Item className=''>
           Item 1
         </List.Item>
       </List>
