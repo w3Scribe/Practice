@@ -5,8 +5,8 @@ const App: FC = () => {
   return (
     <Fragment>
       <List>
-        <List.Item className=''>
-          Item 1
+        <List.Item>
+          <h1 className=''>Item 1</h1>
         </List.Item>
       </List>
     </Fragment>
