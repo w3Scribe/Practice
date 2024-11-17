@@ -1,16 +1,7 @@
-import { FC , Fragment } from 'react';
-import List from './components/list/List';
+import { FC } from "react";
 
 const App: FC = () => {
-  return (
-    <Fragment>
-      <List>
-        <List.Item>
-          <h1 className=''>Item 1</h1>
-        </List.Item>
-      </List>
-    </Fragment>
-  );
+  return <div className="bg-slate-400 text-slate-200 p-2 m-5">Hell world</div>;
 };
 
 export default App;
