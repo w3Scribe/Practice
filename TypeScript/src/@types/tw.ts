@@ -1,4 +1,6 @@
 // COLORS
+type BaseColor = 'current' | 'inherit' | 'transparent';
+
 type ColorName =
   | 'white'
   | 'black'
@@ -25,35 +27,22 @@ type ColorName =
   | 'pink'
   | 'rose';
 
-type ColorShade =
-  | '50'
-  | '100'
-  | '200'
-  | '300'
-  | '400'
-  | '500'
-  | '600'
-  | '700'
-  | '800'
-  | '900'
-  | '950';
+type ColorShade = '50' | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900' | '950';
 
-export type Color =
-  | `${'bg' | 'text'}-${ColorName}-${ColorShade}`
-  | `${'bg' | 'text'}-${'current' | 'inherit' | 'transparent'}`;
+type ColorPrefix = 'bg' | 'text';
 
-// SPACING from tailwind css
+export type Color = `${ColorPrefix}-${ColorName}-${ColorShade}` | `${ColorPrefix}-${BaseColor}`;
 
-type Space =
+// SPACING
+type SpaceUnit = 'px' | 'rem' | '%';
+
+type SpaceFloats = '0.5' | '1.5' | '2.5' | '3.5';
+
+type SpaceInts =
   | '0'
-  | 'px'
-  | '0.5'
   | '1'
-  | '1.5'
   | '2'
-  | '2.5'
   | '3'
-  | '3.5'
   | '4'
   | '5'
   | '6'
@@ -79,8 +68,9 @@ type Space =
   | '64'
   | '72'
   | '80'
-  | '96'
-  // Percentage values
+  | '96';
+
+type SpaceFraction =
   | '1/2'
   | '1/3'
   | '2/3'
@@ -95,10 +85,18 @@ type Space =
   | '2/6'
   | '3/6'
   | '4/6'
-  | '5/6'
-  | 'full'
-  | 'auto';
+  | '5/6';
+
+type SpaceValue = SpaceFloats | SpaceInts | SpaceFraction | 'full' | 'auto';
+
+type SpacingPrefix = 'p' | 'm';
+type SpacingSuffix = 'x' | 'y' | 't' | 'r' | 'b' | 'l';
 
 export type Spacing =
-  | `${'p' | 'm'}-${Space}`
-  | `${'p' | 'm' | 'space'}-${'x' | 'y' | 't' | 'r' | 'b' | 'l'}-${Space}`;
+  | `${SpacingPrefix}-${SpaceValue}`
+  | `${SpacingPrefix | 'space'}-${SpacingSuffix}-${SpaceValue}`;
+
+// Utility type for combining multiple classes
+export type TailwindClass = Color | Spacing;
+
+
