@@ -1,6 +1,7 @@
-type A_FruitsName = ['apple', 'bananas', 'mango']
-type B_others = ['pineapple', 'orange'];
+type FruitsName = ['apple', 'bananas', 'mango']
 
-type Concat<A extends any[], B extends any[]> = [...A, ...B];
 
-type Test = Concat<A_FruitsName,B_others>
+type Push<T extends any[], V> = [...T, V];
+
+
+type Test = Push<FruitsName, 'orange'>
