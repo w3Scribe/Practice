@@ -1,10 +1,5 @@
-interface User {
-  name : string
-  age : number
-  address : string
-  isAdmin : boolean
-}
+type Fuits = ['apple', 'bananas', 'grapes']
 
-type UserType = keyof User;
+type FruitName = Fuits[number]
 
-const useDetail : UserType = "address"
+const f : FruitName = "apple"
