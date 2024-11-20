@@ -1,7 +1,10 @@
-type Fruits = ['apple', 'banana', 'cherry', 'date'];
-
-type TupleToObject<T extends any[], prefix extends string = ''> = {
-  [K in T[number] as `${prefix}${K}`] : K
+interface User {
+  name : string
+  age : number
+  address : string
+  isAdmin : boolean
 }
 
-type FruitObject = TupleToObject<Fruits, 'fruit_'>;
+type UserType = keyof User;
+
+const useDetail : UserType = "address"
