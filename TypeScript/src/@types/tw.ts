@@ -1,6 +1,5 @@
-// COLORS
+// COMMON TYPES
 type BaseColor = 'current' | 'inherit' | 'transparent';
-
 type ColorName =
   | 'white'
   | 'black'
@@ -26,7 +25,6 @@ type ColorName =
   | 'fuchsia'
   | 'pink'
   | 'rose';
-
 type ColorShade =
   | '50'
   | '100'
@@ -39,16 +37,8 @@ type ColorShade =
   | '800'
   | '900'
   | '950';
-
-type ColorPrefix = 'bg' | 'text' | 'border' | 'ring';
-
-export type Color = `${ColorPrefix}-${ColorName}-${ColorShade}` | `${ColorPrefix}-${BaseColor}`;
-
-// SPACING
 type SpaceUnit = 'px' | 'rem' | '%';
-
 type SpaceFloats = '0.5' | '1.5' | '2.5' | '3.5';
-
 type SpaceInts =
   | '0'
   | '1'
@@ -80,7 +70,6 @@ type SpaceInts =
   | '72'
   | '80'
   | '96';
-
 type SpaceFraction =
   | '1/2'
   | '1/3'
@@ -97,12 +86,17 @@ type SpaceFraction =
   | '3/6'
   | '4/6'
   | '5/6';
-
 type SpaceValue = SpaceFloats | SpaceInts | SpaceFraction | 'full' | 'auto';
-
 type SpacingPrefix = 'p' | 'm';
 type SpacingSuffix = 'x' | 'y' | 't' | 'r' | 'b' | 'l';
+type FontSize = 'xs' | 'sm' | 'base' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl';
+type FontWeight = 'bold' | 'normal';
 
+// COLORS
+type ColorPrefix = 'bg' | 'text' | 'border' | 'ring';
+export type Color = `${ColorPrefix}-${ColorName}-${ColorShade}` | `${ColorPrefix}-${BaseColor}`;
+
+// SPACING
 export type Spacing =
   | `${SpacingPrefix}-${SpaceValue}`
   | `${SpacingPrefix | 'space'}-${SpacingSuffix}-${SpaceValue}`;
@@ -131,7 +125,12 @@ type Layout =
   | 'clear-both'
   | 'isolate'
   | 'overflow-hidden'
-  | 'overscroll-contain';
+  | 'overflow-auto'
+  | 'overflow-clip'
+  | 'overflow-visible'
+  | 'overflow-scroll'
+  | 'overflow-x-auto'
+  | 'overflow-y-auto';
 
 // FLEXBOX & GRID
 type FlexGrid =
@@ -139,18 +138,29 @@ type FlexGrid =
   | 'flex-col'
   | 'flex-wrap'
   | 'justify-center'
+  | 'justify-start'
+  | 'justify-end'
   | 'items-start'
+  | 'items-center'
+  | 'items-end'
+  | 'content-start'
+  | 'content-center'
+  | 'content-end'
+  | 'gap-4'
   | 'grid-cols-3'
-  | 'gap-4';
+  | 'grid-rows-3';
 
 // TYPOGRAPHY
 type Typography =
-  | 'text-xs'
-  | 'text-lg'
-  | 'font-bold'
+  | `text-${FontSize}`
+  | `text-${FontWeight}`
   | 'leading-tight'
+  | 'leading-loose'
+  | 'tracking-tight'
   | 'tracking-wide'
-  | 'uppercase';
+  | 'uppercase'
+  | 'lowercase'
+  | 'capitalize';
 
 // BACKGROUNDS
 type Background =
@@ -159,28 +169,87 @@ type Background =
   | 'bg-gradient-to-r'
   | 'from-blue-500'
   | 'via-red-500'
-  | 'to-green-500';
+  | 'to-green-500'
+  | 'bg-fixed'
+  | 'bg-local'
+  | 'bg-scroll'
+  | 'bg-transparent';
 
 // BORDERS
-type Border = 'border' | 'border-2' | `border-${ColorName}-${ColorShade}` | 'rounded-full';
+type Border =
+  | 'border'
+  | 'border-2'
+  | 'border-4'
+  | 'border-8'
+  | `border-${ColorName}-${ColorShade}`
+  | 'rounded'
+  | 'rounded-lg'
+  | 'rounded-full'
+  | 'rounded-t'
+  | 'rounded-b'
+  | 'rounded-l'
+  | 'rounded-r';
 
-// EFFECTS
-type Effects = 'shadow' | 'shadow-lg' | 'opacity-75';
+// SHADOWS
+type Shadows =
+  | 'shadow'
+  | 'shadow-lg'
+  | 'shadow-xl'
+  | 'shadow-2xl'
+  | 'shadow-inner'
+  | 'shadow-outline'
+  | 'shadow-none';
 
 // FILTERS
-type Filters = 'blur' | 'grayscale' | 'sepia';
+type Filters = 'blur' | 'grayscale' | 'invert' | 'sepia' | 'saturate' | 'hue-rotate';
 
 // TABLES
-type Tables = 'table' | 'table-auto' | 'table-fixed';
+type Tables =
+  | 'table'
+  | 'table-auto'
+  | 'table-fixed'
+  | 'border-collapse'
+  | 'border-separate'
+  | 'table-caption'
+  | 'table-row'
+  | 'table-cell';
 
 // TRANSITIONS & ANIMATIONS
-type TransitionsAnimations = 'transition-all' | 'duration-300' | 'ease-in-out';
+type TransitionsAnimations =
+  | 'transition-all'
+  | 'transition-colors'
+  | 'transition-opacity'
+  | 'transition-shadow'
+  | 'transition-transform'
+  | 'duration-300'
+  | 'ease-in-out'
+  | 'ease-linear'
+  | 'ease-in'
+  | 'ease-out'
+  | 'animate-spin'
+  | 'animate-ping'
+  | 'animate-pulse'
+  | 'animate-bounce';
 
 // TRANSFORMS
-type Transforms = 'transform' | 'scale-110' | 'rotate-45';
+type Transforms =
+  | 'transform'
+  | 'scale-110'
+  | 'rotate-45'
+  | 'translate-x-1/2'
+  | 'translate-y-1/2'
+  | 'skew-x-12'
+  | 'skew-y-12';
 
 // INTERACTIVITY
-type Interactivity = 'cursor-pointer' | 'select-none' | 'pointer-events-none';
+type Interactivity =
+  | 'cursor-pointer'
+  | 'cursor-not-allowed'
+  | 'select-none'
+  | 'select-text'
+  | 'select-all'
+  | 'pointer-events-none'
+  | 'pointer-events-auto';
 
 // SVG
 type SVG = 'fill-current' | 'stroke-current';
@@ -198,7 +267,7 @@ export type TailwindClass =
   | Typography
   | Background
   | Border
-  | Effects
+  | Shadows
   | Filters
   | Tables
   | TransitionsAnimations
@@ -207,6 +276,6 @@ export type TailwindClass =
   | SVG
   | Accessibility;
 
-export type TailwinndObject = {
-  [key: string]: TailwindClass;
+export type TailwindObject = {
+  [key: string]: TailwindClass | TailwindClass[] as string;
 };
