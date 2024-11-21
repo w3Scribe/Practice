@@ -1,7 +1,6 @@
 type FruitsName = ['apple', 'bananas', 'mango']
 
 
-type Push<T extends any[], V> = [...T, V];
+type Unshift<T extends any[], U> = T extends [...infer Rest] ? [U, ...Rest] : never
 
-
-type Test = Push<FruitsName, 'orange'>
+type Test = Unshift<FruitsName, "orange">
