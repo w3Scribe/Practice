@@ -1,14 +1,14 @@
-const fn = (v: boolean) => {
-  if (v) return 1;
-  else return 2;
+interface User {
+  name: string;
+  age: number;
+  address: {
+    city: string;
+    country: string;
+  };
+}
 
-  return 3;
-  return false;
-  return undefined
+type MyOmit<T, K extends keyof T> = {
+  [Props in keyof T as Props extends K ? never : Props]: T[Props];
 };
 
-
-type MyReturnType<T> = T extends (...args: any[]) => infer R ? R  : never;
-
-type Widen<T> = T extends number ? number : T;
-type a = Widen<MyReturnType<typeof fn>>;
+type UserWithoutAddress = MyOmit<User, 'address'>;
