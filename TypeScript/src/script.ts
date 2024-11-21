@@ -1,14 +1,10 @@
-interface User {
-  name: string;
-  age: number;
-  address: {
-    city: string;
-    country: string;
-  };
+interface UserDetails {
+    name: string;
+    age: number;
 }
 
-type MyOmit<T, K extends keyof T> = {
-  [Props in keyof T as Props extends K ? never : Props]: T[Props];
-};
+type MyOmit<T, K extends  keyof T> = {
+   [P in Exclude<keyof T, K>]: T[P]
+}
 
-type UserWithoutAddress = MyOmit<User, 'address'>;
+type Test = MyOmit<UserDetails, 'name'>;
