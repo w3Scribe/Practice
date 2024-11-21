@@ -1,13 +1,14 @@
-const foo = (arg1: string, arg2: number): void => {};
-const bar = (arg1: boolean, arg2: { a: 'A' }): void => {};
-const baz = (): void => {};
+const fn = (v: boolean) => {
+  if (v) return 1;
+  else return 2;
 
-type test = MyParameters<typeof bar, [boolean, { a: 'A' }]>;
+  return 3;
+  return false;
+  return undefined
+};
 
-type MyParameters<T extends (...args: any[]) => any, ParamsType extends any[] = []> = T extends (
-  ...args: infer P
-) => any
-  ? P extends ParamsType
-    ? true
-    : false
-  : false;
+
+type MyReturnType<T> = T extends (...args: any[]) => infer R ? R  : never;
+
+type Widen<T> = T extends number ? number : T;
+type a = Widen<MyReturnType<typeof fn>>;
