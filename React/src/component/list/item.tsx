@@ -1,9 +1,10 @@
-import { FC , Fragment } from 'react';
+import { FC  } from 'react';
+
 
 const Item: FC = () => {
   return (
     <Fragment>
-      hell world
+      item
     </Fragment>
   );
 };
