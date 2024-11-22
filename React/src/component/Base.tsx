@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-const Base: FC<TBaseCoponent> = ({ children, className, tag: Tag = "div" }) => {
+const Base: FC<BaseComponent> = ({ children, className, tag: Tag = "div" }) => {
   return <Tag className={className}>{children}</Tag>;
 };
 

@@ -1,17 +1,20 @@
-import { type ReactNode } from "react";
+import type { FC, ReactNode } from "react";
 
 declare global {
-  interface TBaseCoponent {
-    children: ReactNode;
-    tag: keyof JSX.IntrinsicElements;
-    className: string;
+  interface BaseComponent {
+    children?: ReactNode;
+    tag?: keyof JSX.IntrinsicElements;
+    className?: string;
   }
 
-  interface TBaseItem{
-    children : ReactNode
-    className : string
+  interface BaseChild {
+    children?: ReactNode;
+    className?: string;
   }
-  
+
+  type BaseChildList<U extends string[]> = {
+    [K in U[number] as `${Capitalize<K>}`]: FC<BaseComponent>;
+  };
 }
 
 export {};

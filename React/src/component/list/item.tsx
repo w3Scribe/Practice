@@ -1,11 +1,11 @@
-import { FC  } from 'react';
+import { FC } from "react";
+import Base from "../Base";
 
-
-const Item: FC = () => {
+const Item: FC<BaseChild> = ({ children, className }) => {
   return (
-    <Fragment>
-      item
-    </Fragment>
+    <Base tag="li" className={className}>
+      {children}
+    </Base>
   );
 };
 
