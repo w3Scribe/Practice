@@ -1,11 +1,8 @@
-import { FC } from "react";
-
-
-const App: FC = () => {
+import { Fragment } from 'react';
+export default function App() {
   return (
-    <h1 className="">hello world</h1>
-  )
-};
-
-
-export default App;
+    <Fragment>
+      
+    </Fragment>
+  );
+}
