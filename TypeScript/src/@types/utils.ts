@@ -6,7 +6,6 @@ declare global {
    */
   type IsEqual<A, B> = A extends B ? (B extends A ? true : false) : false;
 
-
   /**
    * Constructs a tuple type of length `L` with elements of type `T`.
    * @template L - The length of the tuple
@@ -25,7 +24,6 @@ declare global {
       : Acc
     : Tuple<L, T, R, [...Acc, T]>;
 
-
   /**
    * ReadonlyProps makes the specified properties of an object readonly
    * @template T - The type to make readonly
@@ -35,7 +33,6 @@ declare global {
   type ReadonlyProps<T, P extends keyof T = keyof T> = {
     readonly [K in P]: T[K];
   } & Omit<T, P>;
-
 
   /**
    * OptionalProps makes the specified properties of an object optional
@@ -47,6 +44,14 @@ declare global {
     [P in K]?: T[P];
   } & Omit<T, K>;
 
+  /**
+   * If is a conditional type that selects one of two possible types based on a condition
+   * @template C - The condition to check
+   * @template T - The type to return if the condition is true
+   * @template F - The type to return if the condition is false
+   * @example If<true, 'yes', 'no'> => 'yes'
+   */
+  type If<C extends boolean, T, F> = C extends true ? T : F;
 }
 
 export {};
