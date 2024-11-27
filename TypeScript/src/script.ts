@@ -11,8 +11,7 @@ const userDetailsSchema = z.object({
   }),
 });
 
-type IUserDetails = z.infer<typeof userDetailsSchema>;
-
+// Remove unused type declaration
 const CreateProxyObject = <T extends object>(target: T, validator: z.ZodType): T => {
   const Handler: ProxyHandler<T> = {
     get: function (target, prop) {
@@ -31,7 +30,6 @@ const CreateProxyObject = <T extends object>(target: T, validator: z.ZodType): T
 
       const propValue = Reflect.get(target, prop);
       const validationResult = validator.safeParse({ ...target, [prop]: value }).error;
-
       if (validationResult) {
         throw new Error(validationResult.errors[0].message);
       }
@@ -47,8 +45,8 @@ const userDetails = CreateProxyObject(
   {
     name: 'John Doe',
     age: 25,
-    username: 'johndoe',
-    email: 'abc@gmail.com',
+    username: 'john_doe',
+    email: 'adfa',
     address: {
       city: 'New York',
       country: 'USA',
