@@ -30,7 +30,7 @@ const CreateProxyObject = <T extends object>(target: T, validator: z.ZodType): T
       }
 
       const propValue = Reflect.get(target, prop);
-      const validationResult = validator.safeParse({ ...target, [prop]: value }).error
+      const validationResult = validator.safeParse({ ...target, [prop]: value }).error;
 
       if (validationResult) {
         throw new Error(validationResult.errors[0].message);
@@ -56,6 +56,3 @@ const userDetails = CreateProxyObject(
   },
   userDetailsSchema,
 );
-
-
-userDetails.email = 'oasdf' 
