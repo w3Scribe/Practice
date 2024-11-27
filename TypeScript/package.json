@@ -15,5 +15,8 @@
     "dev": "bun --watch src/script.ts",
     "build": "tsc",
     "start": "node --watch dist/script.js"
+  },
+  "dependencies": {
+    "immer": "^10.1.1"
   }
 }

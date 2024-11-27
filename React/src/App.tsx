@@ -1,15 +1,15 @@
-import { FC } from "react";
-import List from "./component/list/list";
+import { Fragment, type FC } from 'react';
+import List from './component/list/list';
 
 const App: FC = () => {
   return (
-    <div className="p-5 bg-slate-900">
+    <Fragment>
       <List>
-        <List.Item className="bg-slate-900 bg-slate-900">
-          list item
+        <List.Item className="bg-slate-900">
+          asdfad
         </List.Item>
       </List>
-    </div>
+   </Fragment>
   );
 };
 
