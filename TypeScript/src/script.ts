@@ -1,16 +1,16 @@
 interface Todo {
   title: string;
   description: string;
-  completed: boolean;
 }
 
-type TodoPreview = MyPick<Todo, 'title' | 'completed'>;
-
-const todo: TodoPreview = {
-  title: 'Clean room',
-  completed: false,
+const todo: MyReadonly<Todo> = {
+  title: 'Hey',
+  description: 'foobar',
 };
 
-type MyPick<T, K extends keyof T> = {
-  [prop in K]: T[prop];
-};
+todo.title = 'Hello'; // Error: cannot reassign a readonly property
+todo.description = 'barFoo'; // Error: cannot reassign a readonly property
+
+type MyReadonly<T> = {
+  readonly [P in keyof T]: T[P];
+}
