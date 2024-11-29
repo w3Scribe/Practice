@@ -11,7 +11,6 @@ const todo: TodoPreview = {
   completed: false,
 };
 
-
 type MyPick<T, K extends keyof T> = {
-  [prop in K] : T[prop]
-}
+  [prop in K]: T[prop];
+};
