@@ -1,16 +1,8 @@
-interface Todo {
-  title: string;
-  description: string;
-}
+const tuple = ['tesla', 'model 3', 'model X', 'model Y'] as const;
 
-const todo: MyReadonly<Todo> = {
-  title: 'Hey',
-  description: 'foobar',
+type result = TupleToObject<typeof tuple>; // expected { 'tesla': 'tesla', 'model 3': 'model 3', 'model X': 'model X', 'model Y': 'model Y'}
+
+type TupleToObject<T extends readonly unknown[]> = {
+  [K in Extract<T[number], PropertyKey>]: K;
 };
 
-todo.title = 'Hello'; // Error: cannot reassign a readonly property
-todo.description = 'barFoo'; // Error: cannot reassign a readonly property
-
-type MyReadonly<T> = {
-  readonly [P in keyof T]: T[P];
-}
