@@ -1,6 +1,7 @@
-type Fruits = ['apple', 'banana', 'cherry'] 
+type tesla = ['tesla', 'model 3', 'model X', 'model Y'];
 
-type FirstElement<T extends any[]> = T extends [infer First, ...any[]] ? First : never
+// type TuppleLen<T extends any[]> = T  extends any[] ? T['length'] : never;
+// type TuppleLen<T extends any[]> = T['length'];
+// type TuppleLen<T extends any[]> = T extends { length: infer L } ? L : never;
 
-
-type Fruit = FirstElement<Fruits> // expected to be 'apple'
+type teslaLength = TuppleLen<tesla>; // expected 4
