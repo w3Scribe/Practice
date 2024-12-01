@@ -1,7 +1,6 @@
-const Fruits = ['apple', 'banana', 'cherry'] as const;
+type Fruits = ['apple', 'banana', 'cherry'] 
 
-type TuppleToObject<T extends readonly any[]> = {
-  [prop in T[number]] : prop
-}
+type FirstElement<T extends any[]> = T extends [infer First, ...any[]] ? First : never
 
-type FruitsObject = TuppleToObject<typeof Fruits>
+
+type Fruit = FirstElement<Fruits> // expected to be 'apple'
