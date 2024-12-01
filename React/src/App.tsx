@@ -1,12 +1,14 @@
-import { type FC , Fragment } from 'react';
+import { type FC, Fragment } from "react";
+import List from "./components/List/List";
 
 const App: FC = () => {
   return (
     <Fragment>
-      <h1 className='bg-slate-900 p-5 text-yellow-400'>hello world</h1>
-    </Fragment>   
+      <List>
+        <List.Item></List.Item>
+      </List>
+    </Fragment>
   );
 };
 
 export default App;
-
