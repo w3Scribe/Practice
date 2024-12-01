@@ -1,7 +1,7 @@
-import { type FC } from "react";
+import { memo, type FC } from "react";
 
 const Base: FC<BaseProps> = ({ children, className, tag: Tag = "div" }) => {
   return <Tag className={className}>{children}</Tag>;
 };
 
-export default Base;
+export default memo(Base);
