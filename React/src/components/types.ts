@@ -2,7 +2,7 @@ import { FC, ReactNode } from "react";
 
 declare global {
   interface BaseProps {
-    children?: ReactNode;
+    children: ReactNode;
     tag?: keyof JSX.IntrinsicElements;
     className?: string;
   }
