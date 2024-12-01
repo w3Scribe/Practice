@@ -1,16 +1,7 @@
-interface IUserInfo {
-  name: string;
-  age: number;
-  addrress: string;
+const Fruits = ['apple', 'banana', 'cherry'] as const;
+
+type TuppleToObject<T extends readonly any[]> = {
+  [prop in T[number]] : prop
 }
 
-type MyPick<T, K extends keyof T> = {
-  [Props in K] : T[Props];
-}
-
-type MyUserInfo = MyPick<IUserInfo, "addrress" | "name">;
-
-const userInfo: MyUserInfo = {
-  name: "Jack",
-  addrress: "Seoul"
-}
+type FruitsObject = TuppleToObject<typeof Fruits>
