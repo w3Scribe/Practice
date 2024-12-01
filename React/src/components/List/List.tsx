@@ -1,9 +1,9 @@
 import { memo } from "react";
 import Item from "./Item";
 
-type Childs = "item";
+type TList = WithSubComponents<"item">;
 
-const List: WithSubComponents<Childs> = ({ children, className }) => {
+const List: TList = ({ children, className }) => {
   return <ul className={className}>{children}</ul>;
 };
 

@@ -1,12 +1,5 @@
-import { type FC } from "react";
-import Base from "../Base";
-
-const Item: FC<BaseProps> = ({ children, className }) => {
-  return (
-    <Base tag="li" className={className}>
-      {children}
-    </Base>
-  );
+const Item: ComponentProps = ({ children, className }) => {
+  return <li className={className}>{children}</li>;
 };
 
 export default Item;
