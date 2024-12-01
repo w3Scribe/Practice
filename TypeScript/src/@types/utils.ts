@@ -52,6 +52,26 @@ declare global {
    * @example If<true, 'yes', 'no'> => 'yes'
    */
   type If<C extends boolean, T, F> = C extends true ? T : F;
+
+  /**
+   * Primitive returns the primitive type of a given type
+   * @template T - The type to get the primitive type of
+   * @example Primitive<string> => string
+   * @example Primitive => string | number | boolean | Function | object
+   */
+  type Primitive<T = unknown> = T extends string
+    ? string
+    : T extends number
+    ? number
+    : T extends boolean
+    ? boolean
+    : T extends Function
+    ? Function
+    : T extends object
+    ? object
+    : T extends unknown
+    ? string | number | boolean | Function | object
+    : never;
 }
 
 export {};
