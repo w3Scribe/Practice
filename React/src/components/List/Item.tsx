@@ -1,4 +1,4 @@
-const Item: ComponentProps = ({ children, className }) => {
+const Item: TComponentProps = ({ children, className }) => {
   return <li className={className}>{children}</li>;
 };
 
