@@ -1,5 +1,7 @@
-type Tuple = ['orange', 'apple', 'banana'];
+type arr1 = ['a', 'b', 'c'];
+type arr2 = [3, 2, 1];
 
-type Includes<T extends PropertyKey[], S extends PropertyKey> = S extends T[number] ? true : false;
 
-type Test = Includes<Tuple, 'apple'>
+type Push<A1 extends Primitive[], A2 extends Primitive[]> = [...A1, ...A2];
+
+type Test = Push<arr1, arr2>
