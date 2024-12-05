@@ -1,6 +1,5 @@
-type T1 = ['orange', 'apple', 'banana'];
-type T2 = [1, 2, 3];
+type Tuple = ['orange', 'apple', 'banana'];
 
-type Concat<T1 extends Primitive[], T2 extends Primitive[]> = [...T1, ...T2];
+type Includes<T extends PropertyKey[], S extends PropertyKey> = S extends T[number] ? true : false;
 
-type Test = Concat<T1, T2>
+type Test = Includes<Tuple, 'apple'>
