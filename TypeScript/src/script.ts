@@ -1,6 +1,10 @@
-type arr1 = ['a', 'b', 'c'];
-type arr2 = [3, 2, 1];
+type Fn = (a: number, b: number) => number;
 
-type Unshift<A1 extends Primitive[], A2 extends Primitive> = A2 extends Primitive[]
-  ? [...A2, ...A1]
-  : [A2, ...A1];
+type Params<T extends Function> = T extends (...args: infer Params) => any ? Params : never;
+
+// type ParamsOfFn = Params<Fn>; // resolves to [number, number]
+
+// // Example usage of ParamsOfFn
+// const exampleFunction: (...args: ParamsOfFn) => number = (a, b) => a + b;
+
+type test = Parameters<Fn>
