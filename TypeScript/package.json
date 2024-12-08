@@ -12,13 +12,26 @@
   ],
   "license": "ISC",
   "scripts": {
-    "dev": "bun --watch src/script.ts",
+    "dev": "bun -b --watch src/script.ts",
     "build": "tsc",
-    "start": "node --watch dist/script.js"
+    "start": "node --watch dist/script.js",
+    "lint": "eslint src --ext .ts",
+    "format": "prettier --write src/**/*.ts",
+    "fix": "eslint --fix"
   },
   "dependencies": {
     "immer": "^10.1.1",
     "typescript": "^5.7.1-rc",
     "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.16.0",
+    "@types/bun": "latest",
+    "eslint": "^9.16.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "globals": "^15.13.0",
+    "prettier": "^3.4.2",
+    "typescript-eslint": "^8.17.0"
   }
 }

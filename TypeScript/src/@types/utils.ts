@@ -59,11 +59,11 @@ declare global {
    * @example Primitive<string> => string
    * @example Primitive => string | number | boolean | Function | object
    */
-  type Primitive<T = unknown, V = string | number | boolean | Function | object> = T extends V
+  type Primitive<T = unknown, V = string | number | boolean | (() => void) | object> = T extends V
     ? T
     : T extends unknown
-    ? V
-    : never;
+      ? V
+      : never;
 }
 
 export {};
