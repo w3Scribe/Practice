@@ -1,16 +1,8 @@
-import { type FC, Fragment } from "react";
-import List from "./components/List/List";
-
-const App: FC = () => {
+import { Fragment } from 'react';
+export default function App() {
   return (
     <Fragment>
-      <List>
-        <List.Item className="bg-amber-400 text-black underline p-4">
-          list name
-        </List.Item>
-      </List>
+      <h1 className='underline'>hello world</h1>
     </Fragment>
   );
-};
-
-export default App;
+}
