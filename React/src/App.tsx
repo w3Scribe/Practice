@@ -25,7 +25,7 @@ const App: FC = () => {
           type="button"
           onClick={handleClick}
           disabled={isPending}
-          className="text-white border-2 border-blue-500 bg-blue-500"
+          className="text-white border-2 border-blue-500 bg-blue-500 disabled:cursor-progress"
         >
           {isPending ? "Loading..." : "Submit"}
         </button>
