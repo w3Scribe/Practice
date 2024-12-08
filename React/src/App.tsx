@@ -1,4 +1,4 @@
-import { type FC , Fragment, useTransition } from 'react';
+import { type FC, Fragment, useTransition } from "react";
 
 const App: FC = () => {
   const [isPending, pendingTransition] = useTransition();
@@ -16,16 +16,20 @@ const App: FC = () => {
     <Fragment>
       <form action="#">
         <label htmlFor="name">Name:</label>
-        <input type="text" id="name" className='rounded-sm text-blue-500 block border-2 border-blue-700' />
+        <input
+          type="text"
+          id="name"
+          className="rounded-sm text-blue-500 block border-2 border-blue-700"
+        />
         <button
           type="button"
           onClick={handleClick}
           disabled={isPending}
-          className='text-white border-2 border-blue-500 bg-blue-500'
+          className="text-white border-2 border-blue-500 bg-blue-500"
         >
-          {isPending ? 'Loading...' : 'Submit'}
+          {isPending ? "Loading..." : "Submit"}
         </button>
-     </form>
+      </form>
     </Fragment>
   );
 };
