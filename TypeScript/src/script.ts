@@ -1,5 +1,7 @@
-type Fn = () => number | string;
+type Fnc = () => number | string;
 
-type ReturnType<T extends Function> = T extends (...args: any[]) => infer R ? R : never;
+type ReturnType<T extends (...args: any[]) => any> = T extends (...args: any[]) => infer R
+  ? R
+  : never;
 
-type Test = ReturnType<Fn>;
+type Test = ReturnType<Fnc>;
