@@ -1,12 +1,13 @@
-interface IUser {
-  name: string;
-  age: number;
-  country: string;
-  role?: string;
-}
+type Fruits = ['apple', 'banana', 'cherry'];
 
-type ReadOnlyProps<T extends object, K extends keyof T> = {
-  readonly [P in K]: T[P];
-} & Omit<T, K>;
+type TuppleToObject<T extends any[]> = {
+  [K in T[number]]: K;
+};
 
-type Test = ReadOnlyProps<IUser, 'name' | 'age'>;
+type Test = TuppleToObject<Fruits>;
+
+const test: Test = {
+  apple: 'apple',
+  banana: 'banana',
+  cherry: 'cherry',
+};
