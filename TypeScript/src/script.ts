@@ -1,13 +1,5 @@
 type Fruits = ['apple', 'banana', 'cherry'];
 
-type TuppleToObject<T extends any[]> = {
-  [K in T[number]]: K;
-};
+type TLen<T extends any[]> = T extends { length: infer L } ? L : never;
 
-type Test = TuppleToObject<Fruits>;
-
-const test: Test = {
-  apple: 'apple',
-  banana: 'banana',
-  cherry: 'cherry',
-};
+type Len = TLen<Fruits>; // expected 3
