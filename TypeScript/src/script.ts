@@ -1,12 +1,12 @@
 interface IUser {
-  name: string
-  age: number
-  country: string
-  role ?: string
+  name: string;
+  age: number;
+  country: string;
+  role?: string;
 }
 
-type PickProp<T extends object, K extends keyof T> = {
-  [Props in K] : T[Props]
-}
+type ReadOnlyProps<T extends object, K extends keyof T> = {
+  readonly [P in K]: T[P];
+} & Omit<T, K>;
 
-type Test = PickProp<IUser, "name">
+type Test = ReadOnlyProps<IUser, 'name' | 'age'>;
