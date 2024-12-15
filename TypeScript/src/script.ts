@@ -1,5 +1,5 @@
-type Fruits = ['apple', 'banana', 'cherry'];
+type Fn = () => number | string;
 
-type TLen<T extends any[]> = T['length'];
+type ReturnType<T extends Function> = T extends (...args: any[]) => infer R ? R : never;
 
-type Len = TLen<Fruits>; // expected 3
+type Test = ReturnType<Fn>;
