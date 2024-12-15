@@ -1,5 +1,12 @@
 declare global {
   /**
+   * Fn is a function that doesn't take any arguments and doesn't return anything
+   * @example () => void
+   **/
+  type Fn = () => void;
+
+
+  /**
    * Primitive returns the specified type if it's a "primitive" type or defaults to the set of primitives
    * @template T - The type to evaluate
    * @example Primitive<string> => string
@@ -7,20 +14,8 @@ declare global {
    */
   type Primitive<
     T = unknown,
-    V = string | number | boolean | null | undefined | symbol | bigint | (() => void) | object,
+    V = string | number | boolean | null | undefined | symbol | bigint | Fn | object,
   > = T extends V ? T : V;
-
-
-  /**
-   * @deprecated
-   * Fn is a generic type that represents a function
-   * @template Args - The arguments of the function
-   * @template Rtype - The return type of the function
-   **/
-  type Fn<Args = Primitive[], Rtype = Primitive> = (...args: Args[]) => Rtype;
-
-
-
 
   /**
    * If is a conditional type that selects one of two possible types based on a condition
