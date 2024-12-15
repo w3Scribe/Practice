@@ -1,5 +1,37 @@
 declare global {
   /**
+   * Primitive returns the specified type if it's a "primitive" type or defaults to the set of primitives
+   * @template T - The type to evaluate
+   * @example Primitive<string> => string
+   * @example Primitive => string | number | boolean | null | undefined | symbol | bigint | Fn | object
+   */
+  type Primitive<
+    T = unknown,
+    V = string | number | boolean | null | undefined | symbol | bigint | (() => void) | object,
+  > = T extends V ? T : V;
+
+
+  /**
+   * @deprecated
+   * Fn is a generic type that represents a function
+   * @template Args - The arguments of the function
+   * @template Rtype - The return type of the function
+   **/
+  type Fn<Args = Primitive[], Rtype = Primitive> = (...args: Args[]) => Rtype;
+
+
+
+
+  /**
+   * If is a conditional type that selects one of two possible types based on a condition
+   * @template C - The condition to check
+   * @template T - The type to return if the condition is true
+   * @template F - The type to return if the condition is false
+   * @example If<true, 'yes', 'no'> => 'yes'
+   */
+  type If<C extends boolean, T, F> = C extends true ? T : F;
+
+  /**
    * Check if two types are equal
    * template: `IsEqual<A, B>`
    * example: `IsEqual<"hello-world", "hello-world">` => `true`
@@ -43,27 +75,6 @@ declare global {
   type OptionalProps<T, K extends keyof T = keyof T> = {
     [P in K]?: T[P];
   } & Omit<T, K>;
-
-  /**
-   * If is a conditional type that selects one of two possible types based on a condition
-   * @template C - The condition to check
-   * @template T - The type to return if the condition is true
-   * @template F - The type to return if the condition is false
-   * @example If<true, 'yes', 'no'> => 'yes'
-   */
-  type If<C extends boolean, T, F> = C extends true ? T : F;
-
-  /**
-   * Primitive returns the primitive type of a given type
-   * @template T - The type to get the primitive type of
-   * @example Primitive<string> => string
-   * @example Primitive => string | number | boolean | Function | object
-   */
-  type Primitive<T = unknown, V = string | number | boolean | (() => void) | object> = T extends V
-    ? T
-    : T extends unknown
-      ? V
-      : never;
 }
 
 export {};
