@@ -2,12 +2,20 @@
 
 int main(){
 
-  int age = 16;
+  int choice = 2;
 
-  if(age >= 10){
-    printf("You are at least 10 years old\n");
-  }else {
-    printf("You are not at least 10 years old\n");
+  switch(choice){
+    case 1:
+      printf("You chose 1\n");
+      break;
+    case 2:
+      printf("You chose 2\n");
+      break;
+    case 3:
+      printf("You chose 3\n");
+      break;
+    default:
+      printf("Invalid choice\n");
   }
 
   return 0;
