@@ -5,7 +5,6 @@ declare global {
    **/
   type Fn = () => void;
 
-
   /**
    * Primitive returns the specified type if it's a "primitive" type or defaults to the set of primitives
    * @template T - The type to evaluate

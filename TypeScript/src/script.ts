@@ -4,13 +4,18 @@ interface IUserDetails {
   address: {
     city: string;
     country: string;
-  }
+  };
 }
 
+type PropsName<T extends object, Pnames extends string[] = []> = {
+  [P in keyof T]: T[P] extends object
+    ? [...Pnames, Extract<P, string>] | PropsName<T[P], [...Pnames, Extract<P, string>]>
+    : [...Pnames, Extract<P, string>];
+}[keyof T];
 
-type ReadonlyP<T extends object> = {
-  readonly [K in keyof T]: T[K];
-}
+// Usage
+type AllPropertyNames = PropsName<IUserDetails>[number]; // ['name', 'age', 'address', 'address.city', 'address.country']
 
-
-type Test = ReadonlyP<IUserDetails>;
+// Example usage
+const propertyName: AllPropertyNames = 'name';
+console.log(propertyName);
