@@ -1,13 +1,13 @@
+// Pointers
 #include<stdio.h>
 
-int add(int a, int b){
-  return a + b;
-}
+int main(){
+  int *ptr;
+  int num = 10;
+  ptr = &num;
+  
+  printf("The value of num is: %d\n", *ptr);
+  printf("The address of num is: %p\n", ptr);
 
-int main() {
-  int a = 10;
-  int b = 20;
-  int c = add(a, b);
-  printf("The sum of %d and %d is %d\n", a, b, c);
   return 0;
 }
