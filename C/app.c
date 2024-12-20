@@ -1,22 +1,13 @@
 #include<stdio.h>
 
-int main(){
+int add(int a, int b){
+  return a + b;
+}
 
-  int choice = 2;
-
-  switch(choice){
-    case 1:
-      printf("You chose 1\n");
-      break;
-    case 2:
-      printf("You chose 2\n");
-      break;
-    case 3:
-      printf("You chose 3\n");
-      break;
-    default:
-      printf("Invalid choice\n");
-  }
-
+int main() {
+  int a = 10;
+  int b = 20;
+  int c = add(a, b);
+  printf("The sum of %d and %d is %d\n", a, b, c);
   return 0;
 }
