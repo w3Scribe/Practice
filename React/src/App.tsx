@@ -1,98 +1,80 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { type FC } from "react";
-import { useForm } from "react-hook-form";
+import React, { type FC, Fragment } from "react";
+import { useForm, UseFormReturn } from "react-hook-form";
 import { z } from "zod";
+import twc from "./lib/twc";
+
+const style = twc({
+  section: "bg-gray-900 min-w-full min-h-dvh grid place-items-center",
+  form: "w-60 p-2 bg-gray-800 border border-gray-700 rounded-sm flex flex-col justify-center gap-y-1",
+  formHeading: "text-center text-gray-50 font-bold mb-2 text-xl",
+  input:
+    "w-full py-1.5 px-1 bg-gray-600/40 outline-none border border-gray-500 text-gray-50",
+});
+
+const FormSchema = z.object({
+  username: z.string().trim().min(4),
+  password: z.string().trim().min(8),
+});
+
+type FromInputs = z.infer<typeof FormSchema>;
 
 const App: FC = () => {
-  const FromSchema = z.object({
-    username: z.string().nonempty(),
-    email: z.string().email(),
-    password: z.string().min(8),
+  const FromHook = useForm<FromInputs>({
+    resolver: zodResolver(FormSchema),
   });
 
-  type FormValues = z.infer<typeof FromSchema>;
-
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-  } = useForm<FormValues>({
-    resolver: zodResolver(FromSchema),
+  const submitFn = FromHook.handleSubmit((data) => {
+    console.log(data);
   });
-
-  const formSubmitHandlerFn = handleSubmit((data) => {
-    console.log("Form Submitted", data);
-  });
-
-  const FromActionFn = (data: FormData) => {
-    const newUseData: FormValues | unknown = {
-      email: data.get("email"),
-      password: data.get("password"),
-      username: data.get("username"),
-    };
-    console.log(newUseData);
-  };
 
   return (
-    <section className="flex justify-center items-center h-screen bg-gray-800">
-      <form
-        className="flex flex-col gap-4 p-4 max-w-2xs"
-        onSubmit={formSubmitHandlerFn}
-        action={FromActionFn}
-      >
-        <div className="flex flex-col">
-          <label className="mb-1 text-white" htmlFor="username">
-            Username
-          </label>
-          <input
-            className="px-2 py-1 rounded border border-gray-300"
-            type="text"
-            id="username"
-            {...register("username")}
-          />
-          {errors.username && (
-            <p className="text-red-500 text-sm">{errors.username.message}</p>
-          )}
-        </div>
-
-        <div className="flex flex-col">
-          <label className="mb-1 text-white" htmlFor="email">
-            Email
-          </label>
-          <input
-            className="px-2 py-1 rounded border border-gray-300"
-            type="email"
-            id="email"
-            {...register("email")}
-          />
-          {errors.email && (
-            <p className="text-red-500 text-sm">{errors.email.message}</p>
-          )}
-        </div>
-
-        <div className="flex flex-col">
-          <label className="mb-1 text-white" htmlFor="password">
-            Password
-          </label>
-          <input
-            className="px-2 py-1 rounded border border-gray-300"
+    <Fragment>
+      <section className={style.section}>
+        <form className={style.form} onSubmit={submitFn}>
+          <h1 className={style.formHeading}>Login Form</h1>
+          <Input form={FromHook} fieldName="username" className={style.input} />
+          <Input
+            form={FromHook}
+            fieldName="password"
             type="password"
-            id="password"
-            {...register("password")}
+            className={style.input}
           />
-          {errors.password && (
-            <p className="text-red-500 text-sm">{errors.password.message}</p>
-          )}
-        </div>
+          <button
+            type="submit"
+            className={style.input + " bg-blue-500 hover:bg-blue-600"}
+          >
+            Submit
+          </button>
+        </form>
+      </section>
+    </Fragment>
+  );
+};
 
-        <button
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-          type="submit"
-        >
-          Submit
-        </button>
-      </form>
-    </section>
+interface InputProps
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "form"> {
+  form: UseFormReturn<FromInputs>;
+  fieldName: keyof FromInputs;
+}
+const Input: FC<InputProps> = (props) => {
+  const { form, fieldName, className, type, id, placeholder } = props;
+  const { register, formState } = form;
+  return (
+    <div>
+      <input
+        type={type ?? "text"}
+        className={className}
+        id={id}
+        placeholder={placeholder}
+        {...register(fieldName)}
+      />
+      {formState.errors[fieldName] && (
+        <span className=" top-0 right-0 text-xs text-red-500">
+          {formState.errors[fieldName]?.message}{" "}
+        </span>
+      )}
+    </div>
   );
 };
 
