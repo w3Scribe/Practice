@@ -60,8 +60,7 @@ const App: FC = () => {
   );
 };
 
-interface InputProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "form"> {
+interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'form'> {
   form: UseFormReturn<FromInputs>;
   fieldName: keyof FromInputs;
 }
