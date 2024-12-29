@@ -1,19 +1,23 @@
-import { Reducer } from "react";
-
 declare global {
-  // Define specific action types
-  type CounterActionType = "increment" | "decrement" | "reset";
+  type CounterState = number
 
-  interface CounterAction {
-    type: CounterActionType;
-  }
+  type CounterActionType = "Increment" | "Descrement" | "Reset";
 
-  interface TCounterState {
-    readonly count: number;
-  }
+  type CounterAction =
+    | {
+        type: Exclude<CounterActionType, "Reset">;
+        payload: CounterState;
+      }
+    | {
+        type: Extract<CounterActionType, "Reset">;
+      };
 
-  // Make reducer type more specific
-  type TCounterFn = Reducer<TCounterState, CounterAction>;
+  type TCounterFn = ( Action: CounterAction) => void;
+
+  type TCounterCtx = {
+    count: CounterState;
+    counterFn: TCounterFn;
+  };
 }
 
 export {};

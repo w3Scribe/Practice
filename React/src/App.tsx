@@ -1,46 +1,37 @@
-import { FC, Fragment, useReducer } from "react";
+import { createContext, type FC, Fragment, useState } from "react";
+import CompA from "./components/CompA";
 
-// Make state immutable
-const initialState: Readonly<TCounterState> = {
+export const CounterCxt = createContext<TCounterCtx>({
   count: 0,
-};
-
-// Create type-safe action creators
-const createAction = (type: CounterActionType): CounterAction => ({
-  type,
+  counterFn: () => {},
 });
 
-const counterReducer: React.Reducer<TCounterState, CounterAction> = (
-  prevState,
-  action
-) => {
-  switch (action.type) {
-    case "increment":
-      return { count: prevState.count + 1 };
-    case "decrement":
-      return { count: prevState.count - 1 };
-    case "reset":
-      return { count: 0 };
-    default:
-      return prevState;
-  }
-};
-
 const App: FC = () => {
-  const [state, dispatch] = useReducer(counterReducer, initialState);
+  const [count, setCount] = useState<CounterState>(0);
 
+  const counterFn: TCounterFn = (action) => {
+    switch (action.type) {
+      case "Increment":
+        setCount(action.payload ? count + action.payload : count + 1);
+        break;
+      case "Descrement":
+        setCount(action.payload ? count - action.payload : count - 1);
+        break;
+      case "Reset":
+        setCount(0);
+        break;
+      default:
+        throw new Error("something went wrong !");
+    }
+  };
+  
   return (
     <Fragment>
-      <p>Count: {state.count}</p>
-      <button onClick={() => dispatch(createAction("increment"))}>
-        Increment
-      </button>
-      <button onClick={() => dispatch(createAction("decrement"))}>
-        Decrement
-      </button>
-      <button onClick={() => dispatch(createAction("reset"))}>Reset</button>
+      <CounterCxt value={{ count, counterFn }}>
+        <CompA />
+      </CounterCxt>
     </Fragment>
   );
 };
-
+   
 export default App;
