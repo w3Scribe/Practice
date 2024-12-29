@@ -17,7 +17,7 @@ const CompA: FC = () => {
         placeholder="Counter payload"
         value={inputValue}
         onChange={(e) => setInputValue(Number(e.target.value))}
-        className={cn("p-2", "border", "border-gray-300", "rounded")}
+        className={cn("p-2", "border", "border-gray-300", "rounded bg-amber-400", 'bg-purple-600 text-white')}
       />
       <Button payload={inputValue} fn={counterFn} type="Increment" />
       <Button payload={inputValue} fn={counterFn} type="Decrement" />
