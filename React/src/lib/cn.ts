@@ -1,12 +1,9 @@
 import { ClassNameValue, twMerge } from "tailwind-merge";
 
-type CN = (cl: ClassNameValue, ...clArgs: ClassNameValue[]) => string;
+type CN = (...args: ClassNameValue[]) => string;
 
-const cn: CN = (cl, ...clArgs) => {
-  return twMerge(cl, clArgs);
+const cn: CN = (...args) => {
+  return twMerge(...args);
 };
 
-export default cn; 
-
-
-  
+export default cn;

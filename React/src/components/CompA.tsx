@@ -1,21 +1,26 @@
+// src/components/CompA.tsx
 import { type FC, use, useState } from "react";
-import { CounterCxt } from "../App";
+
+import cn from "../lib/cn";
 import Button from "./button";
+import CounterCxt from '../context/counterContext';
 
 const CompA: FC = () => {
   const { count, counterFn } = use(CounterCxt);
-  const [inputValue, setInputValue] = useState(count);
+  const [inputValue, setInputValue] = useState<number>(count);
 
   return (
-    <div className="flex flex-col gap-y-3">
-      <h1>Counter Number : {count}</h1>
+    <div className={cn("flex", "flex-col", "gap-y-3")}>
+      <h1>Counter Number: {count}</h1>
       <input
-        type="text"
-        placeholder="counter payload"
-        onChange={(e) => setInputValue(+e.target.value)}
+        type="number"
+        placeholder="Counter payload"
+        value={inputValue}
+        onChange={(e) => setInputValue(Number(e.target.value))}
+        className={cn("p-2", "border", "border-gray-300", "rounded")}
       />
       <Button payload={inputValue} fn={counterFn} type="Increment" />
-      <Button payload={inputValue} fn={counterFn} type="Descrement" />
+      <Button payload={inputValue} fn={counterFn} type="Decrement" />
       <Button payload={inputValue} fn={counterFn} type="Reset" />
     </div>
   );

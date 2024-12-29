@@ -1,7 +1,7 @@
 declare global {
   type CounterState = number
 
-  type CounterActionType = "Increment" | "Descrement" | "Reset";
+  type CounterActionType = "Increment" | "Decrement" | "Reset";
 
   type CounterAction =
     | {

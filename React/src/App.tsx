@@ -1,10 +1,7 @@
-import { createContext, type FC, Fragment, useState } from "react";
-import CompA from "./components/CompA";
+import { type FC, Fragment, useState } from "react";
 
-export const CounterCxt = createContext<TCounterCtx>({
-  count: 0,
-  counterFn: () => {},
-});
+import CompA from "./components/CompA";
+import CounterCxt from "./context/counterContext";
 
 const App: FC = () => {
   const [count, setCount] = useState<CounterState>(0);
@@ -14,7 +11,7 @@ const App: FC = () => {
       case "Increment":
         setCount(action.payload ? count + action.payload : count + 1);
         break;
-      case "Descrement":
+      case "Decrement":
         setCount(action.payload ? count - action.payload : count - 1);
         break;
       case "Reset":
@@ -24,7 +21,7 @@ const App: FC = () => {
         throw new Error("something went wrong !");
     }
   };
-  
+
   return (
     <Fragment>
       <CounterCxt value={{ count, counterFn }}>
@@ -33,5 +30,5 @@ const App: FC = () => {
     </Fragment>
   );
 };
-   
+
 export default App;
