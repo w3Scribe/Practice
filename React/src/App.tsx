@@ -1,12 +1,12 @@
 import { FieldApi, useForm } from "@tanstack/react-form";
-import { FormEvent, type FC } from "react";
+import { FormEvent, Fragment, type FC } from "react";
 import { z } from "zod";
 import { twc } from "./utils";
 
 const style = twc({
   container: "max-w-full h-lvh bg-gray-100 grid place-items-center",
   input: "p-2 m-2 border border-gray-300 rounded-md",
-  button: "p-2 m-2 bg-blue-500 text-white rounded-md",
+  button: "p-2 m-2 bg-blue-500 text-white rounded-md cursor-pointer disabled:bg-gray-300 disabled:cursor-not-allowed",
 });
 
 const UserSchema = z.object({
@@ -25,30 +25,25 @@ interface IFieldInfo {
 }
 
 const FieldInfo: FC<IFieldInfo> = ({ field }) => {
-  const {
-    state: {
-      meta: { errors, isValidating },
-    },
-  } = field;
+  const { errors, isValidating } = field.state.meta;
   return (
-    <div>
-      {isValidating && <div>Checking...</div>}
+    <Fragment>
+      {isValidating && <span>Checking...</span>}
       {errors.map((error, index) => (
-        <div key={index}>{error}</div>
+        <span key={index} >{error}</span>
       ))}
-    </div>
+    </Fragment>
   );
 };
 
 const App: FC = () => {
   const Form = useForm<TUserDetails>({
     defaultValues: {
-      username: "",
-      email: "",
+      username: "sd",
+      email: "sdf",
     },
-
-    onSubmit: async (formData) => {
-      console.log(formData);
+    onSubmit: async ({value}) => {
+      console.log(value);
     },
 
     validators: {
@@ -84,7 +79,7 @@ const App: FC = () => {
         <Form.Field
           name="email"
           children={(inpt) => (
-            <div>
+            <Fragment>
               <input
                 name={inpt.name}
                 value={inpt.state.value}
@@ -94,11 +89,10 @@ const App: FC = () => {
                 onChange={(e) => inpt.handleChange(e.target.value)}
               />
               <FieldInfo field={inpt} />
-            </div>
+            </Fragment>
           )}
         />
-
-        <button type="submit" className={style.button}>
+        <button type="submit" className={style.button} disabled={Form.state.isFormValid}>
           Submit
         </button>
       </form>
