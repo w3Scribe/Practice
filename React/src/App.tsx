@@ -1,7 +1,9 @@
-import { FieldApi, useForm } from "@tanstack/react-form";
-import { FormEvent, Fragment, type FC } from "react";
+import { useForm } from "@tanstack/react-form";
+import { type FC } from "react";
 import { z } from "zod";
+import FormField from './components/FieldInfo';
 import { twc } from "./utils";
+import { FormSubmitFn } from './utils/formSubFn';
 
 const style = twc({
   container: "max-w-full h-lvh bg-gray-100 grid place-items-center",
@@ -20,21 +22,7 @@ const UserSchema = z.object({
 
 type TUserDetails = z.infer<typeof UserSchema>;
 
-interface IFieldInfo {
-  field: FieldApi<any, any, any, any>;
-}
 
-const FieldInfo: FC<IFieldInfo> = ({ field }) => {
-  const { errors, isValidating } = field.state.meta;
-  return (
-    <Fragment>
-      {isValidating && <span>Checking...</span>}
-      {errors.map((error, index) => (
-        <span key={index} >{error}</span>
-      ))}
-    </Fragment>
-  );
-};
 
 const App: FC = () => {
   const Form = useForm<TUserDetails>({
@@ -51,15 +39,10 @@ const App: FC = () => {
     },
   });
 
-  function FromSubmitFn(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    e.stopPropagation();
-    Form.handleSubmit();
-  }
 
   return (
     <section className={style.container}>
-      <form onSubmit={(e) => FromSubmitFn(e)}>
+      <form onSubmit={(e) => FormSubmitFn(e, Form)}>
         <Form.Field
           name="username"
           children={(inpt) => (
@@ -72,26 +55,11 @@ const App: FC = () => {
                 onBlur={inpt.handleBlur}
                 onChange={(e) => inpt.handleChange(e.target.value)}
               />
-              <FieldInfo field={inpt} />
+              <FormField field={inpt} />
             </div>
           )}
         />
-        <Form.Field
-          name="email"
-          children={(inpt) => (
-            <Fragment>
-              <input
-                name={inpt.name}
-                value={inpt.state.value}
-                placeholder={inpt.name}
-                className={style.input}
-                onBlur={inpt.handleBlur}
-                onChange={(e) => inpt.handleChange(e.target.value)}
-              />
-              <FieldInfo field={inpt} />
-            </Fragment>
-          )}
-        />
+ 
         <button type="submit" className={style.button} disabled={Form.state.isFormValid}>
           Submit
         </button>
