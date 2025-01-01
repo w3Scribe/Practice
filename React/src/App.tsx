@@ -1,9 +1,10 @@
 import { useForm } from "@tanstack/react-form";
-import { type FC } from "react";
+import { Fragment, type FC } from "react";
 import { z } from "zod";
 import FormField from "./components/FormField"; // Correct import for FormField
 import { twc } from "./utils";
 import { FormSubmitFn } from "./utils/formSubFn";
+import FieldInfo from './components/FieldInfo';
 
 const style = twc({
   container: "max-w-full h-lvh bg-gray-100 grid place-items-center",
@@ -46,11 +47,22 @@ const App: FC = () => {
           Tag="input"
           className={style.input}
         />
-        <FormField
-          Form={FORM}
-          Name="email"
-          Tag="input"
-          className={style.input}
+        <FORM.Field name="username"
+          children={(FormElement) => (
+            <Fragment>
+              <input
+                className={style.input}
+                name={FormElement.name}
+                placeholder={FormElement.name}
+                aria-placeholder={FormElement.name}
+                value={FormElement.state.value}
+                onBlur={FormElement.handleBlur}
+                onChange={(e) => FormElement.handleChange((e.target as HTMLInputElement).value)}
+              />
+              <FieldInfo field={FormElement} />
+            </Fragment>
+          )}
+        
         />
         <button
           type="submit"
