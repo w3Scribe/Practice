@@ -1,11 +1,11 @@
 import { FieldApi } from "@tanstack/react-form";
 import { type FC, Fragment } from "react";
 
-interface IFormField {
+interface IFieldInfo {
   field: FieldApi<any, any>;
 }
 
-const FormField: FC<IFormField> = ({ field }) => {
+const FieldInfo: FC<IFieldInfo> = ({ field }) => {
   const { errors, isValidating } = field.state.meta;
   return (
     <Fragment>
@@ -17,4 +17,4 @@ const FormField: FC<IFormField> = ({ field }) => {
   );
 };
 
-export default FormField;
+export default FieldInfo;

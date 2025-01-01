@@ -9,7 +9,6 @@ export function defineSchema<T extends z.ZodRawShape>(shape: T): SchemaReturn<T>
   const schema = z.object(shape);
   return {
     schema,
-    UserType: schema.parse({} as any), // Adjust parsing as needed
   };
 }
 
@@ -25,4 +24,4 @@ const UserSchema = defineSchema({
 // Usage example
 // UserSchema.UserType can be used directly without an extra type definition
 
-type zodSchemaInfereType = UserSchema.UserType;
+type zodSchemaInfereType = UserSchema.UserType;type zodSchemaInfereType = z.infer<typeof UserSchema.schema>;
