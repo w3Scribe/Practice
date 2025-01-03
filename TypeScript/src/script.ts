@@ -4,8 +4,9 @@ type Len<T extends string, CharCount extends number[] = []> =
     
 type Compare<First extends number, Second extends number, Result extends number[] = []> = 
   First extends Second ? 'Equal' :
-  First extends Result['length'] ? 'Less' :
-  Second extends Result['length'] ? 'Greater' :
+  Second extends Result['length'] ? 'Less' :
+  First extends Result['length'] ? 'Greater' :
   Compare<First, Second, [...Result, 0]>;
 
-type Test = Compare<2, 3>;
+
+type MaxChar<T extends string, Max extends number> = Compare<Len<T>, Max> extends 'Equal' | 'Greater' ? T : never;
