@@ -16,8 +16,10 @@ type Compare<
 
 type MaxChar<T extends string, Max extends number> =
   Compare<Len<T>, Max> extends 'Equal' | 'Greater' ? T : never;
+
 type MinChar<T extends string, Min extends number> =
   Compare<Len<T>, Min> extends 'Equal' | 'Less' ? T : never;
+
 type MinMaxChar<T extends string, Min extends number, Max extends number> = MinChar<T, Min> &
   MaxChar<T, Max>;
 
