@@ -10,9 +10,8 @@ type Compaare<First extends number, Second extends number, Result extends number
   Compaare<First, Second, [...Result, 0]>;
 
 
-type MaxChar<T extends string, Max extends number = 0> = Compaare<Lenght<T>, Max> extends 'Equal' | 'Less' ? T : never;
-type MinChar<T extends string, Min extends number = 0> = Compaare<Lenght<T>, Min> extends 'Equal' | 'Greater' ? T : never;
+type MaxChar<T extends string, Max extends number> = Compaare<Lenght<T>, Max> extends 'Equal' | 'Less' ? T : never;
+type MinChar<T extends string, Min extends number> = Compaare<Lenght<T>, Min> extends 'Equal' | 'Greater' ? T : never;
+type MinMaxChar<T extends string, Min extends number, Max extends number> = MinChar<T, Min> & MaxChar<T, Max>;
 
-
-type TestMax = MaxChar<'a' , 5>; // 'ccc'
-type TestMin = MinChar<'ar' , 2>; // 'a'
+type Test = MinMaxChar<'1243', 1, 3>; // '123'
