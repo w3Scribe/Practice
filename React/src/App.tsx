@@ -1,79 +1,17 @@
-import { useForm } from "@tanstack/react-form";
-import { Fragment, type FC } from "react";
-import { z } from "zod";
-import FormField from "./components/FormField"; // Correct import for FormField
-import { twc } from "./utils";
-import { FormSubmitFn } from "./utils/formSubFn";
-import FieldInfo from './components/FieldInfo';
+import { type FC } from 'react';
+import { twc } from './utils';
 
-const style = twc({
-  container: "max-w-full h-lvh bg-gray-100 grid place-items-center",
-  input: "p-2 m-2 border border-gray-300 rounded-md",
-  button:
-    "p-2 m-2 bg-blue-500 text-white rounded-md cursor-pointer disabled:bg-gray-300 disabled:cursor-not-allowed",
+const STYLE = twc({
+  h1 : 'text-center p-4 text-4xl font-bold text-blue-500'
 });
 
-const UserSchema = z.object({
-  username: z
-    .string()
-    .trim()
-    .min(4, { message: "Username must be at least 4 characters long" })
-    .max(20, { message: "Username must be at most 20 characters long" }),
-  email: z.string().email({ message: "Invalid email address" }),
-});
-
-type TUserDetails = z.infer<typeof UserSchema>;
 
 const App: FC = () => {
-  const FORM = useForm<TUserDetails>({
-    defaultValues: {
-      username: "",
-      email: "",
-    },
-    onSubmit: async ({ value }) => {
-      console.log(value);
-    },
-    validators: {
-      onChange: UserSchema,
-    },
-  });
-
   return (
-    <section className={style.container}>
-      <form onSubmit={(e) => FormSubmitFn(e, FORM)}>
-        <FormField
-          Form={FORM}
-          Name="username" // why i am not getting any suggestion for Name prop here?
-          Tag="input"
-          className={style.input}
-        />
-        <FORM.Field name="username"
-          children={(FormElement) => (
-            <Fragment>
-              <input
-                className={style.input}
-                name={FormElement.name}
-                placeholder={FormElement.name}
-                aria-placeholder={FormElement.name}
-                value={FormElement.state.value}
-                onBlur={FormElement.handleBlur}
-                onChange={(e) => FormElement.handleChange((e.target as HTMLInputElement).value)}
-              />
-              <FieldInfo field={FormElement} />
-            </Fragment>
-          )}
-        
-        />
-        <button
-          type="submit"
-          className={style.button}
-          disabled={!FORM.state.isFormValid || FORM.state.isSubmitting}
-        >
-          {FORM.state.isSubmitting ? "Submitting..." : "Submit"}
-        </button>
-      </form>
-    </section>
-  );
-};
-
+    <section>
+      <h1 className={`${STYLE.h1}`}>React TypeScript App</h1>
+    </section>       
+  );   
+};        
+  
 export default App;
