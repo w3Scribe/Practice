@@ -9,6 +9,8 @@ const STYLE = twc({
 const App: FC = () => {
   return <section className={`${STYLE.section}`}>Hello, Tailwind CSS!</section>;
 };
+  
+
 
 export default App;
     
