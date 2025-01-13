@@ -3,7 +3,7 @@ import { twc } from "./utils";
 
 const STYLE = twc({
   section:
-    "grid place-items-center min-h-screen w-full m-phone:bg-green-600 phone:bg-amber-600 m-tab:bg-purple-600 lap:bg-rose-600 desk:bg-teal-600 text-center text-white font-extrabold",
+    "grid place-items-center min-h-screen w-full text-center text-white font-extrabold xs:bg-blue-500 sm:bg-green-500 md:bg-yellow-500 lg:bg-red-500 xl:bg-purple-500 ml:bg-gray-700",
 });
 
 const App: FC = () => {
@@ -11,3 +11,4 @@ const App: FC = () => {
 };
 
 export default App;
+    
