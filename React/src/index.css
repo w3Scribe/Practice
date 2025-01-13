@@ -1,1 +1,13 @@
-@import 'tailwindcss'
+@import "tailwindcss";
+
+:root {
+  --font-display: "Satoshi", "sans-serif";
+
+  /* breakpoints for phone to desk screen */
+  --breakpoint-xs: 320px; /* Extra small screens */
+  --breakpoint-s: 416px; /* Small screens */
+  --breakpoint-m: 768px; /* Medium screens */
+  --breakpoint-ml: 912px; /* Between medium and large screens */
+  --breakpoint-l: 1024px; /* Large screens */
+  --breakpoint-xl: 1280px; /* Extra large screens */
+}

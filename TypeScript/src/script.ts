@@ -1,21 +1,32 @@
-type SLen<T extends string, C extends string[] = []> = T extends `${infer Char}${infer RStr}`
-  ? SLen<RStr, [...C, Char]>
-  : C['length'];
+type HexCharMap = {
+  '0': 0;
+  '1': 1;
+  '2': 2;
+  '3': 3;
+  '4': 4;
+  '5': 5;
+  '6': 6;
+  '7': 7;
+  '8': 8;
+  '9': 9;
+  A: 10;
+  B: 11;
+  C: 12;
+  D: 13;
+  E: 14;
+  F: 15;
+};
 
+type HexMapKeys = keyof HexCharMap;
 
-type Compare<F extends number, S extends number, R extends number[] = []> = F extends S
-  ? 'Equal'
-  : R['length'] extends F
-    ? 'Less'
-    : R['length'] extends S
-      ? 'Greater'
-      : Compare<F, S, [...R, 0]>;
+type GetDec<T extends HexMapKeys | (string & {})> = T extends HexMapKeys ? HexCharMap[T] : never;
 
-type TMinChar<T extends string, Min extends number> =
-  Compare<SLen<T>, Min> extends 'Equal' | 'Greater' ? T : never;
+// type T1 = GetDec<'F'>;
+type Len<T extends any[]> = T['length'] & number;
 
-type TMaxChar<T extends string, Max extends number> =
-  Compare<SLen<T>, Max> extends 'Equal' | 'Less' ? T : never;
+// type T2 = Len<[1,]>
 
-type TMinMaxChar<T extends string, Min extends number, Max extends number> = TMinChar<T, Min> &
-  TMaxChar<T, Max>;
+type Push<T extends HexMapKeys, Store extends any[] = []> = [...Store, GetDec<T>];
+
+type T3 = Push<'E'>;
+type T4 = Push<'A', T3>
