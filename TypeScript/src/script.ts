@@ -1,32 +1,16 @@
-type HexCharMap = {
-  '0': 0;
-  '1': 1;
-  '2': 2;
-  '3': 3;
-  '4': 4;
-  '5': 5;
-  '6': 6;
-  '7': 7;
-  '8': 8;
-  '9': 9;
-  A: 10;
-  B: 11;
-  C: 12;
-  D: 13;
-  E: 14;
-  F: 15;
-};
+type NumToTupple<T extends number, Result extends number[] = []> = T extends Result['length']
+  ? Result
+  : NumToTupple<T, [...Result, 0]>;
 
-type HexMapKeys = keyof HexCharMap;
+type StrToTupple<T extends any, Result extends string[] = []> = T extends `${infer F}${infer _}`
+  ? StrToTupple<_, [...Result, F]>
+  : Result;
 
-type GetDec<T extends HexMapKeys | (string & {})> = T extends HexMapKeys ? HexCharMap[T] : never;
+type BothEx<T extends any, N extends any> = T extends N ? T : never;
 
-// type T1 = GetDec<'F'>;
-type Len<T extends any[]> = T['length'] & number;
+type Add<N1 extends number | string, N2 extends number | string> =
+  BothEx<N1, N2> extends number
+    ? [...NumToTupple<N1>, ...NumToTupple<N2>]
+    : [...StrToTupple<N1>, ...StrToTupple<N2>];
 
-// type T2 = Len<[1,]>
 
-type Push<T extends HexMapKeys, Store extends any[] = []> = [...Store, GetDec<T>];
-
-type T3 = Push<'E'>;
-type T4 = Push<'A', T3>
