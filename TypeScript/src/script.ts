@@ -60,12 +60,18 @@ type HexToRGB<T extends Hex> =
     : never;
 
 const hexToRGB = <T extends Hex>(hex: T): RGB => {
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+
   return {
-    r: 0,
-    g: 0,
-    b: 0,
+    r,
+    g,
+    b,
     __brand: 'RGB',
   };
 };
 
 const rgb = hexToRGB('#ff00ff' as Hex); // OK
+console.log(rgb);
+// Output: { r: 255, g: 0, b: 255, __brand: 'RGB' }
