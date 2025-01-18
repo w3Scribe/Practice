@@ -53,3 +53,14 @@ type GetHextTupple<T extends string> =
       : never
     : never;
 
+type HexToRGB<T extends string> =
+  T extends `#${infer R1}${infer R2}${infer G1}${infer G2}${infer B1}${infer B2}`
+    ? {
+        r: Add<Multiply<16, GetHex<R1>>, GetHex<R2>>;
+        g: Add<Multiply<16, GetHex<G1>>, GetHex<G2>>;
+        b: Add<Multiply<16, GetHex<B1>>, GetHex<B2>>;
+      }
+  : never;
+    
+
+ 
