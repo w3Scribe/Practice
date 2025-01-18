@@ -1,24 +1,23 @@
-// TLen
+type Brand<T, B> = T & { __brand: B };
+
+type Hex = Brand<string, 'Hex'>;
+type RGB = Brand<{ r: number; g: number; b: number }, 'RGB'>;
+
 type TLen<T extends any[]> = T['length'];
 
-// NumToTupple
-type NumToTupple<N extends number, R extends any[] = []> =
-  TLen<R> extends N ? R : NumToTupple<N, [...R, R['length']]>;
+type NumToTuple<N extends number, R extends any[] = []> =
+  TLen<R> extends N ? R : NumToTuple<N, [...R, R['length']]>;
 
-// StrToTupple
-type StrToTupple<S extends string, R extends any[] = []> =
-  TLen<R> extends S['length'] ? R : StrToTupple<S, [...R, S[R['length']]]>;
+type StrToTuple<S extends string, R extends any[] = []> =
+  TLen<R> extends S['length'] ? R : StrToTuple<S, [...R, S[R['length']]]>;
 
-// Add
-type Add<F extends number, S extends number> = TLen<[...NumToTupple<F>, ...NumToTupple<S>]>;
+type Add<F extends number, S extends number> = TLen<[...NumToTuple<F>, ...NumToTuple<S>]>;
 
-// Multiply
 type Multiply<F extends number, S extends number, R extends any[] = []> =
-  NumToTupple<S> extends [infer N, ...infer SRest]
-    ? Multiply<F, TLen<SRest>, [...R, ...NumToTupple<F>]>
+  NumToTuple<S> extends [infer N, ...infer SRest]
+    ? Multiply<F, TLen<SRest>, [...R, ...NumToTuple<F>]>
     : TLen<R>;
 
-// HexMap
 type HexMap = {
   '0': 0;
   '1': 1;
@@ -46,21 +45,27 @@ type HexMap = {
 
 type GetHex<T extends string> = T extends keyof HexMap ? HexMap[T] : never;
 
-type GetHextTupple<T extends string> =
-  StrToTupple<T> extends ['#', HexMap, HexMap, HexMap, HexMap, HexMap, HexMap]
-    ? T extends `#${infer R1}${infer R2}${infer G1}${infer G2}${infer B1}${infer B2}`
-      ? [R1, R2, G1, G2, B1, B2]
-      : never
+type GetHexTuple<T extends string> =
+  StrToTuple<T> extends ['#', infer R1, infer R2, infer G1, infer G2, infer B1, infer B2]
+    ? [R1, R2, G1, G2, B1, B2]
     : never;
 
-type HexToRGB<T extends string> =
+type HexToRGB<T extends Hex> =
   T extends `#${infer R1}${infer R2}${infer G1}${infer G2}${infer B1}${infer B2}`
     ? {
         r: Add<Multiply<16, GetHex<R1>>, GetHex<R2>>;
         g: Add<Multiply<16, GetHex<G1>>, GetHex<G2>>;
         b: Add<Multiply<16, GetHex<B1>>, GetHex<B2>>;
-      }
-  : never;
-    
+      } & RGB
+    : never;
 
- 
+const hexToRGB = <T extends Hex>(hex: T): RGB => {
+  return {
+    r: 0,
+    g: 0,
+    b: 0,
+    __brand: 'RGB',
+  };
+};
+
+const rgb = hexToRGB('#ff00ff' as Hex); // OK
