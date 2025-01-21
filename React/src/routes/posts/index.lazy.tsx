@@ -11,22 +11,21 @@ interface IPost {
   content: string;
 }
 
-function FetchPosts(): Promise<IPost[] | void> {
-  return fetch("http://localhost:3001/posts")
-    .then((response) => {
-      if (!response.ok) throw new Error("Failed To Fetch The Use Posts");
-    })
-    .then((data) => data)
-    .catch((error: Error) => {
-      console.error(error.message);
-      return [];
-    });
+async function FetchPosts(): Promise<IPost[]> {
+  try {
+    const response = await fetch("http://localhost:3001/posts");
+    if (!response.ok) throw new Error("Failed To Fetch The Posts");
+    return await response.json();
+  } catch (error: any) {
+    console.error(error.message);
+    return [];
+  }
 }
 
 const PostData = FetchPosts();
 
 function RouteComponent() {
-  const Posts = use<IPost[]>(PostData as Promise<IPost[]>);
+  const Posts = use<IPost[]>(PostData);
 
   return (
     <Fragment>
