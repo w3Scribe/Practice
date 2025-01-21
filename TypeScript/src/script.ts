@@ -9,11 +9,14 @@ if (!apiKey) {
 }
 
 const genAI = new GoogleGenerativeAI(apiKey);
-const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+const model = genAI.getGenerativeModel({
+  model: 'gemini-1.5-flash',
+  systemInstruction: 'Your Name is Sudhir.',
+});
 
 async function generateResult(prompt: string): Promise<string> {
-  const genContent = await model.generateContent(prompt)
-  return genContent.response.text()
+  const genContent = await model.generateContent(prompt);
+  return genContent.response.text();
 }
 
 console.log('How can I help you?');
@@ -24,4 +27,4 @@ const ReadLine = readline.createInterface({
   prompt: '\n> ',
 });
 
-ReadLine.on('line', input => generateResult(input).then(console.log))
+ReadLine.on('line', (input) => generateResult(input).then(console.log));

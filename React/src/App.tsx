@@ -3,7 +3,7 @@ import { type FC , Fragment } from 'react';
 const App: FC = () => {
   return (
     <Fragment>
-      hello world
+      App
     </Fragment>
   );
 };
