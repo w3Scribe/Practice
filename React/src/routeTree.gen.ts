@@ -13,6 +13,7 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as notFoundImport } from './routes/__notFound'
 
 // Create Virtual Routes
 
@@ -20,6 +21,11 @@ const IndexLazyImport = createFileRoute('/')()
 const PostsIndexLazyImport = createFileRoute('/posts/')()
 
 // Create/Update Routes
+
+const notFoundRoute = notFoundImport.update({
+  id: '/__notFound',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const IndexLazyRoute = IndexLazyImport.update({
   id: '/',
@@ -44,6 +50,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexLazyImport
       parentRoute: typeof rootRoute
     }
+    '/__notFound': {
+      id: '/__notFound'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof notFoundImport
+      parentRoute: typeof rootRoute
+    }
     '/posts/': {
       id: '/posts/'
       path: '/posts'
@@ -58,36 +71,41 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexLazyRoute
+  '': typeof notFoundRoute
   '/posts': typeof PostsIndexLazyRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexLazyRoute
+  '': typeof notFoundRoute
   '/posts': typeof PostsIndexLazyRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexLazyRoute
+  '/__notFound': typeof notFoundRoute
   '/posts/': typeof PostsIndexLazyRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/posts'
+  fullPaths: '/' | '' | '/posts'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/posts'
-  id: '__root__' | '/' | '/posts/'
+  to: '/' | '' | '/posts'
+  id: '__root__' | '/' | '/__notFound' | '/posts/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexLazyRoute: typeof IndexLazyRoute
+  notFoundRoute: typeof notFoundRoute
   PostsIndexLazyRoute: typeof PostsIndexLazyRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexLazyRoute: IndexLazyRoute,
+  notFoundRoute: notFoundRoute,
   PostsIndexLazyRoute: PostsIndexLazyRoute,
 }
 
@@ -102,11 +120,15 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/__notFound",
         "/posts/"
       ]
     },
     "/": {
       "filePath": "index.lazy.tsx"
+    },
+    "/__notFound": {
+      "filePath": "__notFound.tsx"
     },
     "/posts/": {
       "filePath": "posts/index.lazy.tsx"
