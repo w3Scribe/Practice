@@ -1,31 +1,31 @@
-import { createLazyFileRoute } from '@tanstack/react-router'
-import { Fragment, Suspense, use } from 'react'
+import { createLazyFileRoute } from "@tanstack/react-router";
+import { Fragment, Suspense, use } from "react";
 
-export const Route = createLazyFileRoute('/posts/')({
+export const Route = createLazyFileRoute("/posts/")({
   component: RouteComponent,
-})
+});
 
 interface IPost {
-  id: number
-  title: string
-  content: string
+  id: number;
+  title: string;
+  content: string;
 }
 
 async function FetchPosts(): Promise<IPost[]> {
   try {
-    const response = await fetch('http://localhost:3001/posts')
-    if (!response.ok) throw new Error('Failed To Fetch The Posts')
-    return await response.json()
+    const response = await fetch("http://localhost:3001/posts");
+    if (!response.ok) throw new Error("Failed To Fetch The Posts");
+    return await response.json();
   } catch (error: any) {
-    console.error(error.message)
-    return []
+    console.error(error.message);
+    return [];
   }
 }
 
-const PostData = FetchPosts()
+const PostData = FetchPosts();
 
 function RouteComponent() {
-  const Posts = use<IPost[]>(PostData)
+  const Posts = use<IPost[]>(PostData);
 
   return (
     <Fragment>
@@ -38,5 +38,5 @@ function RouteComponent() {
         ))}
       </Suspense>
     </Fragment>
-  )
+  );
 }
