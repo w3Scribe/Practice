@@ -2,10 +2,11 @@
   "name": "backend",
   "scripts": {
     "dev": "bun run --hot src/index.ts",
-    "server" : "json-server public/*.json --port 3001"
+    "server": "json-server public/*.json --port 3001"
   },
   "dependencies": {
     "@hono/zod-validator": "^0.4.2",
+    "axios": "^1.7.9",
     "hono": "^4.6.17",
     "zod": "^3.24.1"
   },

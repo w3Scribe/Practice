@@ -17,6 +17,7 @@
     "@tanstack/react-router": "^1.97.3",
     "@tanstack/react-table": "^8.20.6",
     "@tanstack/zod-form-adapter": "^0.41.0",
+    "axios": "^1.7.9",
     "lucide-react": "^0.469.0",
     "motion": "^11.15.0",
     "react": "^19.0.0",
