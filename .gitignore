@@ -3,4 +3,4 @@
 /src
 /**/*.exe
 /**/*/node_modules 
-/**/*/_pvt
+/**/*/private
