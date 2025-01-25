@@ -3,7 +3,7 @@ import globals from "globals";
 import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
 import tseslint from "typescript-eslint";
-import RouterPlugin from "@tanstack/router-plugin";
+import { configSchema as RouterPlugin } from "@tanstack/router-plugin";  
 
 export default tseslint.config(
   { ignores: ["dist"] },
@@ -25,7 +25,7 @@ export default tseslint.config(
         "warn",
         { allowConstantExport: true },
       ],
-      "@tanstack/router/create-route-property-order": "error",
+      
     },
   }
 );

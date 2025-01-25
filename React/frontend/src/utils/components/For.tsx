@@ -2,7 +2,7 @@ import { type FC, Fragment } from "react";
 
 export type TElement = {
   key: string;
-  value: any;
+  value: unknown;
 };
 
 type TFor<T> = {

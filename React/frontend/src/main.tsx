@@ -1,23 +1,21 @@
+import * as TRouter from "@tanstack/react-router";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { createRouter, RouterProvider } from "@tanstack/react-router";
+import { Route } from "./routes/__root";
 import { routeTree } from "./routeTree.gen";
-import "./index.css";
+import './index.css'
 
-export const Qclient = new QueryClient();
-const Router = createRouter({ routeTree });
+const __RootContainer = createRoot(document.getElementById("root")!);
+const __Root = TRouter.createRouter({ routeTree, notFoundMode: "root" });
 
 declare module "@tanstack/react-router" {
   interface Register {
-    router: typeof Router;
+    router: typeof Route;
   }
 }
 
-createRoot(document.getElementById("root")!).render(
+__RootContainer.render(
   <StrictMode>
-    <QueryClientProvider client={Qclient}>
-      <RouterProvider router={Router} />
-    </QueryClientProvider>
+    <TRouter.RouterProvider router={__Root} />
   </StrictMode>
 );

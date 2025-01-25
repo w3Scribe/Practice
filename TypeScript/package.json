@@ -20,9 +20,8 @@
     "fix": "eslint --fix"
   },
   "dependencies": {
-    "@google/generative-ai": "^0.21.0",
-    "immer": "^10.1.1",
-    "openai": "4.0.0-beta.4",
+    "@langchain/core": "^0.3.36",
+    "langchain": "^0.3.13",
     "typescript": "^5.7.1-rc",
     "zod": "^3.23.8"
   },
