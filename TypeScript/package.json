@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@langchain/core": "^0.3.36",
+    "@langchain/google-genai": "^0.1.6",
     "langchain": "^0.3.13",
     "typescript": "^5.7.1-rc",
     "zod": "^3.23.8"
