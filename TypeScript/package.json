@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "author": "Sudhir Gadpayle <sudhirgadpayle535@gmail.com>",
   "main": "script.ts",
+  "type": "module",
   "description": "",
   "keywords": [
     "Typescript",
@@ -28,7 +29,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.16.0",
-    "@types/bun": "latest",
+    "@types/bun": "^1.2.0",
     "eslint": "^9.16.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",

@@ -1,30 +1,12 @@
-type Original = {
-  name: string;
-  age: number;
-  isActive: false;
-  hobbies: string[];
-  address: {
-    city: string;
-    zip: number;
-  };
-};
+import { ChatGoogleGenerativeAI } from '@langchain/google-genai';
 
-type Transform<T> = T extends string
-  ? Uppercase<T>
-  : T extends number
-    ? `${T}`
-    : T extends true
-      ? 'true'
-      : T extends false
-        ? 'false'
-        : T extends Array<infer U>
-          ? Array<Transform<U>>
-          : T extends object
-            ? Flipper<T>
-            : T;
+const Chat = new ChatGoogleGenerativeAI({
+  apiKey: Bun.env.GOOGLE_API_KEY
+})
 
-type Flipper<T> = {
-  [K in keyof T]: Transform<T[K]>;
-};
+async function getResponseFn(messages : string) {
+  const response = (await Chat.invoke(messages)).content;
+  console.log(response);
+}
 
-type Flipped = Flipper<Original>;
+await getResponseFn("Hello, how are you?");
