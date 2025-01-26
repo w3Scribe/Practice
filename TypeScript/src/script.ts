@@ -1,24 +1,30 @@
 type Original = {
-  age: number;
   name: string;
-  active: true;
-  friends: string[];
+  age: number;
+  isActive: false;
+  hobbies: string[];
+  address: {
+    city: string;
+    zip: number;
+  };
 };
 
-type FlipType<T> = T extends string
-  ? number
+type Transform<T> = T extends string
+  ? Uppercase<T>
   : T extends number
-    ? string
+    ? `${T}`
     : T extends true
-      ? false
+      ? 'true'
       : T extends false
-        ? true
+        ? 'false'
         : T extends Array<infer U>
-          ? Array<FlipType<U>>
-          : T;
+          ? Array<Transform<U>>
+          : T extends object
+            ? Flipper<T>
+            : T;
 
-type Flipper<T extends Record<string, any>> = {
-  [K in keyof T]: () => FlipType<T[K]>;
+type Flipper<T> = {
+  [K in keyof T]: Transform<T[K]>;
 };
 
 type Flipped = Flipper<Original>;
