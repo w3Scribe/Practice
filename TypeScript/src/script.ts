@@ -1,25 +1,24 @@
-type SwapType = {
-  string: number;
-  number: string;
-  true: false;
-  false: true;
-  undefined: null;
-  null: undefined;
-  'string[]': number[];
-  'number[]': string[];
-};
-
-type Swap<T extends keyof SwapType> = SwapType[T];
-
-type SwapFn<T> = {
-  [K in keyof T]: T[K] extends keyof SwapType ? Swap<T[K]> : T[K];
-};
-
 type Original = {
   age: number;
   name: string;
-  active: boolean;
+  active: true;
   friends: string[];
 };
 
-type Swapped = SwapFn<Original>;
+type FlipType<T> = T extends string
+  ? number
+  : T extends number
+    ? string
+    : T extends true
+      ? false
+      : T extends false
+        ? true
+        : T extends Array<infer U>
+          ? Array<FlipType<U>>
+          : T;
+
+type Flipper<T extends Record<string, any>> = {
+  [K in keyof T]: () => FlipType<T[K]>;
+};
+
+type Flipped = Flipper<Original>;
