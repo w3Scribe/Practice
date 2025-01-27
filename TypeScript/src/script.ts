@@ -1,21 +1,32 @@
-type Promisifier<T extends any> = T extends () => Promise<infer U>
-  ? () => Promise<U>
-  : T extends (...args: infer A) => Promise<infer U>
-    ? (...args: A) => Promise<U>
-    : T extends Array<infer U>
-      ? Promise<U[]>
-      : T extends object
-        ? { [K in keyof T]: Promisifier<T[K]> }
-        : Promise<T>;
+type TypeAlchemist<T> = {
+  [P in keyof T]: T[P] extends infer Type
+    ? Type extends object
+      ? Type extends any[]
+        ? "array"
+        : TypeAlchemist<Type>
+      : Type extends string
+        ? "string"
+        : Type extends number
+          ? "number"
+          : Type extends boolean
+            ? "boolean"
+            : Type extends undefined
+              ? "undefined"
+              : Type extends null
+                ? "null"
+                : never
+    : never;
+};
 
 type Original = {
   name: string;
-  age: number;
+  age?: number;
+  isActive: boolean;
   hobbies: string[];
   address: {
     city: string;
-    zip: number;
+    zip: number | undefined;
   };
 };
 
-type Test = Promisifier<Original>;
+type Result = TypeAlchemist<Original>;
