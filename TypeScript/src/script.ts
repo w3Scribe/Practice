@@ -1,20 +1,15 @@
-type Freez<T extends object> = {
-  readonly [K in keyof T]: T[K] extends object
-    ? Freez<T[K]>
-    : T[K] extends Array<infer U>
-      ? ReadonlyArray<U>
-      : T[K];
+type Original = {
+  id: number;
+  tags: string[];
+  metadata: {
+    active: boolean;
+    scores: number[];
+  };
 };
 
-type Original = {
-  name: string;
-  age: number;
-  isActive: boolean;
-  hobbies: string[];
-  address: {
-    city: string;
-    zip: number;
-  };
-};  
 
-type Test = Freez<Original>;
+type Partializer<T> = {
+  [K in keyof T] ? : T[K] extends object ? Partializer<T[K]> : T[K];
+}
+
+type PartialOriginal = Partializer<Original>;
