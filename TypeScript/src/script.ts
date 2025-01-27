@@ -1,34 +1,24 @@
-import { PromptTemplate } from '@langchain/core/prompts';
-import { ChatGoogleGenerativeAI } from '@langchain/google-genai';
-import { z } from 'zod';
+type Cloned = {
+  name: string;
+  age: number;
+  hobbies: string[];
+  address: {
+    city: string;
+    zip: number;
+  };
+};
 
-const inputSchema = z.object({
-  topic: z.string().min(3),
-  style : z.enum(['haiku', 'sonet', 'free-verse'])
-})
+type SwapType<T> = 
+  T extends string ? number : 
+  T extends number ? string :
+  T extends false ? true :
+  T extends true ? false :
+  T extends Array<infer U> ? Array<SwapType<U>> :
+  T extends object ? { [K in keyof T]: SwapType<T[K]> } : T;
 
 
-const Chat = new ChatGoogleGenerativeAI({
-  apiKey: Bun.env.GOOGLE_API_KEY,
-  model: 'gemini-2.0-flash-exp',
-  temperature: 0.7,
-  maxOutputTokens: 1000,
-});
+type Flipper<T extends object> = {
+  [K in keyof T] : () => SwapType<T[K]>
+}
 
-const prompt = PromptTemplate.fromTemplate(`
-  You are a create writer. generate a shor poem about {topic}.
-  Use {style} style.
-  `);
-
-const chain = prompt.pipe(Chat)
-
-const validatedChain = chain.withConfig({
-  runName: 'ValidatedPoemGenerator',
-})
-
-const response = await chain.invoke({
-  topic: 'quantum physics',
-  style : 'haiku'
-})
-
-console.log(response.content)
+type Flipped = Flipper<Cloned>;
