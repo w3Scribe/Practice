@@ -1,24 +1,20 @@
-type Cloned = {
+type Freez<T extends object> = {
+  readonly [K in keyof T]: T[K] extends object
+    ? Freez<T[K]>
+    : T[K] extends Array<infer U>
+      ? ReadonlyArray<U>
+      : T[K];
+};
+
+type Original = {
   name: string;
   age: number;
+  isActive: boolean;
   hobbies: string[];
   address: {
     city: string;
     zip: number;
   };
-};
+};  
 
-type SwapType<T> = 
-  T extends string ? number : 
-  T extends number ? string :
-  T extends false ? true :
-  T extends true ? false :
-  T extends Array<infer U> ? Array<SwapType<U>> :
-  T extends object ? { [K in keyof T]: SwapType<T[K]> } : T;
-
-
-type Flipper<T extends object> = {
-  [K in keyof T] : () => SwapType<T[K]>
-}
-
-type Flipped = Flipper<Cloned>;
+type Test = Freez<Original>;
