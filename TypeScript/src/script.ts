@@ -11,4 +11,4 @@ type Example = {
 };
 
 
-type TestPaths = OPaths<Example>;
+type TestPaths = Tuple<3, string, false>; // [string, string, string]
