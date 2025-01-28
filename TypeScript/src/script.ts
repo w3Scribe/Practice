@@ -1,15 +1,17 @@
-type UserDetailNested = {
-  readonly name: string;
-  readonly address: {
-    readonly city: string;
-    readonly postalCode: string[];
-  }
-  readonly phoneNumbers: readonly string[];
+
+
+type Example = {
+  user: {
+    name: string;
+    age: number;
+    address: {
+      city: string;
+      zip: number[];
+    };
+  };
+  posts: Array<{ title: string }>;
 };
 
+type ExamplePaths = Paths<Example>;
 
-type UserDetailImmutable = Immutable<UserDetailNested>;
-type UserDetailDraft = Draft<UserDetailNested>;
-type UserDetailPaths = Paths<UserDetailNested>;
-
-const h : UserDetailPaths =  "address.postalCode"
+type ExampleJJ = MatchPath<Example, 'user.address.zip'>;
