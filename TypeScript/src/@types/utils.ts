@@ -13,7 +13,7 @@ declare global {
    */
   type Primitive<
     T = unknown,
-    V = string | number | boolean | null | undefined | symbol | bigint | Fn | object,
+    V = string | number | boolean | null | undefined | symbol | bigint | Fn ,
   > = T extends V ? T : V;
 
   /**
