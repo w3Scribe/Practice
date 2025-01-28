@@ -9,12 +9,11 @@ declare global {
    * Primitive returns the specified type if it's a "primitive" type or defaults to the set of primitives
    * @template T - The type to evaluate
    * @example Primitive<string> => string
-   * @example Primitive => string | number | boolean | null | undefined | symbol | bigint | Fn | object
+   * @example Primitive =>  string | number | boolean | null | undefined
    */
-  type Primitive<
-    T = unknown,
-    V = string | number | boolean | null | undefined | symbol | bigint | Fn ,
-  > = T extends V ? T : V;
+  type Primitive<T = unknown, V = string | number | boolean | null | undefined> = T extends V
+    ? T
+    : V;
 
   /**
    * If is a conditional type that selects one of two possible types based on a condition

@@ -11,7 +11,10 @@ const mixedObject = {
 }
 
 
-type immutableMixedObject = Immutable<typeof mixedObject>
-type DrftObject = Draft<typeof mixedObject>
 
-type h  = Primitive
+
+type TestImmnutable = Immutable<typeof mixedObject>
+type TestDraft = Draft<TestImmnutable>;
+type TestOPath = Paths<TestImmnutable>;
+
+const he : TestOPath = ""
