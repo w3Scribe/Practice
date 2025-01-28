@@ -10,6 +10,5 @@ type Example = {
   posts: [{ title: string }];
 };
 
-type ExamplePaths = Paths<Example>;
 
-type ExampleJJ = MatchPath<Example, 'user.address.zip'>;
+
