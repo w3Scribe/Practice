@@ -7,6 +7,7 @@ type Draft<T extends object> = {
 };
 
 type Paths<T> = T extends object
-  ? { [K in keyof T]: `${K & string}` | `${K & string}.${Paths<T[K]> & string}` }[keyof T]
+  ? T extends any[] | (() => void) | symbol
+    ? never
+    : { [K in keyof T]: `${K & string}` | `${K & string}.${Paths<T[K]> & string}` }[keyof T]
   : never;
-
