@@ -1,5 +1,7 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @theme {
   --breakpoint-ml: 912px; /* Between medium and large screens */
+  --zindex : 100053873897;
 }

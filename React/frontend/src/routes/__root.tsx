@@ -25,7 +25,7 @@ export const Route = createRootRoute({
 function RootComponent() {
   return (
     <React.Fragment>
-      <section className="min-w-screen min-h-screen">
+      <section className="min-w-screen min-h-screen bg-slate-900">
         <Outlet />
       </section>
     </React.Fragment>
