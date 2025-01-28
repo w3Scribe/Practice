@@ -11,4 +11,4 @@ type Example = {
 };
 
 
-
+type TestPaths = OPaths<Example>;
