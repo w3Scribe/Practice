@@ -1,20 +1,15 @@
-// Immutalbe
-
-const mixedObject = {
-    name: 'John',
-    age: 25,
-    address: {
-        city: 'New York',
-        country: 'USA'
-  },
-  hobbies: ['reading', 'travelling']
-}
+type UserDetailNested = {
+  readonly name: string;
+  readonly address: {
+    readonly city: string;
+    readonly postalCode: string[];
+  }
+  readonly phoneNumbers: readonly string[];
+};
 
 
+type UserDetailImmutable = Immutable<UserDetailNested>;
+type UserDetailDraft = Draft<UserDetailNested>;
+type UserDetailPaths = Paths<UserDetailNested>;
 
-
-type TestImmnutable = Immutable<typeof mixedObject>
-type TestDraft = Draft<TestImmnutable>;
-type TestOPath = Paths<TestImmnutable>;
-
-const he : TestOPath = "address.city"
+const h : UserDetailPaths =  "address.postalCode"
