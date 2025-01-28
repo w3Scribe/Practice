@@ -1,5 +1,3 @@
-
-
 type Example = {
   user: {
     name: string;
@@ -9,7 +7,7 @@ type Example = {
       zip: number[];
     };
   };
-  posts: Array<{ title: string }>;
+  posts: [{ title: string }];
 };
 
 type ExamplePaths = Paths<Example>;
