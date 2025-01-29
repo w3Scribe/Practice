@@ -2,13 +2,13 @@ type Example = {
   user: {
     name: string;
     age: number;
+    isAdmin: false;
     address: {
       city: string;
       zip: number[];
     };
   };
-  posts: [{ title: string }];
+  posts: [{ title: string; isPo: string[][] }];
 };
 
-
-type TestPaths = Tuple<3, string, false>; // [string, string, string]
+type OTypes<T> =
