@@ -16,7 +16,8 @@ type OTypes<T> = T extends Primitive
       ? OTypes<T[keyof T]>
       : never;
 
-type Replacer<O, Replace extends Primitive, With extends Primitive> = {
+type Replacer<O, Replace extends Primitive, With extends Primitive> = O extends Replace ? With :
+O extends object ?  {
   [K in keyof O]: O[K] extends Replace
     ? With
     : O[K] extends (infer U)[]
@@ -28,4 +29,4 @@ type Replacer<O, Replace extends Primitive, With extends Primitive> = {
       : O[K] extends object
         ? Replacer<O[K], Replace, With>
         : O[K];
-};
+} : O;
