@@ -2,7 +2,7 @@ import * as TRouter from "@tanstack/react-router";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { Route } from "./routes/__root";
-import { routeTree } from "./routeTree.gen";
+import { routeTree } from "./routes/routeTree.gen";
 import './index.css'
 
 const __RootContainer = createRoot(document.getElementById("root")!);
