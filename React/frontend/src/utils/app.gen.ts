@@ -8,42 +8,23 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { createFileRoute } from '@tanstack/react-router'
-
 // Import Routes
 
 import { Route as rootRoute } from './../app/__root'
+import { Route as PageImport } from './../app/page'
 import { Route as HomePageImport } from './../app/home/page'
-import { Route as ContactPageImport } from './../app/contact/page'
-import { Route as AboutPageImport } from './../app/about/page'
-
-// Create Virtual Routes
-
-const PageLazyImport = createFileRoute('/')()
 
 // Create/Update Routes
 
-const PageLazyRoute = PageLazyImport.update({
+const PageRoute = PageImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRoute,
-} as any).lazy(() => import('../app/page').then((d) => d.Route))
+} as any)
 
 const HomePageRoute = HomePageImport.update({
   id: '/home/',
   path: '/home/',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const ContactPageRoute = ContactPageImport.update({
-  id: '/contact/',
-  path: '/contact/',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const AboutPageRoute = AboutPageImport.update({
-  id: '/about/',
-  path: '/about/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -55,21 +36,7 @@ declare module '@tanstack/react-router' {
       id: '/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof PageLazyImport
-      parentRoute: typeof rootRoute
-    }
-    '/about/': {
-      id: '/about/'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutPageImport
-      parentRoute: typeof rootRoute
-    }
-    '/contact/': {
-      id: '/contact/'
-      path: '/contact'
-      fullPath: '/contact'
-      preLoaderRoute: typeof ContactPageImport
+      preLoaderRoute: typeof PageImport
       parentRoute: typeof rootRoute
     }
     '/home/': {
@@ -85,47 +52,37 @@ declare module '@tanstack/react-router' {
 // Create and export the route tree
 
 export interface FileRoutesByFullPath {
-  '/': typeof PageLazyRoute
-  '/about': typeof AboutPageRoute
-  '/contact': typeof ContactPageRoute
+  '/': typeof PageRoute
   '/home': typeof HomePageRoute
 }
 
 export interface FileRoutesByTo {
-  '/': typeof PageLazyRoute
-  '/about': typeof AboutPageRoute
-  '/contact': typeof ContactPageRoute
+  '/': typeof PageRoute
   '/home': typeof HomePageRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
-  '/': typeof PageLazyRoute
-  '/about/': typeof AboutPageRoute
-  '/contact/': typeof ContactPageRoute
+  '/': typeof PageRoute
   '/home/': typeof HomePageRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/contact' | '/home'
+  fullPaths: '/' | '/home'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/contact' | '/home'
-  id: '__root__' | '/' | '/about/' | '/contact/' | '/home/'
+  to: '/' | '/home'
+  id: '__root__' | '/' | '/home/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
-  PageLazyRoute: typeof PageLazyRoute
-  AboutPageRoute: typeof AboutPageRoute
-  ContactPageRoute: typeof ContactPageRoute
+  PageRoute: typeof PageRoute
   HomePageRoute: typeof HomePageRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  PageLazyRoute: PageLazyRoute,
-  AboutPageRoute: AboutPageRoute,
-  ContactPageRoute: ContactPageRoute,
+  PageRoute: PageRoute,
   HomePageRoute: HomePageRoute,
 }
 
@@ -140,19 +97,11 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/about/",
-        "/contact/",
         "/home/"
       ]
     },
     "/": {
-      "filePath": "page.lazy.tsx"
-    },
-    "/about/": {
-      "filePath": "about/page.tsx"
-    },
-    "/contact/": {
-      "filePath": "contact/page.tsx"
+      "filePath": "page.tsx"
     },
     "/home/": {
       "filePath": "home/page.tsx"
