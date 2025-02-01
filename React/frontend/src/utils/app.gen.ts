@@ -13,6 +13,7 @@
 import { Route as rootRoute } from './../app/__root'
 import { Route as PageImport } from './../app/page'
 import { Route as HomePageImport } from './../app/home/page'
+import { Route as AboutPageImport } from './../app/about/page'
 
 // Create/Update Routes
 
@@ -28,6 +29,12 @@ const HomePageRoute = HomePageImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const AboutPageRoute = AboutPageImport.update({
+  id: '/about/',
+  path: '/about/',
+  getParentRoute: () => rootRoute,
+} as any)
+
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
@@ -37,6 +44,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof PageImport
+      parentRoute: typeof rootRoute
+    }
+    '/about/': {
+      id: '/about/'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutPageImport
       parentRoute: typeof rootRoute
     }
     '/home/': {
@@ -53,36 +67,41 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof PageRoute
+  '/about': typeof AboutPageRoute
   '/home': typeof HomePageRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof PageRoute
+  '/about': typeof AboutPageRoute
   '/home': typeof HomePageRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof PageRoute
+  '/about/': typeof AboutPageRoute
   '/home/': typeof HomePageRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/home'
+  fullPaths: '/' | '/about' | '/home'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/home'
-  id: '__root__' | '/' | '/home/'
+  to: '/' | '/about' | '/home'
+  id: '__root__' | '/' | '/about/' | '/home/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   PageRoute: typeof PageRoute
+  AboutPageRoute: typeof AboutPageRoute
   HomePageRoute: typeof HomePageRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   PageRoute: PageRoute,
+  AboutPageRoute: AboutPageRoute,
   HomePageRoute: HomePageRoute,
 }
 
@@ -97,11 +116,15 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/about/",
         "/home/"
       ]
     },
     "/": {
       "filePath": "page.tsx"
+    },
+    "/about/": {
+      "filePath": "about/page.tsx"
     },
     "/home/": {
       "filePath": "home/page.tsx"
