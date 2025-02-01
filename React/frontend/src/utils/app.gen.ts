@@ -12,26 +12,12 @@
 
 import { Route as rootRoute } from './../app/__root'
 import { Route as PageImport } from './../app/page'
-import { Route as HomePageImport } from './../app/home/page'
-import { Route as ContactPageImport } from './../app/contact/page'
 
 // Create/Update Routes
 
 const PageRoute = PageImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const HomePageRoute = HomePageImport.update({
-  id: '/home/',
-  path: '/home/',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const ContactPageRoute = ContactPageImport.update({
-  id: '/contact/',
-  path: '/contact/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -46,20 +32,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PageImport
       parentRoute: typeof rootRoute
     }
-    '/contact/': {
-      id: '/contact/'
-      path: '/contact'
-      fullPath: '/contact'
-      preLoaderRoute: typeof ContactPageImport
-      parentRoute: typeof rootRoute
-    }
-    '/home/': {
-      id: '/home/'
-      path: '/home'
-      fullPath: '/home'
-      preLoaderRoute: typeof HomePageImport
-      parentRoute: typeof rootRoute
-    }
   }
 }
 
@@ -67,42 +39,32 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof PageRoute
-  '/contact': typeof ContactPageRoute
-  '/home': typeof HomePageRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof PageRoute
-  '/contact': typeof ContactPageRoute
-  '/home': typeof HomePageRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof PageRoute
-  '/contact/': typeof ContactPageRoute
-  '/home/': typeof HomePageRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/contact' | '/home'
+  fullPaths: '/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/contact' | '/home'
-  id: '__root__' | '/' | '/contact/' | '/home/'
+  to: '/'
+  id: '__root__' | '/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   PageRoute: typeof PageRoute
-  ContactPageRoute: typeof ContactPageRoute
-  HomePageRoute: typeof HomePageRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   PageRoute: PageRoute,
-  ContactPageRoute: ContactPageRoute,
-  HomePageRoute: HomePageRoute,
 }
 
 export const routeTree = rootRoute
@@ -115,19 +77,11 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/",
-        "/contact/",
-        "/home/"
+        "/"
       ]
     },
     "/": {
       "filePath": "page.tsx"
-    },
-    "/contact/": {
-      "filePath": "contact/page.tsx"
-    },
-    "/home/": {
-      "filePath": "home/page.tsx"
     }
   }
 }
