@@ -11,3 +11,5 @@ function Home() {
     </div>
   );
 }
+
+// bun  add -D babel-plugin-react-compiler@latest eslint-plugin-react-compiler@latest

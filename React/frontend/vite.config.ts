@@ -1,8 +1,10 @@
 import MillionLint from "@million/lint";
+import ReactCompilerConfig from "babel-plugin-react-compiler"
 import tailwindcss from "@tailwindcss/vite";
 import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
 import viteReact from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
+
 
 export default defineConfig({
   plugins: [
@@ -10,7 +12,11 @@ export default defineConfig({
     MillionLint.vite({
       enabled: false,
     }),
-    viteReact(),
+    viteReact({
+      babel: {
+        plugins: [["babel-plugin-react-compiler", ReactCompilerConfig as any]],
+      },
+    }),
     tailwindcss(),
   ],
   server: {
