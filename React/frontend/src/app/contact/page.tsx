@@ -1,14 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/home/")({
-  component: Home,
+export const Route = createFileRoute("/contact/")({
+  component: Contact,
   pendingComponent: () => <div>Loading...</div>
 });
 
-function Home() {
+function Contact() {
   return (
     <div>
-      home Page
+      contact Page
     </div>
   );
 }

@@ -19,7 +19,13 @@ export default defineConfig({
     }),
     tailwindcss(),
   ],
+  optimizeDeps: {
+    include: ["react", "react-dom"],
+  },
   server: {
     open: true,
   },
+  build: {
+    target: "esnext",
+  }
 });
