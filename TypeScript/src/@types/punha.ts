@@ -36,3 +36,6 @@ type Substract<A extends number, B extends number, R extends number = 0> =
 type R = [1, 2, 2, 3, 4, 5, 6];
 type F = 1000;
 type Test = Substract<10, 5>;
+
+
+// NTupple  TuppleLen  TuppleMerge  TuppleAdd  TuppleRemove
