@@ -4,3 +4,4 @@
 /**/*.exe
 /**/*/node_modules 
 /**/*/private
+/**/*/_*
