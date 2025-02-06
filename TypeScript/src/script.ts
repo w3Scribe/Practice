@@ -1,11 +1,11 @@
-function pipe<T>(input: T): T;
-function pipe<T, A>(input: T, fn1: (a: T) => A): A;
-function pipe<T, A, B>(input: T, fn1: (a: T) => A, fn2: (a: A) => B): B;
-function pipe<T, A, B, C>(input: T, fn1: (a: T) => A, fn2: (a: A) => B, fn3: (a: B) => C): C;
-function pipe<T, A, B, C, D>(input: T, fn1: (a: T) => A, fn2: (a: A) => B, fn3: (a: B) => C, fn4: (a: C) => D): D;
+type PipeResult<T, Fns extends Array<(arg: any) => any>> = Fns extends [infer First, ...infer Rest]
+  ? First extends (arg: T) => infer R
+    ? PipeResult<R, Rest extends Array<(arg: any) => any> ? Rest : []>
+    : never
+  : T;
 
-function pipe(input: any, ...fns: Function[]): any {
-  return fns.reduce((acc, fn) => fn(acc), input);
+function pipe<T, Fns extends Array<(arg: any) => any>>(input: T, ...fns: Fns): PipeResult<T, Fns> {
+  return fns.reduce((acc, fn) => fn(acc), input) as PipeResult<T, Fns>;
 }
 
 // Example usage:
