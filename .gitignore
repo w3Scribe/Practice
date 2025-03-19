@@ -3,6 +3,6 @@
 /src
 /**/*.exe
 /**/*/node_modules 
-/**/*/private
-./private
+private/
+**/private/
 /**/*/_*
