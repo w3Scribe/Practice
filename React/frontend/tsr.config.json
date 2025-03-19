@@ -1,9 +1,0 @@
-{
-  "routesDirectory": "./src/app",
-  "generatedRouteTree": "./src/utils/app.gen.ts",
-  "indexToken" : "page",
-  "autoCodeSplitting" : true
-}
-
-
-    
