@@ -1,20 +1,59 @@
-/**
- * This file contains a list of methods and properties available on the Object prototype in JavaScript.
- * 
- * Methods:
- * - constructor: The constructor function for creating instances of Object.
- * - hasOwnProperty: Determines whether an object has a property with the specified name.
- * - isPrototypeOf: Checks if an object exists in another object's prototype chain.
- * - propertyIsEnumerable: Determines if a property is enumerable.
- * - toLocaleString: Returns a string representing the object, localized according to the locale settings.
- * - toString: Returns a string representing the object.
- * - valueOf: Returns the primitive value of the specified object.
- * - __defineGetter__: Associates a function with a property that, when accessed, will call the function.
- * - __defineSetter__: Associates a function with a property that, when set, will call the function.
- * - __lookupGetter__: Returns the function associated with the specified property by the __defineGetter__ method.
- * - __lookupSetter__: Returns the function associated with the specified property by the __defineSetter__ method.
- * - __proto__: Points to the prototype object used when the object was instantiated.
- *   - get __proto__: Retrieves the prototype of the object.
- *   - set __proto__: Sets the prototype of the object.
- */
+# Practice Repository
 
+This repository contains code practice and learning resources for multiple programming languages and technologies.
+
+
+## Folder Structures
+Practice/
+├── .gitignore
+├── README.MD
+├── C/
+│   ├── app.c
+│   ├── app.exe
+│   └── private/
+│       └── (content hidden)
+├── go/
+│   ├── app.go
+│   └── private/
+│       └── (content hidden)
+├── private/
+│   └── (content hidden)
+├── Python/
+│   └── app.py
+└── TypeScript/
+    ├── .gitignore
+    ├── index.ts
+    ├── package.json
+    ├── README.md
+    ├── tsconfig.json
+    └── private/
+        └── (content hidden)
+        └── @types/
+            └── (content hidden)
+
+
+## Getting Started
+
+Each language directory contains its own examples and can be run independently:
+
+- C files can be compiled with a C compiler like gcc
+  ```bash
+  gcc file.c -o program
+  ./program
+  ```
+- Go files can be run with go run
+  ```bash
+  go run file.go
+  ```
+- Python scripts can be executed with python
+  ```bash
+  python file.py
+  ```
+- TypeScript project can be run with bun
+  ```bash
+  bun run index.ts
+  ```
+
+## Purpose
+
+This repository serves as a personal playground for learning and practicing different programming languages, algorithms, and concepts.
