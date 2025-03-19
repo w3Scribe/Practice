@@ -2,8 +2,8 @@
 
 This repository contains code practice and learning resources for multiple programming languages and technologies.
 
-
 ## Folder Structures
+
 Practice/
 ├── .gitignore
 ├── README.MD
@@ -14,7 +14,7 @@ Practice/
 │       └── (content hidden)
 ├── go/
 │   ├── app.go
-│   └── private/
+│   └── private/ 
 │       └── (content hidden)
 ├── private/
 │   └── (content hidden)
@@ -56,4 +56,4 @@ Each language directory contains its own examples and can be run independently:
 
 ## Purpose
 
-This repository serves as a personal playground for learning and practicing different programming languages, algorithms, and concepts.
+This repository serves as a personal playground for learning and practicing different programming languages, algorithms, and concepts. Happy Coding!😊
