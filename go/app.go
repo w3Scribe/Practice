@@ -1,28 +1,22 @@
+// Missing Number alogorithm
+
 package main
 
-import "fmt"
+func MissingNumber(nums []int) {
+	totalNums := len(nums) + 1
+	Sum := (totalNums * (totalNums - 1)) / 2
+	ActualSum := 0
 
-func WeirdAlogorithm(input int) {
-
-	if input <= 0 {
-		fmt.Println("Input must be a positive integer")
-		return
+	for _, i := range nums {
+		ActualSum += i
 	}
 
-	current := input
-	fmt.Println(current)
-
-	for current != 1 {
-		if current%2 == 0 {
-			current /= 2
-		} else {
-			current = 3*current + 1
-		}
-		fmt.Println(current)
-	}
-	
+	MissingNum := Sum - ActualSum
+	println("Missing Number is: ", MissingNum)
 }
 
+
 func main() {
-	WeirdAlogorithm(3)
+	nums := []int{0, 1, 2, 3, 5}
+	MissingNumber(nums)
 }
