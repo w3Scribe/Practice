@@ -1,10 +1,21 @@
-function MissingNumber(input: number[]): void {
-  const N = input.length;
-  const Sum = N * (N + 1) / 2;
-  const SumOfInput = input.reduce((acc, num) => acc + num, 0);
-  const MissingNumber = Sum - SumOfInput;
-  console.log(MissingNumber);
+function Repetition(input: string): void {
+  const Store = new Map<string, number>();
+
+  for (const char of input.split('')) {
+    if (Store.has(char)) {
+      Store.set(char, Store.get(char)! + 1);
+    } else {
+      Store.set(char, 1);
+    }
+  }
+
+  const max = Math.max(...Array.from(Store.values()));
+  const maxChar = Array.from(Store.entries()).find(([_, value]) => value === max)?.[0];
+
+  if (maxChar)
+    console.log(`The most repeated character is "${maxChar}" with ${max} repetitions.`);
+  else
+    console.log("No repeated characters found.");
 }
 
-MissingNumber([0, 1, 2, 4, 5, 6, 7, 8, 9, 10]); // Output: 10
-
+Repetition('Hello World!');
