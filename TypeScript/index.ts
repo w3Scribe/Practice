@@ -1,3 +1,6 @@
-const number = 1_000_000
-const result = Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(number)
-console.log(number, result)   
+// checking string is empty or not
+const Str: string = "Hello World!";
+
+if (typeof Str === 'string' && Str.length > 0 ) {
+    console.log("String is not empty");
+}
