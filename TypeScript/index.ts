@@ -1,6 +1,5 @@
-// checking string is empty or not
-const Str: string = "Hello World!";
+const someNumber = 1023.0282
+const decimalResult = someNumber.toExponential(4)
 
-if (typeof Str === 'string' && Str.length > 0 ) {
-    console.log("String is not empty");
-}
+
+console.log(decimalResult);
