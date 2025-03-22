@@ -7,20 +7,19 @@ function IncreasingArray(input: number[]) {
   let IncArray = [input[0]];
   let IncreasingCount = 0;
 
-  for (let i = 0; i <= input.length; i++) {
+  for (let i = 0; i < input.length - 1; i++) {
     const prevElement = IncArray[i]!;
     const currentElement = input[i + 1]!;
-    
+
     if (currentElement <= prevElement) {
       IncreasingCount += prevElement - currentElement;
       IncArray.push(prevElement);
     } else {
       IncArray.push(currentElement);
     }
-
   }
 
-  console.log(IncreasingCount)
+  console.log(IncreasingCount, IncArray);
 }
 
 
