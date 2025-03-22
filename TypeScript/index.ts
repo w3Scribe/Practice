@@ -21,8 +21,6 @@ function makeArrayNonDecreasing(numbers: number[]): { increasesNeeded: number; r
     const currentValue = numbers[i]!;
 
     if (currentValue < previousValue) {
-      // If current value is less than the previous one,
-      // we need to increase it to match the previous value
       increasesNeeded += previousValue - currentValue;
       resultArray.push(previousValue);
     } else {
