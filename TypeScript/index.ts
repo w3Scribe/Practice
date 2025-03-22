@@ -1,22 +1,21 @@
 function Repetition(input: string) {
-  const CharCounts = new Map<string, number>();
+  const CharCounts = new Map<string, number | string>();
+
+  CharCounts.set("MaxCounts", 0);
+  CharCounts.set("MaxCharCount", "");
 
   for (let char = 0; char <= input.length; char++) {
     const currentChar = input[char]!;
-    CharCounts.set(currentChar, (CharCounts.get(currentChar) || 0) + 1)
-  }
+    const newCharCount = CharCounts.get(currentChar) || 0;
+    CharCounts.set(currentChar, newCharCount);
 
-  let maxCount = 0;
-  let maxChar = '';
-
-  for (const [char, count] of CharCounts.entries()) {
-    if (count > maxCount) {
-      maxCount = count;
-      maxChar = char;
+    if (newCharCount > CharCounts.get("MaxCounts")!) {
+      CharCounts.set("MaxCounts", newCharCount);
+      CharCounts.set("MaxCharCount", currentChar);
     }
   }
 
-  console.log(`The most repeated character is "${maxChar}" with ${maxCount} occurrences.`);
+ console.log(`The most repeated character is "${CharCounts.get("MaxCharCount")}" with ${CharCounts.get("MaxCounts")} repetitions.`);
 }
 
 
