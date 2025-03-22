@@ -1,23 +1,23 @@
-function repetitionAlgorithm(input: string) {
-  const charCounts = new Map<string, number>();
-  
-  for (let i = 0; i < input.length; i++) {
-    const char = input[i]!;
-    charCounts.set(char, (charCounts.get(char) || 0) + 1);
+function Repetition(input: string) {
+  const CharCounts = new Map<string, number>();
+
+  for (let char = 0; char <= input.length; char++) {
+    const currentChar = input[char]!;
+    CharCounts.set(currentChar, (CharCounts.get(currentChar) || 0) + 1)
   }
 
-  let maxChar = '';
   let maxCount = 0;
-  
-  charCounts.forEach((count, char) => {
+  let maxChar = '';
+
+  for (const [char, count] of CharCounts.entries()) {
     if (count > maxCount) {
       maxCount = count;
       maxChar = char;
     }
-  });
-  
-  console.log(`The most repeated character is "${maxChar}" with a count of ${maxCount}`);
-  return maxChar;
+  }
+
+  console.log(`The most repeated character is "${maxChar}" with ${maxCount} occurrences.`);
 }
 
-repetitionAlgorithm('hello world!');
+
+Repetition("hel l owor ld");
