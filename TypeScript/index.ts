@@ -1,42 +1,28 @@
-/**
- * Finds the most frequently occurring character in a string.
- * @param input - The string to analyze
- * @returns An object containing the most frequent character and its count
- */
-
-function findMostRepeatedCharacter(input: string): { char: string; count: number } {
-  if (typeof input !== "string" || input.trim().length < 1) {
-    throw new Error("Input must be a non-empty string.");
+function IncreasingArray(input: number[]) {
+  // Error Handling
+  if (!Array.isArray(input) || input.length <= 1) {
+    throw new Error("Input must be an array of numbers with at least two elements.");
   }
 
-  // Remove all whitespace more efficiently
-  const inputWithoutSpaces = input.replace(/\s+/g, '');
-  
-  if (inputWithoutSpaces.length === 0) {
-    throw new Error("Input contains only whitespace characters.");
-  }
+  let IncArray = [input[0]];
+  let IncreasingCount = 0;
 
-  const charCounts = new Map<string, number>();
-  let maxChar = '';
-  let maxCount = 0;
-
-  for (const char of inputWithoutSpaces) {
-    const currentCount = (charCounts.get(char) || 0) + 1;
-    charCounts.set(char, currentCount);
-
-    if (currentCount > maxCount) {
-      maxCount = currentCount;
-      maxChar = char;
+  for (let i = 0; i <= input.length; i++) {
+    const prevElement = IncArray[i]!;
+    const currentElement = input[i + 1]!;
+    
+    if (currentElement <= prevElement) {
+      IncreasingCount += prevElement - currentElement;
+      IncArray.push(prevElement);
+    } else {
+      IncArray.push(currentElement);
     }
+
   }
 
-  return { char: maxChar, count: maxCount };
+  console.log(IncreasingCount)
 }
 
-// Example usage
-try {
-  const result = findMostRepeatedCharacter(" sdfsd ");
-  console.log(`The most repeated character is "${result.char}" with ${result.count} repetitions.`);
-} catch (error) {
-  console.error(error instanceof Error ? error.message : error);
-}
+
+const input = [3, 2, 5, 1, 7]
+IncreasingArray(input);
