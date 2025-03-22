@@ -1,22 +1,29 @@
 function Repetition(input: string) {
-  const CharCounts = new Map<string, number | string>();
 
-  CharCounts.set("MaxCounts", 0);
-  CharCounts.set("MaxCharCount", "");
+  if (typeof input !== "string" || input.trim().length < 1 ) {
+    throw new Error("Input must be a non-empty string.");
+  }
 
-  for (let char = 0; char <= input.length; char++) {
-    const currentChar = input[char]!;
-    const newCharCount = CharCounts.get(currentChar) || 0 ;
-    CharCounts.set(currentChar, (newCharCount as number) + 1);
+  const charCounts = new Map<string, number>();
+  let maxChar = '';
+  let maxCount = 0;
 
-    if (newCharCount > CharCounts.get("MaxCounts")!) {
-      CharCounts.set("MaxCounts", newCharCount);
-      CharCounts.set("MaxCharCount", currentChar);
+  // Cache the input length
+  const refineInput = input.split(' ').filter(char => char).join('')
+  const length = refineInput.length;
+
+  for (let i = 0; i < length; i++) {
+    const currentChar = refineInput[i]!;
+    const currentCount = (charCounts.get(currentChar) || 0) + 1;
+    charCounts.set(currentChar, currentCount);
+
+    if (currentCount > maxCount) {
+      maxCount = currentCount;
+      maxChar = currentChar;
     }
   }
 
- console.log(`The most repeated character is "${CharCounts.get("MaxCharCount")}" with ${CharCounts.get("MaxCounts")} repetitions.`);
+  console.log(`The most repeated character is "${maxChar}" with ${maxCount} repetitions.`);
 }
 
-
-Repetition("hel l owor ld");
+Repetition(" sdfsd ");
