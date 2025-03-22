@@ -1,8 +1,3 @@
-/**
- * Calculates the minimum number of increases needed to make an array non-decreasing.
- * @param numbers - The input array of numbers
- * @returns An object containing the count of increases needed and the resulting array
- */
 function makeArrayNonDecreasing(numbers: number[]): { increasesNeeded: number; resultArray: number[] } {
   // Error Handling
   if (!Array.isArray(numbers)) {
