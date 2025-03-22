@@ -6,8 +6,8 @@ function Repetition(input: string) {
 
   for (let char = 0; char <= input.length; char++) {
     const currentChar = input[char]!;
-    const newCharCount = CharCounts.get(currentChar) || 0;
-    CharCounts.set(currentChar, newCharCount);
+    const newCharCount = CharCounts.get(currentChar) || 0 ;
+    CharCounts.set(currentChar, (newCharCount as number) + 1);
 
     if (newCharCount > CharCounts.get("MaxCounts")!) {
       CharCounts.set("MaxCounts", newCharCount);
