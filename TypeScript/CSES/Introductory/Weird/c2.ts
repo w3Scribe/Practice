@@ -1,6 +1,6 @@
 const cache = new Map<number, number[]>();
 
-export function Weird(input: number): number[] {
+export function weird(input: number): number[] {
   if (typeof input !== 'number' || isNaN(input)) {
     throw new TypeError('Input must be a valid number');
   }
