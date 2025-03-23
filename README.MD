@@ -84,55 +84,6 @@ Practice/
 
 3. **Follow the Instructions in the Language-Specific `README.md`**: Each language directory has its own `README.md` with specific instructions on how to run the code.
 
-### Example for Python
-
-1. **Navigate to the Python Directory**:
-  ```bash
-  cd Practice/Python
-  ```
-
-2. **Run the Python Script**:
-  ```bash
-  python app.py
-  ```
-
-### Example for Go
-
-1. **Navigate to the Go Directory**:
-  ```bash
-  cd Practice/Go
-  ```
-
-2. **Run the Go Program**:
-  ```bash
-  go run app.go
-  ```
-
-### Example for C
-
-1. **Navigate to the C Directory**:
-  ```bash
-  cd Practice/C
-  ```
-
-2. **Compile and Run the C Program**:
-  ```bash
-  gcc app.c -o app && ./app
-  ```
-
-### Example for TypeScript
-
-1. **Navigate to the TypeScript Directory**:
-  ```bash
-  cd Practice/TypeScript
-  ```
-
-2. **Install Dependencies and Run**:
-  ```bash
-  bun install
-  bun run index.ts
-  ```
-
 ## Contributing
 
 We welcome contributions! Please follow these steps to contribute:
