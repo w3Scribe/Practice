@@ -1,4 +1,3 @@
-
 type MakeArrayNonDecreasing = (nums: number[]) => { moves: number, nums: number[] }
 
 const makeArrayNonDecreasing: MakeArrayNonDecreasing = (nums) => {
@@ -10,24 +9,18 @@ const makeArrayNonDecreasing: MakeArrayNonDecreasing = (nums) => {
     throw new RangeError('Input array must contain at least one element', { cause: "InvalidInput" });
   }
 
-  let Moves = 0;
-  let Result: number[] = [nums[0]!];
+  let moves = 0;
+  const result = nums.slice(); 
 
-  for (let i = 1; i < nums.length; i++) {
-    const prevElement = Result[i - 1]!;
-    const currentElement = nums[i]!
-    const diff = prevElement - currentElement
-
-    if (currentElement < prevElement) {
-      Result.push(currentElement + diff);
-      Moves += diff
-    } else {
-      Result.push(currentElement);
+  for (let i = 1; i < result.length; i++) {
+    if (result[i]! < result[i - 1]!) {
+      const diff = result[i - 1]! - result[i]!;
+      result[i]! += diff;
+      moves += diff;
     }
   }
 
-  return { moves: Moves, nums: Result }
+  return { moves, nums: result };
 }
 
-
-console.log(makeArrayNonDecreasing([3, 2, 5, 1, 7] ))
+console.log(makeArrayNonDecreasing([3, 2, 5, 1, 7]));
