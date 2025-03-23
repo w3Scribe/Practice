@@ -1,37 +1,31 @@
-const colors = ["red", "red", "blue", "blue", "blue", "green", "green", "red"];
-
-function Repetition(input: any) {
-
+function Repetition(input: string | string[]): { MaxChar: string; MaxCharCount: number; RepResult: Map<string, number> } {
   if (Array.isArray(input) && input.length < 1) {
-    throw new Error("Array have at lest one element.");
+    throw new Error("Array must have at least one element.");
   }
 
   if (typeof input === 'string' && input.trim().length < 3) {
-    throw new Error("String Must be at least on 3 characters.")
+    throw new Error("String must be at least 3 characters.");
   }
 
+  const RefinedUseInput: string[] = (typeof input === 'string' ? input.split('') : input)
+    .map(char => char.toLowerCase())
+    .filter(char => char.trim().length > 0);
 
-  let RefinedUseInput: any[] = typeof input === 'string' ? input.split('') : input;
-  RefinedUseInput = RefinedUseInput.map(char => char.toLowerCase()).filter(char => char.trim().length > 0);
-  let RepResult = new Map<string, any>();
+  const RepResult = new Map<string, number>();
   let MaxCharCount = 0;
-  let MaxChar ='';
+  let MaxChar = '';
 
-  for (let char = 0; char <= RefinedUseInput.length; char++) {
-    const currentChar = RefinedUseInput[char]
-    const count = RepResult.get(currentChar) + 1 || 1;
-    RepResult.set(currentChar, count);
-    if (count > MaxChar) {
-      MaxChar = count;
-      MaxCharCount = currentChar;
+  for (const char of RefinedUseInput) {
+    const count = (RepResult.get(char) || 0) + 1;
+    RepResult.set(char, count);
+
+    if (count > MaxCharCount) {
+      MaxCharCount = count;
+      MaxChar = char;
     }
   }
 
-
-
-  return  { MaxChar, MaxCharCount, RepResult };
-
-
+  return { MaxChar, MaxCharCount, RepResult };
 }
 
 const result = Repetition('redbluegreenred');
