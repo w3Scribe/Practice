@@ -1,22 +1,24 @@
+// Eploring golang variables and constants
+
 package main
 
-import "sync"
-
-func sayHello(name string, times int, wg *sync.WaitGroup) {
-	defer wg.Done()
-	for i := range times {
-		println(name, "says hello", i+1, "times")
-	}
-}
-
 func main() {
-	var wg sync.WaitGroup
-	wg.Add(2)
+	// Variables
+	var name string = "John Doe" // global, package level variable
+	age := 30                    // short variable declaration, local variable
 
-	println("Starting goroutines...")
-	go sayHello("Alice", 5, &wg)
-	go sayHello("Bob", 3, &wg)
+	city, country := "New York", "USA" // multiple assignment
 
-	wg.Wait()
-	println("All goroutines completed!")
+	// Constants
+	const pi = 3.14 // constant, unchangeable value
+	const constantName string = "Suraj"
+
+	// Printing variables and constants
+	println("Name:", name)
+	println("Age:", age)
+	println("City:", city)
+	println("Country:", country)
+	println("Pi:", pi)
+	println("Constant Name:", constantName)
+
 }
