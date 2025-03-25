@@ -13,9 +13,10 @@ func main() {
 	var wg sync.WaitGroup
 	wg.Add(2)
 
+	println("Starting goroutines...")
 	go sayHello("Alice", 5, &wg)
 	go sayHello("Bob", 3, &wg)
 
 	wg.Wait()
-	println("Waiting for goroutines to finish...")
+	println("All goroutines completed!")
 }
