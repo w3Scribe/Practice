@@ -1,24 +1,32 @@
-// Eploring golang variables and constants
+// Eploring the GO Array and Slices
 
 package main
 
+import (
+	"fmt"
+	"sort"
+)
+
 func main() {
-	// Variables
-	var name string = "John Doe" // global, package level variable
-	age := 30                    // short variable declaration, local variable
+	arr := [5]int{1, 2, 3, 4, 5}  // Array of integers
+	slice := []int{1, 2, 3, 4, 5} // Slice of integers
 
-	city, country := "New York", "USA" // multiple assignment
+	// Modifying the first element of the array and slice
+	arr[0] = 10
+	slice[0] = 10
+	// Adding an element to the slice
+	slice = append(slice, 6)
+	lst := slice[len(slice)-1]
 
-	// Constants
-	const pi = 3.14 // constant, unchangeable value
-	const constantName string = "Suraj"
+	// Create a copy and sort it
+	sortedSlice := make([]int, len(slice))
+	copy(sortedSlice, slice)
+	sort.Ints(sortedSlice)
 
-	// Printing variables and constants
-	println("Name:", name)
-	println("Age:", age)
-	println("City:", city)
-	println("Country:", country)
-	println("Pi:", pi)
-	println("Constant Name:", constantName)
+	fmt.Println("Array:", arr)                                    // Print the array
+	fmt.Println("Slice:", slice)                                  // Print the slice
+	fmt.Println("Last element of slice:", lst)                    // Print the last element of the slice
+	fmt.Println("Sorted slice:", sortedSlice)                     // Print the sorted slice
+	fmt.Println("First element of sorted slice:", sortedSlice[0]) // Print the first element of the sorted slice
 
 }
