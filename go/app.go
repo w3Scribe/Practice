@@ -5,7 +5,7 @@ import "fmt"
 func main() {
 	type Person struct {
 		Name string
-		Age int
+		Age  int
 	}
 
 	User := make(map[string]Person)
@@ -13,5 +13,10 @@ func main() {
 	User["user2"] = Person{"Jane", 25}
 	User["user3"] = Person{"Doe", 40}
 
-	fmt.Print("User: ", User, "\n");
+	for key, value := range User {
+		fmt.Println("Key:", key)
+		fmt.Println("Name:", value.Name)
+		fmt.Println("Age:", value.Age)
+		fmt.Println()
+	}
 }
