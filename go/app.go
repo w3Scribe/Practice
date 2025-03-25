@@ -3,12 +3,15 @@ package main
 import "fmt"
 
 func main() {
+	type Person struct {
+		Name string
+		Age int
+	}
 
-	Person := make(map[string]string)
+	User := make(map[string]Person)
+	User["user1"] = Person{"John", 30}
+	User["user2"] = Person{"Jane", 25}
+	User["user3"] = Person{"Doe", 40}
 
-	Person["name"] = "John Doe"
-	Person["age"] = "30"
-
-	fmt.Printf("Name: %s\n", Person["name"])
-	fmt.Printf("Age: %s\n", Person["age"])
+	fmt.Print("User: ", User, "\n");
 }
