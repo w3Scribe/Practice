@@ -1,32 +1,14 @@
-// Eploring the GO Array and Slices
-
 package main
 
-import (
-	"fmt"
-	"sort"
-)
+import "fmt"
 
 func main() {
-	arr := [5]int{1, 2, 3, 4, 5}  // Array of integers
-	slice := []int{1, 2, 3, 4, 5} // Slice of integers
 
-	// Modifying the first element of the array and slice
-	arr[0] = 10
-	slice[0] = 10
-	// Adding an element to the slice
-	slice = append(slice, 6)
-	lst := slice[len(slice)-1]
+	Person := make(map[string]string)
 
-	// Create a copy and sort it
-	sortedSlice := make([]int, len(slice))
-	copy(sortedSlice, slice)
-	sort.Ints(sortedSlice)
+	Person["name"] = "John Doe"
+	Person["age"] = "30"
 
-	fmt.Println("Array:", arr)                                    // Print the array
-	fmt.Println("Slice:", slice)                                  // Print the slice
-	fmt.Println("Last element of slice:", lst)                    // Print the last element of the slice
-	fmt.Println("Sorted slice:", sortedSlice)                     // Print the sorted slice
-	fmt.Println("First element of sorted slice:", sortedSlice[0]) // Print the first element of the sorted slice
-
+	fmt.Printf("Name: %s\n", Person["name"])
+	fmt.Printf("Age: %s\n", Person["age"])
 }
