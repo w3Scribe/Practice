@@ -13,10 +13,9 @@ func main() {
 	User["user2"] = Person{"Jane", 25}
 	User["user3"] = Person{"Doe", 40}
 
-	for key, value := range User {
-		fmt.Println("Key:", key)
-		fmt.Println("Name:", value.Name)
-		fmt.Println("Age:", value.Age)
-		fmt.Println()
-	}
+	name, age := User["user1"].Name, User["user1"].Age
+
+	fmt.Println("User1 Details:")
+	fmt.Println("Age:", age)
+	fmt.Println("Name:", name)
 }
