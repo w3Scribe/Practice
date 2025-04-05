@@ -25,6 +25,8 @@
   - [Self-Assessment Questions](#self-assessment-questions)
   - [Coding Challenges](#coding-challenges)
 - [Additional Resources](#additional-resources)
+- [Clean Code Best Practices in C++ OOP](#clean-code-best-practices-in-c-oop)
+- [Interactive Exercises](#interactive-exercises)
 
 ---
 
@@ -68,6 +70,12 @@ OOP allows us to model real-world systems with clarity and structure. Consider t
    - `Customer` class with methods like `checkout()` and `addToCart()`
 
 This approach helps organize code in a way that mirrors how we think about the world, making programs easier to understand, maintain, and extend.
+
+**Why OOP?**
+- **Encapsulation:** Combines data and behavior in one unit.
+- **Abstraction:** Hides unnecessary details to focus on essential features.
+- **Inheritance:** Allows classes to inherit common attributes and methods.
+- **Polymorphism:** Enables the same interface to be used for different data types.
 
 ## Basic Concepts
 
@@ -150,6 +158,18 @@ CLASS (blueprint)          OBJECTS (instances)
 | + addFuel()   |         | + addFuel()     |     | + addFuel()     |
 +---------------+         +-----------------+     +-----------------+
 ```
+
+**Visual Diagram of Classes and Objects:**
+
+```
+    [Class Blueprint: Car]
+           │
+    ┌─────────────┐
+    │ myCar Object│
+    └─────────────┘
+```
+
+*This diagram shows how a class serves as a blueprint that can be used to create one or more objects.*
 
 ### Access Modifiers
 
@@ -1823,6 +1843,24 @@ int main() {
    - [LeetCode](https://leetcode.com/) - Coding challenges
    - [Exercism C++ Track](https://exercism.io/tracks/cpp) - Guided learning
    - [C++ Insights](https://cppinsights.io/) - See what your code really does
+
+## Clean Code Best Practices in C++ OOP
+
+- **Consistent Naming:** Use descriptive names for classes, methods, and variables.
+- **Encapsulation:** Keep data private and expose only necessary interfaces.
+- **Modern Initialization:** Use `{}` for initialization to prevent narrowing and promote clarity.
+- **Error Handling:** Validate inputs and handle exceptions (e.g., check division by zero).
+- **Resource Management:** Leverage RAII to manage resources automatically.
+- **Avoid Duplication:** Follow the DRY principle by reusing code through inheritance and composition.
+
+## Interactive Exercises
+
+- **Mini Challenge:**  
+  Create an abstract class `Shape` with a pure virtual function `area()`. Then, implement derived classes `Circle` and `Rectangle` that override `area()`. In your `main()` function, create objects of both derived classes and demonstrate polymorphism by calling `area()` via a base class pointer.
+
+- **Quiz:**  
+  What is the output of a virtual function call when using a Base class pointer that points to a Derived object?  
+  (Hint: Consider the effect of dynamic binding in runtime polymorphism.)
 
 ## Final Quiz
 
