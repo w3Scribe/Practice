@@ -1,6 +1,6 @@
 .vscode
 /C/app.exe
-/src
+# /src
 /**/*.exe
 /**/*/node_modules 
 private/
