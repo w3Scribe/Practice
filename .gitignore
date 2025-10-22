@@ -8,3 +8,5 @@ private/
 .github/
 **/.github/
 /**/*/_*
+_codeql_detected_source_root
+root/
