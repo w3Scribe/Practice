@@ -22,33 +22,39 @@ This repository serves as a practice ground for various programming languages in
 
 ```plaintext
 Practice/
-├── C/
-│   ├── README.md
-│   ├── app.c
-│   └── ... (other C files)
-├── Go/
-│   ├── README.md
-│   ├── app.go
-│   └── ... (other Go files)
-├── Python/
-│   ├── README.md
-│   ├── app.py
-│   └── ... (other Python files)
-├── TypeScript/
-│   ├── README.md
-│   ├── index.ts
-│   └── ... (other TypeScript files)
+├── docs/
+│   ├── c.md
+│   ├── cpp.md
+│   ├── cpp_notes.md
+│   ├── cpp_oop.md
+│   ├── go.md
+│   ├── python.md
+│   └── typescript.md
+├── src/
+│   ├── c/
+│   │   └── app.c
+│   ├── cpp/
+│   │   └── app.cpp
+│   ├── go/
+│   │   └── app.go
+│   ├── python/
+│   │   └── app.py
+│   └── typescript/
+│       ├── .gitignore
+│       ├── index.ts
+│       ├── package.json
+│       └── tsconfig.json
 ├── .gitignore
 ├── LICENSE
-└── README.md 
+└── README.MD
 ```
 
 ## Languages Covered
 
-- **C**: Basic programs, algorithms, and more.
-- **Go**: Practice files and examples.
-- **Python**: Basic programs, algorithms, and other learning resources.
-- **TypeScript**: Examples and practice code.
+- **C**: Basic programs, algorithms, and more (`src/c`, docs in `docs/c.md`).
+- **Go**: Practice files and examples (`src/go`, docs in `docs/go.md`).
+- **Python**: Basic programs, algorithms, and other learning resources (`src/python`, docs in `docs/python.md`).
+- **TypeScript**: Examples and practice code (`src/typescript`, docs in `docs/typescript.md`).
 
 ## How to Use
 
@@ -57,11 +63,11 @@ Practice/
   git clone https://github.com/w3Scribe/Practice.git
   ```
 
-2. **Navigate to the Language Folder**: Go to the folder of the language you want to practice (e.g., `cd Practice/Python`).
+2. **Navigate to the Language Source**: Drill into the language-specific folder under `src/<language>` (e.g., `cd Practice/src/python`).
 
-3. **Open the Main File**: Each language folder contains a main file (e.g., `app.py` for Python, `app.go` for Go).
+3. **Open the Main File**: Each source folder contains a primary entry file (e.g., `app.py`, `app.go`, `app.cpp`, or `index.ts`).
 
-4. **Run the Code**: Follow the instructions in the respective `README.md` file within each language folder to run the code.
+4. **Review Docs**: Consult the relevant guide in `docs/<language>.md` for setup tips, commands, and extra learning material before running the code.
 
 ## Prerequisites
 
