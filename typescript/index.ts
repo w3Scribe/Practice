@@ -10,6 +10,9 @@ type Tupple2Union<T extends any[]> = T extends Array<infer AE> ? AE : never
 function tupleToUnion<T extends readonly any[]>(tuple: T): T[number] {
   // Returns a random element from the tuple as a union type
   // In practice, this demonstrates the union type inference
+  if (tuple.length === 0) {
+    throw new Error("Cannot get union value from empty tuple")
+  }
   return tuple[Math.floor(Math.random() * tuple.length)] as T[number]
 }
 
