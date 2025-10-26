@@ -103,3 +103,63 @@ type T5 = IsEq<any, string>;         // ❌ false
 type T6 = IsEq<never, never>;        // ✅ true
 ```
 
+## `TupleToUnion<T>`: Converting Tuples to Union Types
+
+In TypeScript, a tuple is an array with a fixed number of elements whose types are known. A union type, on the other hand, allows a value to be one of several types. Converting a tuple to a union of its element types is a powerful technique for creating more flexible and dynamic types.
+
+### Why Convert a Tuple to a Union?
+
+Imagine you have a tuple representing the allowed states of a component: `['loading', 'success', 'error']`. If you want to create a type that only accepts one of these string literals, you need a union: `'loading' | 'success' | 'error'`. This is where `TupleToUnion` comes in handy.
+
+### Method 1: Indexed Access (`T[number]`)
+
+This is the most direct and idiomatic way to convert a tuple to a union. When you access a tuple type `T` with the `number` index, TypeScript creates a union of all the types of the elements in that tuple.
+
+```typescript
+// ✅ Clean, idiomatic, and instantly recognizable.
+type TupleToUnion<T extends any[]> = T[number];
+```
+
+**How it works:** `T[number]` tells the compiler: "Give me the type of any element at any numeric index in `T`." For a tuple like `[string, number]`, the elements are at indices `0` (type `string`) and `1` (type `number`), so the resulting union is `string | number`.
+
+### Method 2: Conditional Types with `infer`
+
+This approach uses conditional types and the `infer` keyword to "extract" the element type from the array structure. It's more verbose but offers a great way to understand how `infer` works.
+
+```typescript
+// ✅ Explicit and a great learning tool for `infer`.
+type TupleToUnion2<T extends any[]> = T extends Array<infer E> ? E : never;
+
+// A slightly more compact syntax for the same logic.
+type TupleToUnion3<T extends any[]> = T extends (infer E)[] ? E : never;
+```
+
+**How it works:**
+1.  `T extends (infer E)[]` checks if `T` is compatible with an array type.
+2.  The `infer E` keyword tells TypeScript to automatically create a new type variable `E` and assign it the type of the array's elements.
+3.  If the check passes, the conditional type returns `E` (the union of element types).
+4.  If it fails (which it won't, due to the `extends any[]` constraint), it returns `never`.
+
+### Usage Example
+
+All three methods yield the exact same result, so the choice often comes down to style and readability.
+
+```typescript
+// Define a sample tuple.
+type MyTuple = [string, number, boolean];
+
+// Convert the tuple to a union.
+type MyUnion = TupleToUnion<MyTuple>; // Result: string | number | boolean
+
+// Example with string literals.
+type StatusTuple = ['loading', 'success', 'error'];
+type StatusUnion = TupleToUnion<StatusTuple>; // Result: 'loading' | 'success' | 'error'
+
+function setStatus(status: StatusUnion) {
+  // ...
+}
+
+setStatus('success'); // ✅ Valid
+// setStatus('pending'); // ❌ Argument of type '"pending"' is not assignable to parameter of type 'StatusUnion'.
+```
+
